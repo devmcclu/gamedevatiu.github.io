@@ -152,6 +152,7 @@
 /* Document Setup */
 html {
     ._clear();
+    background: blue;
 }
 body {
     ._clear();
@@ -168,7 +169,6 @@ body {
     #bars {
         position: absolute;
         top: 0;
-        z-index: -1;
         height: 25vh;
         width: 100%;
 
@@ -200,6 +200,8 @@ body {
             display: block;
             width: 100%;
             margin-bottom: @BaseSpacing;
+            position: relative;
+            z-index: 10;
 
             img {
                 display: block;
@@ -244,6 +246,7 @@ h1 {
 
     .title {
         text-align: center;
+        padding: @BaseSpacing/2 0;
     }
 
     .items {
@@ -255,7 +258,6 @@ h1 {
 
     .item {
         ._smooth();
-
         height: 30vh;
         flex-grow: 1;
         margin-bottom: @BorderWidth;
@@ -277,7 +279,6 @@ h1 {
 
         .info {
             ._smooth();
-
             position: absolute;
             bottom: -5em;
             margin: auto;
@@ -323,6 +324,7 @@ h1 {
         display: block;
         border-radius: 1em 1em 0 0;
         text-align: center;
+        padding: @BaseSpacing/2 0;
     }
     .middle {
         display: block;
