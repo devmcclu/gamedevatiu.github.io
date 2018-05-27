@@ -1,0 +1,67 @@
+@media screen and (orientation: landscape) {
+    .h {
+        display: unset;
+    }
+
+    .v {
+        display: none !important;
+    }
+}
+
+@media screen and (orientation: portrait) {
+    .h {
+        display: none !important;
+    }
+
+    .v {
+        display: unset;
+    }
+
+    .squircle {
+        padding: 0.5em 0.4em 0.5em 0.6em;
+    }
+
+        .squircle.collapse {
+            height: 1.2em;
+            width: 1.2em;
+            padding: 0.45em 0.5em 0.55em 0.5em;
+        }
+
+    .squircle.collapse i {
+        margin: 0;
+    }
+
+    .expandotron .items {
+        flex-direction: column;
+    }
+
+    .expandotron .item {
+        height: 15em;
+        margin-right: 0;
+        margin-bottom: 6px;
+        border-radius: 0;
+    }
+
+        .expandotron .item:first-child {
+            border-radius: 1em 1em 0 0;
+        }
+
+        .expandotron .item:last-child {
+            margin-right: 0;
+            margin-bottom: 0;
+            border-radius: 0 0 1em 1em;
+        }
+
+    .flex {
+        flex-direction: column;
+    }
+
+        .flex > * {
+            margin-right: 0;
+            margin-bottom: 1.5em;
+        }
+
+            .flex > *:last-child {
+                margin-bottom: 0;
+            }
+}

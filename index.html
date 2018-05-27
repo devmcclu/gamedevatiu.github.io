@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Gamedev@IU</title>
+    <link href="img/branding/GDIU_Icon_small.png" rel="icon">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link href="/css/gdiu_main.css" rel="stylesheet">
+    <link href="/css/gdiu_bs.css" rel="stylesheet">
+    <link href="/css/gdiu_portrait.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="bs/js/bootstrap.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+    <div id="wrapper">
+        <input />
+        <div class="full-bar solid-yellow"></div>
+        <div class="full-bar solid-blue"></div>
+        <div class="full-bar solid-green"></div>
+        <div class="full-bar solid-red"></div>
+        <div id="top-nav">
+            <a href="#" onclick="pfFollowLink(this);" class="button-image">
+                <img class="site-icon h" src="img/branding/GDIU_Logo.svg" alt="GD@IU" />
+                <img class="site-icon v" src="img/branding/GDIU_Icon.svg" alt="GD@IU" />
+            </a>
+            <a href="#home" onclick="pfFollowLink(this);" class="button squircle collapse solid-red">
+                <i class="fas fa-home"></i>
+                <span class="h">Home</span>
+            </a>
+            <a href="#home" onclick="pfFollowLink(this);" class="button squircle collapse solid-blue">
+                <i class="fas fa-lightbulb"></i>
+                <span class="h">About</span>
+            </a>
+            <a href="#home" onclick="pfFollowLink(this);" class="button squircle collapse solid-green">
+                <i class="fas fa-calendar"></i>
+                <span class="h">Events</span>
+            </a>
+            <a href="#home" onclick="pfFollowLink(this);" class="button squircle collapse solid-yellow">
+                <i class="fas fa-envelope"></i>
+                <span class="h">Contact</span>
+            </a>
+            <a href="#home" onclick="pfFollowLink(this);" class="button squircle collapse solid-red">
+                <i class="fas fa-clipboard-list"></i>
+                <span class="h">Resources</span>
+            </a>
+        </div>
+
+        <iframe id="page-frame" class="flex-grow" name="page-frame" src="pages/home.html"></iframe>
+        <script src="js/pageframe.js" type="text/javascript"></script>
+    </div>
+    <div class="full-bar solid-red"></div>
+</body>
+</html>
