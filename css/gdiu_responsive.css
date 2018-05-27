@@ -1,0 +1,16 @@
+/* Larger than phone */
+@media (min-width: 600px) {
+
+}
+/* Larger than tablet portrait */
+@media (min-width: 900px) {
+
+}
+/* Larger than tablet landscape */
+@media (min-width: 1200px) {
+
+}
+/* Larger than standard desktop */
+@media (min-width: 1800px) {
+
+}
