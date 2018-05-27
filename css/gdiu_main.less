@@ -25,7 +25,7 @@
 
 @TitleFont: 'GN Kill Gothic U';
 @HeadingFont: 'Arial Rounded MT';
-@BodyFont: 'Calibri';
+@BodyFont: Calibri, Arial, Helvetica, sans-serif;
 
 /* Mixins */
 ._clear() {
@@ -137,7 +137,7 @@
     }
 
     &.single {
-        font-size: 2em;
+        font-size: 7vw;
     }
 }
 
@@ -213,7 +213,8 @@ body {
 
 /* Page Content */
 .block {
-    padding: 0 (@BaseSpacing/2) @BaseSpacing (@BaseSpacing/2);
+    // padding: 0 (@BaseSpacing/2) @BaseSpacing (@BaseSpacing/2);
+    padding-bottom: @BaseSpacing;
 
     a {
         ._smooth();
@@ -227,7 +228,8 @@ body {
 
 h1 {
     ._clear();
-
+    
+    padding: 0.5em;
     margin-bottom: -0.2em;
     font-family: @TitleFont;
     font-size: 9vw;
@@ -241,7 +243,7 @@ h1 {
     overflow: hidden;
 
     .title {
-        padding: 1.5em;
+        text-align: center;
     }
 
     .items {
@@ -319,8 +321,8 @@ h1 {
 
     .top {
         display: block;
-        padding: 1em;
         border-radius: 1em 1em 0 0;
+        text-align: center;
     }
     .middle {
         display: block;
@@ -331,5 +333,6 @@ h1 {
         display: block;
         padding: 1em;
         border-radius: 0 0 1em 1em;
+        text-align: center;
     }
 }
