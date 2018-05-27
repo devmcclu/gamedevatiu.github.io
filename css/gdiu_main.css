@@ -95,6 +95,8 @@ i {
     border: none;
     outline: none;
     width: 100vw;
+    position: relative;
+    max-width: 100%;
 }
 
 .flex-grow {
