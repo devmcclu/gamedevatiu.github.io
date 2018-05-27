@@ -9,9 +9,11 @@
     <link href="img/branding/GDIU_Icon_small.png" rel="icon">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-    <link href="/css/gdiu_main.css" rel="stylesheet">
-    <link href="/css/gdiu_bs.css" rel="stylesheet">
-    <link href="/css/gdiu_portrait.css" rel="stylesheet">
+    
+    <link href="/css/gdiu_responsive.less" rel="stylesheet" type="text/less" />
+    <link href="/css/gdiu_main.less" rel="stylesheet" type="text/less" />
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/3.0.4/less.min.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,76 +23,74 @@
     <![endif]-->
 
 </head>
-<body>
-    <div id="top-bars">
-        <div class="full-bar solid-yellow"></div>
-        <div class="full-bar solid-blue"></div>
-        <div class="full-bar solid-green"></div>
-        <div class="full-bar solid-red"></div>
+<body id="body">
+    <div id="top">
+        <div id="bars">
+            <div class="full-bar solid-yellow"></div>
+            <div class="full-bar solid-blue"></div>
+            <div class="full-bar solid-green"></div>
+            <div class="full-bar solid-red"></div>
+        </div>
+        <div id="nav" class="m">
+            <a href="#" id="site-icon">
+                <img src="img/branding/GDIU_Logo.svg" alt="GD@IU" />
+            </a>
+            <a href="#home" class="button circle nudge-left solid-red">
+                <i class="fas fa-home"></i>
+            </a>
+            <a href="#home" class="button circle solid-blue">
+                <i class="fas fa-lightbulb"></i>
+            </a>
+            <a href="#home" class="button circle solid-green">
+                <i class="fas fa-calendar"></i>
+            </a>
+            <a href="#home" class="button circle solid-yellow">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="#home" class="button circle solid-red">
+                <i class="fas fa-clipboard-list"></i>
+            </a>
+        </div>
     </div>
-    <div id="top-nav">
-        <a href="#" class="button-image">
-            <img class="site-icon" src="img/branding/GDIU_Logo.svg" alt="GD@IU" />
-            <!--img class="site-icon" src="img/branding/GDIU_Icon.svg" alt="GD@IU" /-->
-        </a>
-        <a href="#home" class="button squircle collapse solid-red">
-            <i class="fas fa-home"></i>
-            <span class="h">Home</span>
-        </a>
-        <a href="#home" class="button squircle collapse solid-blue">
-            <i class="fas fa-lightbulb"></i>
-            <span class="h">About</span>
-        </a>
-        <a href="#home" class="button squircle collapse solid-green">
-            <i class="fas fa-calendar"></i>
-            <span class="h">Events</span>
-        </a>
-        <a href="#home" class="button squircle collapse solid-yellow">
-            <i class="fas fa-envelope"></i>
-            <span class="h">Contact</span>
-        </a>
-        <a href="#home" class="button squircle collapse solid-red">
-            <i class="fas fa-clipboard-list"></i>
-            <span class="h">Resources</span>
-        </a>
-    </div>
-
-    <div class="page-content">
-        <div class="expandotron solid-red outline thick">
-            <div class="title"><h1>Showcase!</h1></div>
+    <div class="block">
+        <div class="expandotron solid-red outline">
+            <div class="title">
+                <h1>Showcase!</h1>
+            </div>
             <div class="items">
                 <div class="item smooth slow">
-                    <div class="img" style="background-image:url('https://i2.wp.com/beebom.com/wp-content/uploads/2016/01/Reverse-Image-Search-Engines-Apps-And-Its-Uses-2016.jpg?resize=640%2C426')"></div>
+                    <div class="img" style="background-image:url('http://slugslasher.com/presskit/Slug_Slasher/images/B_Screen2.png')"></div>
                     <div class="info smooth slow">
-                        <a href="/#test" target="_parent" class="button solid-red squircle">more info</a>
+                        <a href="/#test" target="_parent" class="button solid-red pill">more info</a>
                     </div>
                 </div>
                 <div class="item smooth slow">
-                    <div class="img" style="background-image:url('https://i2.wp.com/beebom.com/wp-content/uploads/2016/01/Reverse-Image-Search-Engines-Apps-And-Its-Uses-2016.jpg?resize=640%2C426')"></div>
+                    <div class="img" style="background-image:url('http://slugslasher.com/presskit/Slug_Slasher/images/A_WrestlingPoster.png')"></div>
                     <div class="info smooth slow">
-                        <a href="/#test" target="_parent" class="button solid-red squircle">more info</a>
+                        <a href="/#test" target="_parent" class="button solid-red pill">more info</a>
                     </div>
                 </div>
                 <div class="item smooth slow">
-                    <div class="img" style="background-image:url('https://i2.wp.com/beebom.com/wp-content/uploads/2016/01/Reverse-Image-Search-Engines-Apps-And-Its-Uses-2016.jpg?resize=640%2C426')"></div>
+                    <div class="img" style="background-image:url('http://slugslasher.com/presskit/Slug_Slasher/images/2_Bosses.png')"></div>
                     <div class="info smooth slow">
-                        <a href="/#test" target="_parent" class="button solid-red squircle">more info</a>
+                        <a href="/#test" target="_parent" class="button solid-red pill">more info</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="full-bar"></div>
-        <div class="flex asym">
-            <div class="panel">
-                <div class="panel-heading solid-green outline">
+    </div>
+    <div class="block">
+        <div class="flex">
+            <div class="panel size-2">
+                <div class="top solid-green outline">
                     <h1>Events!</h1>
                 </div>
-                <div class="panel-body green outline">
+                <div class="middle green outline">
                     Event 1<br />
                     Event 2<br />
                     Event 3
                 </div>
-                <a href="/#test?foo" target="_parent" class="button panel-footer solid-green outline">
+                <a href="/#test?foo" target="_parent" class="bottom button solid-green outline">
                     <i class="fas fa-calendar"></i>
                     All upcoming events
                 </a>
@@ -99,42 +99,46 @@
                 ~twitter embed~
             </div>
         </div>
-        <div class="full-bar"></div>
+    </div>
+
+    <div class="block">
         <div class="flex asym reverse">
             <div class="panel">
-                <div class="panel-heading solid-red outline">
+                <div class="top solid-red outline">
                     <h1>News!</h1>
                 </div>
-                <div class="panel-body red outline">
+                <div class="middle red outline">
                     News 1<br />
                     News 2<br />
                     News 3
                 </div>
-                <a href="/#test?foo" target="_parent" class="button panel-footer solid-red outline">
+                <a href="/#test?foo" target="_parent" class="bottom button solid-red outline">
                     <i class="fas fa-comment-alt"></i>
                     All news and blogs
                 </a>
             </div>
             <div class="panel">
-                <div class="panel-heading solid-yellow outline">
+                <div class="top solid-yellow outline">
                     <h1>Resources</h1>
                 </div>
-                <div class="panel-body yellow outline">
+                <div class="middle yellow outline">
                     (this will be a grid)
                 </div>
-                <a href="/#test?foo" target="_parent" class="button panel-footer solid-yellow outline">
+                <a href="/#test?foo" target="_parent" class="bottom button solid-yellow outline">
                     <i class="fas fa-clipboard-list"></i>
                     All resources
                 </a>
             </div>
         </div>
+    </div>
+    <div class="block">
         <div class="full-bar"></div>
-        <div class="full-bar"></div>
-        <a href="#top" class="button circle center solid-red">
+        <a href="#" class="button circle center solid-red">
             <i class="fas fa-angle-up"></i>
         </a>
+        <div class="full-bar"></div>
     </div>
-    
+
     <div class="full-bar solid-red"></div>
 </body>
 </html>

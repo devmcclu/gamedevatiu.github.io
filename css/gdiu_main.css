@@ -33,6 +33,61 @@ body {
     padding: 0;
 }
 
+/* Top Content */
+
+#top-bars {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 25vh;
+}
+
+    #top-bars .full-bar {
+        height: 25%;
+    }
+
+#top-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 1200px;
+    padding: 0em;
+    margin: auto;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    position: relative;
+    font-size: 7vw;
+}
+
+    #top-nav .button-image {
+        width: 100%;
+    }
+
+    #top-nav .site-icon {
+        display: block;
+        width: 90vw;
+        height: auto;
+        position: relative;
+        z-index: 3;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+
+.page-content {
+    margin: auto;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.center {
+    margin: auto;
+}
+
+.content {
+    color: #222d2f;
+}
+
 h1 {
     font-family: 'GN Kill Gothic U';
     text-transform: uppercase;
@@ -57,66 +112,6 @@ a {
 
 i {
     margin-right: 0.2em;
-}
-
-#top-bars {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 25vh;
-}
-#top-bars .full-bar {
-    height: 25%;
-}
-
-#top-nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    max-width: 1200px;
-    padding: 0em;
-    margin: auto;
-    margin-top: 25px;
-    position: relative;
-    font-size: 7vw;
-}
-
-#top-nav .button-image {
-    width: 100%;
-}
-
-    #top-nav .site-icon {
-        display: block;
-        width: 90vw;
-        height: auto;
-        position: relative;
-        z-index: 3;
-        margin: auto;
-        margin-bottom: 1em;
-    }
-
-.page-content {
-    max-width: 1400px;
-    margin: auto;
-    padding: 4em 1em 1em 1em;
-    overflow: hidden;
-}
-
-.flex-grow {
-    flex-grow: 1;
-}
-
-.fixed {
-    position: fixed;
-}
-
-.center {
-    margin: auto;
-}
-
-.content {
-    color: #222d2f;
 }
 
 /* Shapes and whatnot */
