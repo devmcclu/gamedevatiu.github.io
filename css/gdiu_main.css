@@ -14,37 +14,7 @@
        Black : #222D2F
 */
 
-@font-face {
-    font-family: 'GN Kill Gothic U';
-    src: url('resources/GN-KillGothic-U-KanaNB.ttf');
-}
-
-html {
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: Calibri, Arial, Helvetica, sans-serif;
-    color: #222d2f;
-    font-size: 1.5rem;
-    background-color: #eaeaea;
-    margin: 0;
-    padding: 0;
-}
-
 /* Top Content */
-
-#top-bars {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 25vh;
-}
-
-    #top-bars .full-bar {
-        height: 25%;
-    }
 
 #top-nav {
     display: flex;
