@@ -34,22 +34,22 @@
         <div id="body">
             <div id="top">
                 <div class="nav th">
-                    <a href="#" id="site-icon">
+                    <a href="/" id="site-icon">
                         <img src="img/branding/GDIU_Logo.svg" alt="GD@IU" />
                     </a>
-                    <a href="#home" class="button circle nudge-left nudge-up solid-red">
+                    <a href="/" class="button circle nudge-left nudge-up solid-red">
                         <i class="fas fa-home"></i>
                     </a>
-                    <a href="#home" class="button circle nudge-up solid-blue">
+                    <a href="/about.html" class="button circle nudge-up solid-blue">
                         <i class="fas fa-lightbulb"></i>
                     </a>
-                    <a href="#home" class="button circle nudge-up solid-green">
+                    <a href="/events.html" class="button circle nudge-up solid-green">
                         <i class="fas fa-calendar"></i>
                     </a>
-                    <a href="#home" class="button circle nudge-up solid-yellow">
+                    <a href="/contact.html" class="button circle nudge-up solid-yellow">
                         <i class="fas fa-envelope"></i>
                     </a>
-                    <a href="#home" class="button circle nudge-up solid-red">
+                    <a href="/resources.html" class="button circle nudge-up solid-red">
                         <i class="fas fa-clipboard-list"></i>
                     </a>
                 </div>
@@ -58,23 +58,23 @@
                         <img src="img/branding/GDIU_Logo.svg" alt="GD@IU" />
                     </a>
                     <div class="items">
-                        <a href="#home" class="button pill nudge-left nudge-up solid-red">
+                        <a href="/" class="button pill nudge-left nudge-up solid-red">
                             <i class="fas fa-home"></i>
                             Home
                         </a>
-                        <a href="#home" class="button pill nudge-up solid-blue">
+                        <a href="/about.html" class="button pill nudge-up solid-blue">
                             <i class="fas fa-lightbulb"></i>
                             About
                         </a>
-                        <a href="#home" class="button pill nudge-up solid-green">
+                        <a href="/events.html" class="button pill nudge-up solid-green">
                             <i class="fas fa-calendar"></i>
                             Events
                         </a>
-                        <a href="#home" class="button pill nudge-up solid-yellow">
+                        <a href="/contact.html" class="button pill nudge-up solid-yellow">
                             <i class="fas fa-envelope"></i>
                             Contact
                         </a>
-                        <a href="#home" class="button pill nudge-up solid-red">
+                        <a href="/resources.html" class="button pill nudge-up solid-red">
                             <i class="fas fa-clipboard-list"></i>
                             Resources
                         </a>
@@ -111,15 +111,26 @@
             <div class="block">
                 <div class="flex">
                     <div class="panel size-2">
-                        <div class="top solid-green outline">
+                        <div class="top solid-dark-grey outline">
                             <h1>Events!</h1>
                         </div>
-                        <div class="middle green outline">
-                            Event 1<br />
-                            Event 2<br />
-                            Event 3
+                        <div class="middle dark-grey outline list">
+                            <div id="event-template" class="panel solid-grey flex fixed-size">
+                                <div class="card-thumbnail">
+                                    <div class="img thumb"></div>
+                                </div>
+                                <div class="card-body size-2">
+                                    <div class="pill left-text white title bold"></div>
+                                    <div class="flex row space-between center fixed-size">
+                                        <div class="pill left-text solid-dark-grey">
+                                            <i class="fas fa-calendar"></i>&nbsp;&nbsp;&nbsp;<span class="date"></span>
+                                        </div>
+                                        <div class="tag-list"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <a href="/#test?foo" target="_parent" class="bottom button solid-green outline">
+                        <a href="/#test?foo" target="_parent" class="bottom button solid-dark-grey outline">
                             <i class="fas fa-calendar"></i>
                             All upcoming events
                         </a>
@@ -139,7 +150,6 @@
                     </div>
                     <div class="flex d">
                         <div class="panel single solid-blue">
-                            This will have a twitter embed
                         </div>
                     </div>
                 </div>
@@ -148,27 +158,27 @@
             <div class="block">
                 <div class="flex">
                     <div class="panel">
-                        <div class="top solid-red outline">
+                        <div class="top solid-blue outline">
                             <h1>News!</h1>
                         </div>
-                        <div class="middle red outline">
+                        <div class="middle blue outline">
                             News 1<br />
                             News 2<br />
                             News 3
                         </div>
-                        <a href="/#test?foo" target="_parent" class="bottom button solid-red outline">
+                        <a href="/#test?foo" target="_parent" class="bottom button solid-blue outline">
                             <i class="fas fa-comment-alt"></i>
                             All news and blogs
                         </a>
                     </div>
                     <div class="panel size-2">
-                        <div class="top solid-yellow outline">
+                        <div class="top solid-red outline">
                             <h1>Resources!</h1>
                         </div>
-                        <div class="middle yellow outline">
+                        <div class="middle red outline">
                             (this will be a grid)
                         </div>
-                        <a href="/#test?foo" target="_parent" class="bottom button solid-yellow outline">
+                        <a href="/#test?foo" target="_parent" class="bottom button solid-red outline">
                             <i class="fas fa-clipboard-list"></i>
                             All resources
                         </a>
@@ -176,15 +186,21 @@
                 </div>
             </div>
             <div class="block m">
+                <div class="full-bar"></div>
                 <a href="#" class="button single circle nudge-up center solid-red">
                     <i class="fas fa-angle-up"></i>
                 </a>
             </div>
+            <div class="full-bar"></div>
         </div>
         <a href="#" id="rtt" class="button single circle nudge-up center solid-red d">
             <i class="fas fa-angle-up"></i>
         </a>
         <div id="footer" class="full-bar solid-red"></div>
     </div>
+    <script src="/js/remoteContent.js"></script>
+    <script>
+        listRange("events", 0, 3, document.getElementById("event-template"));
+    </script>
 </body>
 </html>

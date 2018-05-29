@@ -2,7 +2,7 @@
 @Red: #DD5445;
 @Green: #60BB92;
 @Blue: #5978BB;
-@Yellow: #FEC366;
+@Yellow: #fbc054;
 @White: #EAEAEA;
 @LightGrey: #c1bfc5;
 @Grey: #6E6D71;
@@ -50,6 +50,11 @@
         }
     }
 
+    /* Document Setup */
+    #body {
+        padding-bottom: 4em;
+    }
+
     /* Document Areas */
     #top-bars {
         height: 6em;
@@ -89,6 +94,7 @@
     .block {
         max-width: 1200px;
         margin: auto;
+        padding: 0 (@BaseSpacing/2) @BaseSpacing (@BaseSpacing/2);
     }
     h1 {
         font-size: 3em;
@@ -132,6 +138,72 @@
             margin-right: 0;
         }
     }
+
+    .panel {
+        .top {
+            text-align: left;
+        }
+    }
+
+    /* Remote Content Fill Areas */
+    .card {
+        align-items: center;
+    }
+
+    .card-thumbnail {
+        height: 5em;
+        width: 5em;
+        margin: 1em 0.5em 1em 1em;
+        
+        border-radius: 50%;
+        border: @BorderWidth solid @White;
+        overflow: hidden;
+     
+        flex-grow: 0;
+    }
+
+    .tag-list {
+        margin-left: 1em;
+        font-size: 0.7em;
+
+        .tag {
+            &:after {
+                font-family: @BodyFont;
+                margin-left: 0.5em;
+            }
+
+            &[tag='Design SIG'] {
+                &:after {
+                    content: 'design-sig';
+                }
+            }
+
+            &[tag='Tech SIG'] {
+                &:after {
+                    content: 'tech-sig';
+                }
+            }
+
+            &[tag='Art SIG'] {
+                &:after {
+                    content: 'art-sig';
+                }
+            }
+
+            &[tag='Audio SIG'] {
+                &:after {
+                    content: 'audio-sig';
+                }
+            }
+
+            &[tag='General'] {
+                &:after {
+                    content: 'general';
+                }
+            }
+        }
+    }
+
 }
 /* Larger than tablet landscape */
 @media (min-width: 1219px) {

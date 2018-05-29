@@ -11,7 +11,7 @@
 @Red: #DD5445;
 @Green: #60BB92;
 @Blue: #5978BB;
-@Yellow: #FEC366;
+@Yellow: #fbc054;
 @White: #EAEAEA;
 @LightGrey: #c1bfc5;
 @Grey: #6E6D71;
@@ -45,9 +45,31 @@
     border-width: @width;
     border-style: solid;
 }
+._no-select(@cursor: unset) {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    -khtml-user-select: none;
+    /* Konqueror */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+		 not supported by any browser */
+    cursor: @cursor;
+}
 
 .center {
     margin: auto;
+}
+.center-text {
+    text-align: center !important;
+}
+.left-text {
+    text-align: left !important;
 }
 
 /* Base coloring */
@@ -66,6 +88,9 @@
 .yellow, .yellow .colored {
     ._color(@Yellow, @White);
 }
+.grey, .grey .colored {
+    ._color(@Grey, @White);
+}
 .solid-red, .solid-red .colored {
     ._color(@White, @Red, @Red);
 }
@@ -76,10 +101,20 @@
     ._color(@White, @Blue, @Blue);
 }
 .solid-yellow, .solid-yellow .colored {
-    ._color(@White, @Yellow, @Yellow);
+    ._color(#fff, @Yellow, @Yellow);
 }
 .solid-grey, .solid-grey .colored {
     ._color(@White, @LightGrey, @LightGrey);
+}
+.solid-dark-grey, .solid-dark-grey .colored {
+    ._color(@White, @Grey, @Grey);
+}
+
+.white {
+    ._color(@Black, @White, @White);
+}
+.white-outline {
+    border: @BorderWidth solid @White !important;
 }
 
 /* Base Shapes */
@@ -90,6 +125,7 @@
     width: 1em;
     text-align: center;
     padding: 0.5em;
+    overflow: hidden;
 
     &.nudge-up {
         padding-top: 0.4em;
@@ -141,6 +177,12 @@
     &.yellow:hover {
         ._color(@White, @Yellow);
     }
+    &.grey:hover {
+        ._color(@White, @LightGrey);
+    }
+    &.dark-grey:hover {
+        ._color(@White, @Grey);
+    }
     &.solid-red:hover {
         ._color(@Red, @White);
     }
@@ -152,6 +194,12 @@
     }
     &.solid-yellow:hover {
         ._color(@Yellow, @White);
+    }
+    &.solid-grey:hover {
+        ._color(@LightGrey, @White);
+    }
+    &.solid-dark-grey:hover {
+        ._color(@Grey, @White)
     }
 
     &.single {
@@ -199,7 +247,7 @@ a {
     min-height: 100%;
 }
 #body {
-    padding-bottom: 4em;
+    padding-bottom: 1.5em;
 }
 
 /* Document Areas */
@@ -264,7 +312,6 @@ a {
 
 /* Page Content */
 .block {
-    // padding: 0 (@BaseSpacing/2) @BaseSpacing (@BaseSpacing/2);
     padding-bottom: @BaseSpacing;
 }
 .spaced {
@@ -281,8 +328,31 @@ h1 {
     letter-spacing: 2px;
     text-transform: uppercase;
 }
+.bold {
+    font-family: @HeadingFont;
+}
 
 /* Components */
+.vertical-space {
+    & > * {
+        margin-bottom: @BaseSpacing;
+    }
+
+    & > *:last-child {
+        margin-bottom: 0;
+    }
+
+    &.small {
+        & > * {
+            margin-bottom: @BaseSpacing/2;
+        }
+
+        & > *:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
 .expandotron {
     border-radius: 1em;
     overflow: hidden;
@@ -344,38 +414,72 @@ h1 {
 
         & > * {
             margin-right: @BaseSpacing;
+            margin-bottom: 0;
         }
+
         & > *:last-child {
             margin-right: 0;
         }
     }
+
+    &.column {
+        flex-direction: column;
+
+        & > * {
+            margin-bottom: @BaseSpacing;
+            margin-right: 0;
+        }
+
+        & > *:last-child {
+            margin-bottom: 0;
+            margin-right: 0;
+        }
+    }
+
     &.center {
         align-items: center;
         justify-content: center;
     }
 
+    &.space-between {
+        justify-content: space-between;
+    }
+
     &:not(.fixed-size) > * {
         flex-grow: 1;
+    }
+
+    & > * {
         margin-bottom: @BaseSpacing;
     }
+
+    &.small > * {
+        margin-bottom: @BaseSpacing/2;
+    }
+
     & > *:last-child {
         margin-bottom: 0;
     }
+
     & > .size-2 {
         flex-grow: 2;
     }
+
     & > .size-3 {
         flex-grow: 3;
     }
+
     & > .size-4 {
         flex-grow: 4;
     }
 }
 
 .panel {
+    overflow: hidden;
+    border-radius: 1em;
+
     &.single {
         padding: 1em;
-        border-radius: 1em;
     }
 
     .top {
@@ -394,5 +498,109 @@ h1 {
         padding: 1em;
         border-radius: 0 0 1em 1em;
         text-align: center;
+    }
+}
+
+/* Remote Content Fill Areas */
+.card {
+    .panel;
+    .center;
+
+    margin-right: 5vw;
+    margin-left: 5vw;
+}
+
+.card-thumbnail {
+    height: 20vh;
+    width: 100%;
+    padding: 0;
+
+    margin-bottom: 0;
+}
+
+.card-body {
+    padding: @BaseSpacing/2;
+
+    & > * {
+        margin-bottom: @BaseSpacing/2;
+    }
+    & > *:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.list {
+    & > * {
+        margin-bottom: @BaseSpacing;
+    }
+    & > *:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.tag-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    flex-grow: 0;
+    font-size: 0.8em;
+
+    .tag {
+        .pill;
+        ._no-select();
+        margin-right: 0.5em;
+
+        &:before {
+            content: '\f02b';
+            font-family: "Font Awesome\ 5 Free";
+            font-variant: normal;
+            font-weight: 900;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &[tag='Design SIG'] {
+            .solid-yellow;
+
+            &:before {
+                content: '\f542';
+            }
+        }
+
+        &[tag='Tech SIG'] {
+            .solid-blue;
+
+            &:before {
+                content: '\f121';
+            }
+        }
+
+        &[tag='Art SIG'] {
+            .solid-red;
+
+            &:before {
+                content: '\f53f';
+            }
+        }
+
+        &[tag='Audio SIG'] {
+            .solid-green;
+
+            &:before {
+                content: '\f001';
+            }
+        }
+
+        &[tag='General'] {
+            .solid-dark-grey;
+
+            &:before {
+                content: '\f500';
+            }
+        }
     }
 }
