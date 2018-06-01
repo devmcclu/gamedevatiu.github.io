@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿<!-- BEGIN SHARED TOP -->
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -82,6 +84,9 @@
                     </div>
                 </div>
             </div>
+
+            <!-- END SHARED TOP -->
+
             <div class="block">
                 <div class="expandotron solid-red outline">
                     <div class="title">
@@ -112,26 +117,29 @@
             <div class="block">
                 <div class="flex">
                     <div class="panel size-2">
-                        <div class="top solid-dark-grey outline">
+                        <div class="top solid-green outline">
                             <h1>Events!</h1>
                         </div>
-                        <div class="middle dark-grey outline list">
-                            <div id="event-template" class="panel solid-grey flex fixed-size">
-                                <div class="card-thumbnail">
+                        <div class="middle green outline list">
+                            <div id="event-template-large" class="panel solid-grey flex fixed-size">
+                                <a href="" class="card-thumbnail">
                                     <div class="img thumb"></div>
-                                </div>
+                                </a>
                                 <div class="card-body size-2">
-                                    <div class="pill left-text white title bold"></div>
+                                    <a href="" class="pill left-text white title bold"></a>
                                     <div class="flex row space-between center fixed-size">
                                         <div class="pill left-text solid-dark-grey">
                                             <i class="fas fa-calendar"></i>&nbsp;&nbsp;&nbsp;<span class="date"></span>
                                         </div>
-                                        <div class="tag-list"></div>
+                                        <div class="tag-list expand-names"></div>
                                     </div>
                                 </div>
+                                <a href="" class="button card-button solid-green outline">
+                                    <i class="fas fa-plus-circle"></i> More&nbsp;Info
+                                </a>
                             </div>
                         </div>
-                        <a href="/#test?foo" target="_parent" class="bottom button solid-dark-grey outline">
+                        <a href="/events.html" target="_parent" class="bottom button solid-green outline">
                             <i class="fas fa-calendar"></i>
                             All upcoming events
                         </a>
@@ -150,7 +158,7 @@
                         </div>
                     </div>
                     <div class="flex d">
-                        <div class="panel single solid-blue">
+                        <div class="panel single solid-yellow">
                         </div>
                     </div>
                 </div>
@@ -186,6 +194,9 @@
                     </div>
                 </div>
             </div>
+
+            <!-- BEGIN SHARED BOTTOM -->
+
             <div class="block m">
                 <div class="full-bar"></div>
                 <a href="#" class="button single circle nudge-up center solid-red">
@@ -201,7 +212,9 @@
     </div>
     <script src="/js/remoteContent.js"></script>
     <script>
-        listRange("events", 0, 3, document.getElementById("event-template"));
+        listRange("events", 0, 3, document.getElementById("event-template-large"));
     </script>
 </body>
 </html>
+
+<!-- END SHARED BOTTOM -->

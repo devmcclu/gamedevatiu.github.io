@@ -1,0 +1,172 @@
+﻿<!-- BEGIN SHARED TOP -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Gamedev@IU</title>
+    <link href="img/branding/GDIU_Icon_small.png" rel="icon">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:700" rel="stylesheet">
+
+    <link href="/css/gdiu_main.less" rel="stylesheet" type="text/less" />
+    <link href="/css/gdiu_responsive.less" rel="stylesheet" type="text/less" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/3.0.4/less.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+    <div id="wrapper">
+        <div id="top-bars">
+            <div class="full-bar solid-yellow"></div>
+            <div class="full-bar solid-blue"></div>
+            <div class="full-bar solid-green"></div>
+            <div class="full-bar solid-red"></div>
+        </div>
+        <div id="body">
+            <div id="top">
+                <div class="nav th">
+                    <a href="/" id="site-icon">
+                        <img src="img/branding/GDIU_Logo.svg" alt="GD@IU" />
+                    </a>
+                    <a href="/" class="button circle nudge-left nudge-up solid-red">
+                        <i class="fas fa-home"></i>
+                    </a>
+                    <a href="/about.html" class="button circle nudge-up solid-blue">
+                        <i class="fas fa-lightbulb"></i>
+                    </a>
+                    <a href="/events.html" class="button circle nudge-up solid-green">
+                        <i class="fas fa-calendar"></i>
+                    </a>
+                    <a href="/contact.html" class="button circle nudge-up solid-yellow">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="/resources.html" class="button circle nudge-up solid-red">
+                        <i class="fas fa-clipboard-list"></i>
+                    </a>
+                </div>
+                <div class="nav w">
+                    <a href="#" id="site-icon">
+                        <img src="img/branding/GDIU_Logo.svg" alt="GD@IU" />
+                    </a>
+                    <div class="items">
+                        <a href="/" class="button pill nudge-left nudge-up solid-red">
+                            <i class="fas fa-home"></i>
+                            Home
+                        </a>
+                        <a href="/about.html" class="button pill nudge-up solid-blue">
+                            <i class="fas fa-lightbulb"></i>
+                            About
+                        </a>
+                        <a href="/events.html" class="button pill nudge-up solid-green">
+                            <i class="fas fa-calendar"></i>
+                            Events
+                        </a>
+                        <a href="/contact.html" class="button pill nudge-up solid-yellow">
+                            <i class="fas fa-envelope"></i>
+                            Contact
+                        </a>
+                        <a href="/resources.html" class="button pill nudge-up solid-red">
+                            <i class="fas fa-clipboard-list"></i>
+                            Resources
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- END SHARED TOP -->
+
+            <div class="block">
+                <div class="panel">
+                    <div class="top solid-green outline">
+                        <h1>All Events</h1>
+                    </div>
+                    <div class="bottom green outline">
+                        <div class="list pad-bottom">
+                            <div id="event-template-large" class="panel solid-grey flex fixed-size">
+                                <a href="" class="card-thumbnail">
+                                    <div class="img thumb"></div>
+                                </a>
+                                <div class="card-body size-2">
+                                    <a href="" class="pill left-text white title bold"></a>
+                                    <div class="flex row space-between center fixed-size">
+                                        <div class="pill left-text solid-dark-grey">
+                                            <i class="fas fa-calendar"></i>&nbsp;&nbsp;&nbsp;<span class="date"></span>
+                                        </div>
+                                        <div class="tag-list expand-names"></div>
+                                    </div>
+                                </div>
+                                <a href="" class="button card-button solid-green outline">
+                                    <i class="fas fa-plus-circle"></i> More&nbsp;Info
+                                </a>
+                            </div>
+                        </div>
+                        <div class="list d">
+                            <div id="event-template-small-d" class="panel solid-grey flex fixed-size">
+                                <div class="card-body size-2 flex fixed-size d-vertical-center">
+                                    <div class="pill left-text solid-dark-grey">
+                                        <i class="fas fa-calendar"></i>&nbsp;&nbsp;&nbsp;<span class="date"></span>
+                                    </div>
+                                    <div class="size-2 flex row space-between center fixed-size">
+                                        <a href="" class="pill left-text white title bold size-2" style="min-width:40%;"></a>
+                                        <div class="tag-list"></div>
+                                    </div>
+                                </div>
+                                <a href="" class="button card-button full solid-green outline">
+                                    <i class="fas fa-plus-circle"></i> More&nbsp;Info
+                                </a>
+                            </div>
+                        </div>
+                        <div class="list m">
+                            <div id="event-template-small-m" class="panel solid-grey">
+                                <div class="card-body flex fixed-size d-vertical-center">
+                                    <a href="" class="pill left-text white title bold"></a>
+                                    <div class="size-2 flex row space-between center fixed-size">
+                                        <div class="pill left-text solid-dark-grey">
+                                            <i class="fas fa-calendar"></i>&nbsp;&nbsp;&nbsp;<span class="date"></span>
+                                        </div>
+                                        <div class="tag-list"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BEGIN SHARED BOTTOM -->
+
+            <div class="block m">
+                <div class="full-bar"></div>
+                <a href="#" class="button single circle nudge-up center solid-red">
+                    <i class="fas fa-angle-up"></i>
+                </a>
+            </div>
+            <div class="full-bar"></div>
+        </div>
+        <a href="#" id="rtt" class="button single circle nudge-up center solid-red d">
+            <i class="fas fa-angle-up"></i>
+        </a>
+        <div id="footer" class="full-bar solid-red"></div>
+        <script src="/js/remoteContent.js"></script>
+        <script>
+            listRange("events", 0, 3, document.getElementById("event-template-large"));
+            listRange("events", 3, 20, document.getElementById("event-template-small-d"));
+            listRange("events", 3, 20, document.getElementById("event-template-small-m"));
+        </script>
+    </div>
+</body>
+</html>
+
+<!-- END SHARED BOTTOM -->

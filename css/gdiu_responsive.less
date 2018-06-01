@@ -19,6 +19,44 @@
 @HeadingFont: 'Arial Rounded MT';
 @BodyFont: Calibri, Arial, Helvetica, sans-serif;
 
+/* Mixins */
+._clear() {
+    margin: 0;
+    padding: 0;
+}
+
+._smooth(@time: @Medium) {
+    transition: all @time ease-out;
+}
+
+._color(@fg, @bg, @outline: @fg) {
+    color: @fg;
+    border-color: @outline;
+    background-color: @bg;
+}
+
+._enable-border(@width: @BorderWidth) {
+    border-width: @width;
+    border-style: solid;
+}
+
+._no-select(@cursor: unset) {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    -khtml-user-select: none;
+    /* Konqueror */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+		 not supported by any browser */
+    cursor: @cursor;
+}
+
 /* Smaller than tablet portrait */
 @media (max-width: 899px) {
     .d {
@@ -47,6 +85,17 @@
     .button {
         &.single {
             font-size: 1em;
+        }
+    }
+
+    .img {
+        &.sized {
+            height: unset;
+            width: unset;
+
+            @size: 10em;
+            min-width: @size;
+            min-height: @size;
         }
     }
 
@@ -129,13 +178,29 @@
 
     .flex {
         flex-direction: row;
-
-        &:not(.fixed-size) > * {
+        
+        & > * {
             margin-bottom: 0;
             margin-right: @BaseSpacing;
         }
+
+        &:not(.fixed-size) > * {
+        }
+
         & > *:last-child {
             margin-right: 0;
+        }
+
+        & > .order-last {
+            order: unset;
+
+            & ~ * {
+                margin-bottom: 0;
+            }
+        }
+
+        &.d-vertical-center {
+            align-items: center;
         }
     }
 
@@ -150,7 +215,51 @@
         align-items: center;
     }
 
+    .card-body {
+        justify-content: flex-start;
+
+        .title {
+        }
+    }
+
+    .card-button {
+        border-radius: 0 1em 0 1em;
+        align-self: flex-start;
+
+        &.full {
+            padding-top: 0.8em;
+            padding-bottom: 0.2em;
+            border-radius: 0 1em 1em 0em;
+            align-self: stretch;
+        }
+
+        /*border-radius: 50%;
+        
+        height: 1em;
+        width: 1em;
+        padding: 0.5em;
+
+        font-size: 1.5em;
+        margin-left: @BaseSpacing;
+        margin-right: @BaseSpacing !important;*/
+    }
+
     .card-thumbnail {
+        width: 10em;
+        height: unset;
+        margin-right: @BaseSpacing;
+        margin-bottom: 0;
+        border-right: @BorderWidth solid @White;
+
+        & .img {
+            ._smooth();
+            background-size: 100%;
+        }
+
+        &:hover .img {
+            background-size: 120%;
+        }
+        /*
         height: 5em;
         width: 5em;
         margin: 1em 0.5em 1em 1em;
@@ -160,13 +269,22 @@
         overflow: hidden;
      
         flex-grow: 0;
+        */
     }
 
     .tag-list {
         margin-left: 1em;
         font-size: 0.7em;
+    }
 
-        .tag {
+}
+/* Larger than tablet landscape */
+@media (min-width: 1219px) {
+    .th {
+        display: none !important;
+    }
+    .tag-list {
+        &.expand-names .tag {
             &:after {
                 font-family: @BodyFont;
                 margin-left: 0.5em;
@@ -201,14 +319,13 @@
                     content: 'general';
                 }
             }
-        }
-    }
 
-}
-/* Larger than tablet landscape */
-@media (min-width: 1219px) {
-    .th {
-        display: none !important;
+            &[tag='Lab'] {
+                &:after {
+                    content: 'proto-lab';
+                }
+            }
+        }
     }
 }
 /* Larger than standard desktop */

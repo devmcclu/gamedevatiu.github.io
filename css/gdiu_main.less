@@ -16,7 +16,7 @@
 @LightGrey: #c1bfc5;
 @Grey: #6E6D71;
 @Black: #222D2F;
-
+@Purple: #9973bb ;
 @BaseSpacing: 20px;
 @BorderWidth: 3px;
 
@@ -91,6 +91,9 @@
 .grey, .grey .colored {
     ._color(@Grey, @White);
 }
+.purple, .purple .colored {
+    ._color(@Purple, @White);
+}
 .solid-red, .solid-red .colored {
     ._color(@White, @Red, @Red);
 }
@@ -108,6 +111,9 @@
 }
 .solid-dark-grey, .solid-dark-grey .colored {
     ._color(@White, @Grey, @Grey);
+}
+.solid-purple, .solid-purple .colored {
+    ._color(@White, @Purple, @Purple);
 }
 
 .white {
@@ -213,6 +219,11 @@
     width: 100%;
     background-size: cover;
     background-position: center;
+
+    &.sized {
+        height: unset;
+        min-height: 42vh;
+    }
 }
 
 /* Document Setup */
@@ -328,8 +339,19 @@ h1 {
     letter-spacing: 2px;
     text-transform: uppercase;
 }
+h2 {
+    ._clear();
+
+    padding: 0.3em 0.5em;
+    margin-bottom: -0.1em;
+    font-family: @HeadingFont;
+    font-size: 1.65em;
+}
 .bold {
     font-family: @HeadingFont;
+}
+.pad-bottom {
+    padding-bottom: @BaseSpacing;
 }
 
 /* Components */
@@ -472,6 +494,15 @@ h1 {
     & > .size-4 {
         flex-grow: 4;
     }
+
+    & > .order-last {
+        order: 999;
+        margin-bottom: 0;
+
+        & ~ * {
+            margin-bottom: @BaseSpacing;
+        }
+    }
 }
 
 .panel {
@@ -481,6 +512,7 @@ h1 {
     &.single {
         padding: 1em;
     }
+
 
     .top {
         display: block;
@@ -497,7 +529,10 @@ h1 {
         display: block;
         padding: 1em;
         border-radius: 0 0 1em 1em;
-        text-align: center;
+
+        &.button {
+            text-align: center;
+        }
     }
 }
 
@@ -510,8 +545,15 @@ h1 {
     margin-left: 5vw;
 }
 
+.card-button {
+    border-radius: 0 0 1em 1em;
+    padding: 0.5em;
+    text-align: center;
+    vertical-align: middle;
+}
+
 .card-thumbnail {
-    height: 20vh;
+    height: 25vh;
     width: 100%;
     padding: 0;
 
@@ -600,6 +642,14 @@ h1 {
 
             &:before {
                 content: '\f500';
+            }
+        }
+
+        &[tag='Lab'] {
+            .solid-purple;
+
+            &:before {
+                content: '\f0c3';
             }
         }
     }

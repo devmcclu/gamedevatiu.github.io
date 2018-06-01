@@ -116,20 +116,19 @@ function injectMultipleFiles(filePaths, targets) {
 }
 
 function listRange(folder, start, end, target) {
-    let num = end - start;
-    console.log(target.parentNode);
-    var targets = [target];
-    for (var i = 1; i < num; i++) {
-        let newTarget = target.cloneNode(true);
-        target.parentNode.appendChild(newTarget);
-        targets.push(newTarget);
-    }
     getFileContents(contentDirectory + folder + "/" + listingFileName, function (x) {
         var paths = x.replace("\r", "").split("\n");
         for (var i = 0; i < paths.length; i++) {
             paths[i] = contentDirectory + folder + "/" + paths[i] + fileExtenstion;
         }
+        console.log(paths);
+        var targets = [target];
+        let num = Math.min(paths.length, end) - start;
+        for (var i = 1; i < num; i++) {
+            let newTarget = target.cloneNode(true);
+            target.parentNode.appendChild(newTarget);
+            targets.push(newTarget);
+        }
         injectMultipleFiles(paths.slice(start, end), targets);
     }, alertNotFound);
-    console.log(targets);
 }
