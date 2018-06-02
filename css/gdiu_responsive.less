@@ -146,7 +146,8 @@
         padding: 0 (@BaseSpacing/2) @BaseSpacing (@BaseSpacing/2);
     }
     h1 {
-        font-size: 3em;
+        ._no-select(unset);
+        font-size: 2.4em;
     }
 
     p, .content {
@@ -164,6 +165,10 @@
                 width: 10em;
             }
         }
+    }
+
+    .body {
+        padding: 0 1em;
     }
 
     /* Components */
@@ -224,6 +229,11 @@
     .panel {
         .top {
             text-align: left;
+        }
+
+        &.side {
+            width: 16em;
+            min-width: 16em;
         }
     }
 
@@ -302,6 +312,7 @@
 
         .tag-list {
             justify-content: flex-end;
+            padding-right: 1em;
         }
     }
 

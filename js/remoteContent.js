@@ -14,6 +14,8 @@ const listSeparator = ',';
 const listSuffix = "-list";
 const listItemFormat = "<div class='$key' tag='$value'></div>";
 
+const preprocessIdentifier = '@';
+
 const querySeparator = '?';
 const subquerySeparator = '#';
 const defaultQuery = 'none';
@@ -96,6 +98,16 @@ function inject(o, target) {
                 }
             }
         }
+        else if (identifier == preprocessIdentifier) {
+            let input = o[k];
+
+            let key = k.slice(1);
+            let insert = target.getElementsByClassName(key);
+
+            if (insert.length > 0) {
+                insert[0].innerHTML = muProcess(input);
+            }
+        }
         else {
             let insert = target.getElementsByClassName(k);
             if (insert.length > 0) {
@@ -114,6 +126,13 @@ function inject(o, target) {
                 inject(parse(x, path), target);
             }, alertNotFound);
         }
+    }
+
+    let pageLinks = target.querySelectorAll('[pagelink]');
+    for (var i = 0; i < pageLinks.length; i++) {
+        let e = pageLinks[i];
+        let name = o["filePath"].replace(fileExtenstion, "").replace(contentDirectory, "").replace("/", "?");
+        e.href = "/" + e.getAttribute('pagelink') + "?" + name;
     }
 }
 
@@ -153,17 +172,23 @@ function listRange(folder, start, end, target) {
 }
 
 function getQueryString() {
-    let fullURL = window.location.href;
+    let fullURL = window.location.href.split(subquerySeparator)[0];
     let tokens = fullURL.split(querySeparator);
-    if (tokens.length < 2) {
-        return defaultQuery;
+    if (tokens.length < 3) {
+        return [defaultQuery];
     }
-    else return tokens[1].split(subquerySeparator)[0];
+    else return tokens.slice(1);
 }
 
-function injectFromQuery(folder, target) {
+function injectFromQuery(target) {
     let q = getQueryString();
-    let path = contentDirectory + folder + "/" + q + fileExtenstion;
+    var path;
+    if (q.length == 1) {
+        path = contentDirectory + q[0] + fileExtenstion;
+    }
+    else {
+        path = contentDirectory + q[0] + "/" + q[1] + fileExtenstion;
+    }
     getFileContents(path, function (x) {
         inject(parse(x, path), target);
     }, alertNotFound);
