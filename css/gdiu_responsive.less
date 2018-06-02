@@ -149,6 +149,23 @@
         font-size: 3em;
     }
 
+    p, .content {
+        text-align: left;
+
+        .img {
+            display: inline-block;
+            float: left;
+            margin: 0 1em 1em 0;
+            height: 10em;
+            width: 14em;
+
+            &.small {
+                height: 8em;
+                width: 10em;
+            }
+        }
+    }
+
     /* Components */
     .expandotron {
         .title {
@@ -245,18 +262,16 @@
     }
 
     .card-thumbnail {
+        ._smooth();
+
         width: 10em;
         height: unset;
         margin-right: @BaseSpacing;
         margin-bottom: 0;
         border-right: @BorderWidth solid @White;
+        background-size: 100%;
 
-        & .img {
-            ._smooth();
-            background-size: 100%;
-        }
-
-        &:hover .img {
+        &:hover {
             background-size: 120%;
         }
         /*
@@ -273,8 +288,21 @@
     }
 
     .tag-list {
-        margin-left: 1em;
         font-size: 0.7em;
+    }
+
+    .event-large .tag-list, .event-small-d .tag-list {
+        margin-left: 1em;
+    }
+
+    .content-panel {
+        .info {
+            padding-left: @BaseSpacing;
+        }
+
+        .tag-list {
+            justify-content: flex-end;
+        }
     }
 
 }

@@ -16,7 +16,7 @@
 @LightGrey: #c1bfc5;
 @Grey: #6E6D71;
 @Black: #222D2F;
-@Purple: #9973bb ;
+@Purple: #9973bb;
 @BaseSpacing: 20px;
 @BorderWidth: 3px;
 
@@ -33,18 +33,22 @@
     margin: 0;
     padding: 0;
 }
-._smooth(@time: @Medium) {
-    transition: all @time ease-out;
+
+._smooth(@time: @Medium, @curve: ease-out) {
+    transition: all @time @curve;
 }
+
 ._color(@fg, @bg, @outline: @fg) {
     color: @fg;
     border-color: @outline;
     background-color: @bg;
 }
+
 ._enable-border(@width: @BorderWidth) {
     border-width: @width;
     border-style: solid;
 }
+
 ._no-select(@cursor: unset) {
     -webkit-touch-callout: none;
     /* iOS Safari */
@@ -62,12 +66,22 @@
     cursor: @cursor;
 }
 
+.no-select {
+    ._no-select();
+}
+
+.no-wrap {
+    white-space: nowrap;
+}
+
 .center {
     margin: auto;
 }
+
 .center-text {
     text-align: center !important;
 }
+
 .left-text {
     text-align: left !important;
 }
@@ -76,42 +90,55 @@
 .outline, .outline .colored {
     border: @BorderWidth solid @Grey;
 }
+
 .red, .red .colored {
     ._color(@Red, @White);
 }
+
 .green, .green .colored {
     ._color(@Green, @White);
 }
+
 .blue, .blue .colored {
     ._color(@Blue, @White);
 }
+
 .yellow, .yellow .colored {
     ._color(@Yellow, @White);
 }
+
 .grey, .grey .colored {
     ._color(@Grey, @White);
 }
+
 .purple, .purple .colored {
     ._color(@Purple, @White);
 }
+
 .solid-red, .solid-red .colored {
     ._color(@White, @Red, @Red);
 }
+
 .solid-green, .solid-green .colored {
     ._color(@White, @Green, @Green);
 }
+
 .solid-blue, .solid-blue .colored {
     ._color(@White, @Blue, @Blue);
 }
+
 .solid-yellow, .solid-yellow .colored {
     ._color(#fff, @Yellow, @Yellow);
 }
+
 .solid-grey, .solid-grey .colored {
     ._color(@White, @LightGrey, @LightGrey);
 }
+
 .solid-dark-grey, .solid-dark-grey .colored {
     ._color(@White, @Grey, @Grey);
 }
+
 .solid-purple, .solid-purple .colored {
     ._color(@White, @Purple, @Purple);
 }
@@ -119,6 +146,7 @@
 .white {
     ._color(@Black, @White, @White);
 }
+
 .white-outline {
     border: @BorderWidth solid @White !important;
 }
@@ -137,14 +165,17 @@
         padding-top: 0.4em;
         padding-bottom: 0.6em;
     }
+
     &.nudge-left {
         padding-right: 0.55em;
         padding-left: 0.45em;
     }
+
     &.nudge-down {
         padding-top: 0.6em;
         padding-bottom: 0.4em;
     }
+
     &.large {
         height: 12vw;
         width: 12vw;
@@ -157,6 +188,10 @@
     display: block;
     padding: 0.5em 1em;
     text-align: center;
+
+    span& {
+        display: inline-block;
+    }
 }
 
 .full-bar {
@@ -168,42 +203,53 @@
 .button {
     ._smooth(@Fast);
     ._enable-border();
-
+    ._no-select(pointer);
     display: block;
 
     &.red:hover {
         ._color(@White, @Red);
     }
+
     &.green:hover {
         ._color(@White, @Green);
     }
+
     &.blue:hover {
         ._color(@White, @Blue);
     }
+
     &.yellow:hover {
         ._color(@White, @Yellow);
     }
+
     &.grey:hover {
         ._color(@White, @LightGrey);
     }
+
     &.dark-grey:hover {
         ._color(@White, @Grey);
     }
+
     &.solid-red:hover {
         ._color(@Red, @White);
     }
+
     &.solid-green:hover {
         ._color(@Green, @White);
     }
+
     &.solid-blue:hover {
         ._color(@Blue, @White);
     }
+
     &.solid-yellow:hover {
         ._color(@Yellow, @White);
     }
+
     &.solid-grey:hover {
         ._color(@LightGrey, @White);
     }
+
     &.solid-dark-grey:hover {
         ._color(@Grey, @White)
     }
@@ -226,26 +272,31 @@
     }
 }
 
+label {
+    ._no-select(pointer);
+}
+
 /* Document Setup */
 html {
     ._clear();
-    
     height: 100%;
     background: #eaeaea;
 }
+
 body {
     ._clear();
-
     height: 100%;
     color: #222d2f;
     font-family: @BodyFont;
     font-size: 1.5rem;
 }
+
 svg {
     fill: currentColor;
 }
-a {
-    ._smooth();
+
+a, .a {
+    ._smooth(@Fast);
     text-decoration: none;
 
     &:hover {
@@ -257,6 +308,7 @@ a {
     position: relative;
     min-height: 100%;
 }
+
 #body {
     padding-bottom: 1.5em;
 }
@@ -279,7 +331,6 @@ a {
         align-items: flex-start;
         justify-content: center;
         flex-wrap: wrap;
-
         margin: auto;
         padding-top: 25px;
         margin-bottom: @BaseSpacing;
@@ -288,6 +339,7 @@ a {
 
         * {
             margin-right: 0.3em;
+
             &:last-child {
                 margin-right: 0;
             }
@@ -304,7 +356,7 @@ a {
                 display: block;
                 width: 90%;
                 height: auto;
-                margin:auto;
+                margin: auto;
             }
         }
     }
@@ -325,13 +377,14 @@ a {
 .block {
     padding-bottom: @BaseSpacing;
 }
+
 .spaced {
     padding-top: 1em;
     padding-bottom: 1em;
 }
+
 h1 {
     ._clear();
-    
     padding: 0.5em;
     margin-bottom: -0.2em;
     font-family: @TitleFont;
@@ -339,17 +392,33 @@ h1 {
     letter-spacing: 2px;
     text-transform: uppercase;
 }
+
 h2 {
     ._clear();
-
     padding: 0.3em 0.5em;
     margin-bottom: -0.1em;
     font-family: @HeadingFont;
     font-size: 1.65em;
 }
+
+p, .content {
+    ._clear();
+    margin-bottom: @BaseSpacing;
+    text-align: center;
+
+    .img {
+        height: 22vh;
+        width: 90%;
+        border-radius: 1em;
+        margin: auto;
+        margin-bottom: @BaseSpacing;
+    }
+}
+
 .bold {
     font-family: @HeadingFont;
 }
+
 .pad-bottom {
     padding-bottom: @BaseSpacing;
 }
@@ -513,18 +582,19 @@ h2 {
         padding: 1em;
     }
 
-
     .top {
         display: block;
         border-radius: 1em 1em 0 0;
         text-align: center;
         padding: @BaseSpacing/2 0;
     }
+
     .middle {
         display: block;
         padding: 1em;
         border-bottom-width: 0;
     }
+
     .bottom {
         display: block;
         padding: 1em;
@@ -540,7 +610,6 @@ h2 {
 .card {
     .panel;
     .center;
-
     margin-right: 5vw;
     margin-left: 5vw;
 }
@@ -553,10 +622,9 @@ h2 {
 }
 
 .card-thumbnail {
-    height: 25vh;
+    height: 33vh;
     width: 100%;
     padding: 0;
-
     margin-bottom: 0;
 }
 
@@ -566,6 +634,7 @@ h2 {
     & > * {
         margin-bottom: @BaseSpacing/2;
     }
+
     & > *:last-child {
         margin-bottom: 0;
     }
@@ -575,6 +644,7 @@ h2 {
     & > * {
         margin-bottom: @BaseSpacing;
     }
+
     & > *:last-child {
         margin-bottom: 0;
     }
@@ -585,7 +655,6 @@ h2 {
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: flex-start;
     flex-grow: 0;
     font-size: 0.8em;
 
@@ -650,6 +719,89 @@ h2 {
 
             &:before {
                 content: '\f0c3';
+            }
+        }
+    }
+}
+
+.event-large .tag-list, .event-small-m .tag-list {
+    justify-content: flex-start;
+}
+
+.content-panel {
+    .content {
+        min-height: 6.5em;
+    }
+
+    .tag-list {
+        justify-content: center;
+    }
+}
+
+/* Overlays */
+.overlay-toggle {
+    display: none;
+
+    &:checked + .overlay {
+        background: rgba(0,0,0,0.8);
+        z-index: 999;
+
+        .overlay-background-exit {
+            display: block;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .overlay-box {
+            top: 0vh;
+
+            .overlay-side-panel {
+                top: -0.1em;
+            }
+        }
+    }
+}
+
+.overlay {
+    ._smooth(0.4s);
+    background: rgba(0,0,0,0);
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: -1;
+
+    .overlay-box {
+        ._smooth(1s, cubic-bezier(0.19, 1, 0.22, 1));
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 100vh;
+
+        .overlay-background-exit {
+            display: block;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .overlay-panel {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+            margin-top: 5vh;
+            z-index: 1001;
+
+            .overlay-side-panel {
+                ._smooth(0.7s);
+                width: 3em;
+                position: absolute;
+                top: 3em;
+                right: -4em;
             }
         }
     }

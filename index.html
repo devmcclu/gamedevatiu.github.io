@@ -27,6 +27,30 @@
 
 </head>
 <body>
+    <!-- BEGIN INFO OVERLAY -->
+    <input type="checkbox" id="info-overlay-toggle" class="overlay-toggle" />
+    <div id="info-overlay" class="overlay">
+        <label for="info-overlay-toggle" id="info-overlay-background-exit" class="overlay-background-exit"></label>
+        <div id="info-box" class="overlay-box">
+            <div id="info-panel" class="overlay-panel">
+                <div class="panel">
+                    <div class="top solid-green outline">
+                        <h2 class="title">Panel Title</h2>
+                    </div>
+                    <div class="bottom green outline">
+                        <label for="info-overlay-toggle" class="pill solid-red outline button m">
+                            <i class="fas fa-times-circle"></i> Close
+                        </label>
+                    </div>
+                    <div class="overlay-side-panel d">
+                        <label for="info-overlay-toggle" class="circle nudge-up solid-red outline button d"><i class="fas fa-times"></i></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END INFO OVERLAY -->
+
     <div id="wrapper">
         <div id="top-bars">
             <div class="full-bar solid-yellow"></div>
@@ -57,7 +81,7 @@
                     </a>
                 </div>
                 <div class="nav w">
-                    <a href="#" id="site-icon">
+                    <a href="/" id="site-icon">
                         <img src="img/branding/GDIU_Logo.svg" alt="GD@IU" />
                     </a>
                     <div class="items">
@@ -121,22 +145,22 @@
                             <h1>Events!</h1>
                         </div>
                         <div class="middle green outline list">
-                            <div id="event-template-large" class="panel solid-grey flex fixed-size">
-                                <a href="" class="card-thumbnail">
-                                    <div class="img thumb"></div>
-                                </a>
+                            <!-- EVENT TEMPLATE LARGE -->
+                            <div id="event-template-large" class="event-large panel solid-grey flex fixed-size">
+                                <label for="info-overlay-toggle" class="card-thumbnail img thumb" injtarget="info-panel"></label>
                                 <div class="card-body size-2">
-                                    <a href="" class="pill left-text white title bold"></a>
+                                    <label for="info-overlay-toggle" class="pill left-text white title bold a" injtarget="info-panel"></label>
                                     <div class="flex row space-between center fixed-size">
-                                        <div class="pill left-text solid-dark-grey">
+                                        <div class="pill left-text solid-dark-grey no-select">
                                             <i class="fas fa-calendar"></i>&nbsp;&nbsp;&nbsp;<span class="date"></span>
+                                            @&nbsp;<span class="time"></span>
                                         </div>
                                         <div class="tag-list expand-names"></div>
                                     </div>
                                 </div>
-                                <a href="" class="button card-button solid-green outline">
+                                <label for="info-overlay-toggle" class="button card-button solid-green outline" injtarget="info-panel">
                                     <i class="fas fa-plus-circle"></i> More&nbsp;Info
-                                </a>
+                                </label>
                             </div>
                         </div>
                         <a href="/events.html" target="_parent" class="bottom button solid-green outline">
