@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\css",
+    "\\js"
   ],
-  "SelectedNode": "\\.gitignore",
+  "SelectedNode": "\\js\\remoteContent.js",
   "PreviewInSolutionExplorer": false
 }
