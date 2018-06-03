@@ -91,39 +91,40 @@
                 <div class="flex fixed-size">
                     <div class="panel side order-last">
                         <div class="panel all-borders">
-                            <div class="top center-text grey outline no-bottom">
+                            <div class="top center-text blue outline no-bottom">
                                 <h2>More from GD@IU</h2>
                             </div>
-                            <div class="button middle solid-blue">
+                            <a href="/news.html" class="button middle solid-blue">
                                 <i class="fas fa-comment-alt"></i>
                                 News &amp; Blogs
-                            </div>
-                            <div class="button middle solid-green">
+                            </a>
+                            <a href="events.html" class="button middle solid-green">
                                 <i class="fas fa-calendar"></i>
                                 Upcoming Events
-                            </div>
-                            <div class="button middle solid-red">
+                            </a>
+                            <a href="/resources.html" class="button middle solid-red">
                                 <i class="fas fa-clipboard-list"></i>
                                 Resources &amp; Tutorials
-                            </div>
-                            <div class="button bottom solid-yellow">
+                            </a>
+                            <a href="featured.html" class="button bottom solid-yellow">
                                 <i class="fas fa-star"></i>
                                 Featured Projects
-                            </div>
+                            </a>
                         </div>
                     </div>
-                    <div id="content-target" class="content-panel panel size-5">
-                        <div class="top solid-blue outline">
+                    <div id="content-target" class="content-panel panel size-5 blue">
+                        <div class="top inverted outline">
                             <h2 class="title"></h2>
                             <div class="info">
-                                <span class="pill blue no-select">
-                                    <i class="fas fa-calendar"></i>&nbsp;&nbsp;&nbsp;<span class="date"></span>
+                                <span class="pill colored no-select">
+                                    <i class="fas fa-calendar"></i>&nbsp;&nbsp;&nbsp;<span class="date"></span> <span class="time"></span>
                                 </span>
-                                &nbsp;by
-                                <span class="author"></span>
+                                &nbsp;<span class="author"></span><span class="location"></span>
                             </div>
                         </div>
-                        <div class="bottom blue outline">
+                        <div class="bottom colored outline">
+                            <div class="hidethumb"></div>
+                            <div class="img thumb large"></div>
                             <div class="body content grey">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis purus sem, consectetur sed aliquet ut, lobortis at lorem. Praesent ac tortor nec nunc rutrum tempor feugiat in lorem. Nullam hendrerit sapien sit amet tempus vehicula. Cras at justo est. Morbi finibus sem efficitur velit condimentum, a porttitor urna maximus. Vivamus eget egestas nisl. Donec eu faucibus ex. Sed pellentesque, nulla sed molestie dapibus, augue neque dignissim nulla, faucibus varius est nisl a purus.
                                 <br /><br />
@@ -156,10 +157,11 @@
             <i class="fas fa-angle-up"></i>
         </a>
         <div id="footer" class="full-bar solid-red"></div>
-        <script src="/js/mu-preprocessor.js"></script>
+        <script src="/js/muPreprocessor.js"></script>
         <script src="/js/remoteContent.js"></script>
         <script>
             injectFromQuery(document.getElementById("content-target"));
+            colorFromQueryString(document.getElementById("content-target"));
         </script>
     </div>
 </body>

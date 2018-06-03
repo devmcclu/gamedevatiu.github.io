@@ -16,6 +16,8 @@ const listItemFormat = "<div class='$key' tag='$value'></div>";
 
 const preprocessIdentifier = '@';
 
+const valueIdentifier = '~';
+
 const querySeparator = '?';
 const subquerySeparator = '#';
 const defaultQuery = 'none';
@@ -108,6 +110,15 @@ function inject(o, target) {
                 insert[0].innerHTML = muProcess(input);
             }
         }
+        else if (identifier == valueIdentifier) {
+            let v = o[k];
+            let key = k.slice(1);
+            let insert = target.getElementsByClassName(key);
+
+            if (insert.length > 0) {
+                insert[0].setAttribute("value", v);
+            }
+        }
         else {
             let insert = target.getElementsByClassName(k);
             if (insert.length > 0) {
@@ -192,4 +203,26 @@ function injectFromQuery(target) {
     getFileContents(path, function (x) {
         inject(parse(x, path), target);
     }, alertNotFound);
+}
+
+const colors = {
+    "news": "blue",
+    "resources": "red",
+    "events": "green",
+    "featured": "yellow",
+    "lab": "purple"
+}
+function colorFromQueryString(target) {
+    let q = getQueryString()[0];
+    let color = colors[q];
+
+    // Remove existing color
+    target.classList.remove('red');
+    target.classList.remove('green');
+    target.classList.remove('blue');
+    target.classList.remove('yellow');
+    target.classList.remove('grey');
+    target.classList.remove('purple');
+
+    target.classList.add(color);
 }

@@ -27,19 +27,19 @@
 
 </head>
 <body>
-    <!-- BEGIN INFO OVERLAYS -->
-    <input type="checkbox" id="event-overlay-toggle" class="overlay-toggle" />
-    <div class="overlay">
-        <label for="event-overlay-toggle" class="overlay-background-exit"></label>
-        <div class="overlay-box">
-            <div id="event-info-panel" class="overlay-panel">
+    <!-- BEGIN INFO OVERLAY -->
+    <input type="checkbox" id="info-overlay-toggle" class="overlay-toggle" />
+    <div id="info-overlay" class="overlay">
+        <label for="info-overlay-toggle" id="info-overlay-background-exit" class="overlay-background-exit"></label>
+        <div id="info-box" class="overlay-box">
+            <div id="info-panel" class="overlay-panel">
                 <div class="panel content-panel">
                     <div class="top solid-green outline">
                         <h2 class="title">Panel Title</h2>
                         <div class="info">
                             <span class="pill green no-select">
                                 <i class="fas fa-calendar"></i>&nbsp;&nbsp;&nbsp;<span class="date"></span>
-                                @&nbsp;<span class="time"></span>
+                                <span class="time"></span>
                             </span>
                             &nbsp;
                             <span class="location no-wrap"></span>
@@ -51,19 +51,24 @@
                             <span class="body"></span>
                         </div>
 
-                        <div class="tag-list pad-bottom"></div>
-                        <label for="event-overlay-toggle" class="pill solid-red outline button m">
-                            <i class="fas fa-times-circle"></i> Close
-                        </label>
+                        <div class="tag-list expand-names pad-bottom"></div>
+
+                        <div class="flex row fixed-size center m">
+                            <label for="info-overlay-toggle" class="pill solid-red outline button size-1">
+                                <i class="fas fa-times-circle"></i> Close
+                            </label>
+                            <a href="" target="_blank" pagelink="a.html" class="circle nudge-up-more button solid-blue outline"><i class="fas fa-link"></i></a>
+                        </div>
                     </div>
                     <div class="overlay-side-panel d">
-                        <label for="event-overlay-toggle" class="circle nudge-up solid-red outline button d"><i class="fas fa-times"></i></label>
+                        <label for="info-overlay-toggle" class="circle nudge-up solid-red outline button d"><i class="fas fa-times"></i></label>
+                        <a href="" target="_blank" pagelink="a.html" class="circle nudge-up-more button solid-blue outline"><i class="fas fa-link"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- END INFO OVERLAYS -->
+    <!-- END INFO OVERLAY -->
 
     <div id="wrapper">
         <div id="top-bars">
@@ -161,18 +166,18 @@
                         <div class="middle green outline list">
                             <!-- EVENT TEMPLATE LARGE -->
                             <div id="event-template-large" class="event-large panel solid-grey flex fixed-size">
-                                <label for="event-overlay-toggle" class="card-thumbnail img thumb" injtarget="event-info-panel"></label>
+                                <label for="info-overlay-toggle" class="card-thumbnail img thumb" injtarget="info-panel"></label>
                                 <div class="card-body size-2">
-                                    <label for="event-overlay-toggle" class="pill left-text white title bold a" injtarget="event-info-panel"></label>
+                                    <label for="info-overlay-toggle" class="pill left-text white title bold a" injtarget="info-panel"></label>
                                     <div class="flex row space-between center fixed-size">
                                         <div class="pill left-text solid-dark-grey no-select">
                                             <i class="fas fa-calendar"></i>&nbsp;&nbsp;&nbsp;<span class="date"></span>
-                                            @&nbsp;<span class="time"></span>
+                                            <span class="time"></span>
                                         </div>
                                         <div class="tag-list expand-names"></div>
                                     </div>
                                 </div>
-                                <label for="event-overlay-toggle" class="button card-button solid-green outline" injtarget="event-info-panel">
+                                <label for="info-overlay-toggle" class="button card-button solid-green outline" injtarget="info-panel">
                                     <i class="fas fa-plus-circle"></i> More&nbsp;Info
                                 </label>
                             </div>
@@ -204,12 +209,12 @@
             </div>
 
             <div class="block">
-                <div class="flex">
-                    <div class="panel size-2">
+                <div class="flex split-6-4">
+                    <div class="panel size-4">
                         <div class="top solid-blue outline">
                             <h1>News!</h1>
                         </div>
-                        <div class="middle blue outline">
+                        <div class="middle blue outline list">
                             <!-- NEWS TEMPLATE LARGE -->
                             <div id="news-template-large" class="news-large panel solid-grey flex fixed-size">
                                 <a href="" class="card-thumbnail img thumb" pagelink="a.html"></a>
@@ -225,19 +230,26 @@
                             </div>
                             <!-- END NEWS TEMPLATE LARGE -->
                         </div>
-                        <a href="/#test?foo" target="_parent" class="bottom button solid-blue outline">
+                        <a href="/news.html" class="bottom button solid-blue outline">
                             <i class="fas fa-comment-alt"></i>
                             All news and blogs
                         </a>
                     </div>
-                    <div class="panel size-1">
+                    <div class="panel">
                         <div class="top solid-red outline">
                             <h1>Resources!</h1>
                         </div>
                         <div class="middle red outline">
-                            (this will be a grid)
+                            <div class="flex-grid">
+                                <!-- RESOURCE TEMPLATE LARGE -->
+                                <a href="" id="resource-template-tall" class="resource-tall panel">
+                                    <div class="top card-thumbnail img thumb" pagelink="a.html"></div>
+                                    <div class="button bottom title bold" pagelink="a.html"></div>
+                                </a>
+                                <!-- END RESOURCE TEMPLATE LARGE -->
+                            </div>
                         </div>
-                        <a href="/#test?foo" target="_parent" class="bottom button solid-red outline">
+                        <a href="/resources.html" class="bottom button solid-red outline">
                             <i class="fas fa-clipboard-list"></i>
                             All resources
                         </a>
@@ -264,6 +276,7 @@
     <script>
         listRange("events", 0, 3, document.getElementById("event-template-large"));
         listRange("news", 0, 3, document.getElementById("news-template-large"));
+        listRange("events", 0, 4, document.getElementById("resource-template-tall"));
     </script>
 </body>
 </html>

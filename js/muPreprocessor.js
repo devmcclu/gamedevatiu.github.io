@@ -3,10 +3,6 @@
  * mu preprocessor */
 
 const defaultFormat = {
-    "paragraph": {
-        pattern: /p\(([\s\S]+?)\)\s*/g,
-        format: "<p>$1</p>"
-    },
     "heading": {
         pattern: /=([\s\S]+?)=/g,
         format: "<h2>$1</h2>"
@@ -20,21 +16,29 @@ const defaultFormat = {
         format: "<em>$1</em>"
     },
     "image": {
-        pattern: /#\(([\s\S]+?)\)\[(.*)\]/g,
+        pattern: /#\(([\s\S]+?)\)\[(.+?)\]/g,
         format: "<div class='img $2' style=\"background-image:url('$1');\"></div>"
     },
     "link-same-tab": {
-        pattern: /\[=(.*)\]\[([\s\S]+?)\]/g,
+        pattern: /\[=(.+?)\]\[([\s\S]+?)\]/g,
         format: "<a href='$1'>$2</a>"
     },
     "link": {
-        pattern: /\[(.*)\]\[([\s\S]+?)\]/g,
+        pattern: /\[(.+?)\]\[([\s\S]+?)\]/g,
         format: "<a href='$1' target='_blank'>$2</a>"
+    },
+    "paragraph-spacer": {
+        pattern: /\s*p\(\)\s*/g,
+        format: "<p>&nbsp;</p>"
+    },
+    "paragraph": {
+        pattern: /\s*p\(([\s\S]+?)\)\s*/g,
+        format: "<p>$1</p>"
     },
     "break": {
         pattern: /(\r\n|\n)(\r\n|\n)/g,
         format: "<br/><br/>"
-    }
+    },
 };
 
 function muProcess(input, format = defaultFormat) {
