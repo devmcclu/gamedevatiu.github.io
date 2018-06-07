@@ -81,6 +81,23 @@
         display: none !important;
     }
 
+
+    &.d-small {
+        font-size: 0.7em;
+    }
+
+    .circle.large {
+        height: 1em;
+        width: 1em;
+        padding: 0.5em;
+        font-size: 3em;
+
+        &.nudge-up {
+            padding-bottom: 0.6em;
+            padding-top: 0.4em;
+        }
+    }
+
     /* Base Components */
     .button {
         &.single {
@@ -93,7 +110,7 @@
             height: unset;
             width: unset;
 
-            @size: 10em;
+            @size: 12em;
             min-width: @size;
             min-height: @size;
         }
@@ -156,7 +173,7 @@
         .img {
             display: inline-block;
             float: left;
-            margin: 0 1em 1em 0;
+            margin: 0 1em 0.5em 0;
             height: 10em;
             width: 14em;
 
@@ -204,13 +221,13 @@
 
     .flex {
         flex-direction: row;
-        
+
         & > * {
             margin-bottom: 0;
             margin-right: @BaseSpacing;
         }
 
-        & > *:last-child {
+        & > *:last-child, & > .last {
             margin-right: 0;
         }
 
@@ -224,6 +241,12 @@
 
         &.d-vertical-center {
             align-items: center;
+        }
+
+
+        & > .one-third {
+            flex-grow: unset;
+            width: 33%;
         }
     }
 
@@ -279,32 +302,19 @@
         margin-right: @BaseSpacing/2;
         margin-bottom: 0;
         border-right: @BorderWidth solid @White;
-        background-size: 100%;
-
-        &:hover {
-            background-size: 120%;
-        }
-        /*
-        height: 5em;
-        width: 5em;
-        margin: 1em 0.5em 1em 1em;
-        
-        border-radius: 50%;
-        border: @BorderWidth solid @White;
-        overflow: hidden;
-     
-        flex-grow: 0;
-        */
     }
 
     .tag-list {
-        font-size: 0.7em;
+        font-size: 0.5em;
     }
 
     .event-large .tag-list, .event-small-d .tag-list {
         margin-left: 1em;
     }
 
+    .resources-panel .middle {
+        //height: 21em;
+    }
     .resource-tall {
         .card-thumbnail {
             height: 5.37em;
@@ -321,9 +331,9 @@
         }
 
         .thumb.large {
-            height: 8em;
+            height: 9em;
             width: 12em;
-            margin: 0 1em 1em 1em;
+            margin: 0 1em 0.5em 1em;
             float: left;
         }
 
@@ -343,7 +353,14 @@
     .th {
         display: none !important;
     }
+    
+    .d-small {
+        font-size: 1em;
+    }
+
     .tag-list {
+        font-size: 0.7em;
+
         &.expand-names .tag {
             &:after {
                 font-family: @BodyFont;

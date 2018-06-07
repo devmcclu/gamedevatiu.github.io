@@ -3,18 +3,6 @@
  * mu preprocessor */
 
 const defaultFormat = {
-    "heading": {
-        pattern: /=([\s\S]+?)=/g,
-        format: "<h2>$1</h2>"
-    },
-    "bold": {
-        pattern: /\*([\s\S]+?)\*/g,
-        format: "<strong>$1</strong>"
-    },
-    "italic": {
-        pattern: /_([\s\S]+?)_/g,
-        format: "<em>$1</em>"
-    },
     "image": {
         pattern: /#\(([\s\S]+?)\)\[(.+?)\]/g,
         format: "<div class='img $2' style=\"background-image:url('$1');\"></div>"
@@ -27,12 +15,24 @@ const defaultFormat = {
         pattern: /\[(.+?)\]\[([\s\S]+?)\]/g,
         format: "<a href='$1' target='_blank'>$2</a>"
     },
+    "heading": {
+        pattern: /==(.+?)==/g,
+        format: "<h2>$1</h2>"
+    },
+    "bold": {
+        pattern: /\*(.+?)\*/g,
+        format: "<strong>$1</strong>"
+    },
+    "italic": {
+        pattern: /_(.+?)_/g,
+        format: "<em>$1</em>"
+    },
     "paragraph-spacer": {
-        pattern: /\s*p\(\)\s*/g,
+        pattern: /\s*\(\(\)\)\s*/g,
         format: "<p>&nbsp;</p>"
     },
     "paragraph": {
-        pattern: /\s*p\(([\s\S]+?)\)\s*/g,
+        pattern: /\s*\(\(([\s\S]+?)\)\)\s*/g,
         format: "<p>$1</p>"
     },
     "break": {

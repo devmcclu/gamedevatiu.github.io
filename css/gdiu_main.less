@@ -185,6 +185,7 @@
         height: 12vw;
         width: 12vw;
         padding: 5vw;
+        font-size: 9vw;
     }
 }
 
@@ -274,6 +275,18 @@
     &.sized {
         height: unset;
         min-height: 42vh;
+    }
+
+    &.position-right {
+        background-position: 72%;
+    }
+
+    &.position-left {
+        background-position: left;
+    }
+
+    &.position-bottom {
+        background-position: bottom;
     }
 }
 
@@ -412,7 +425,6 @@ h2 {
     margin-bottom: @BaseSpacing;
     padding-left: @BaseSpacing/2;
     padding-right: @BaseSpacing/2;
-
     text-align: center;
 
     .img {
@@ -432,12 +444,13 @@ h2 {
 
     p {
         ._clear();
-        margin-bottom: @BaseSpacing;
+        margin-bottom: @BaseSpacing*2;
         text-align: left;
     }
 
     h2 {
         padding: 0.1em 0;
+        margin-bottom: @BaseSpacing/2;
     }
 
     a {
@@ -535,6 +548,10 @@ h2 {
     display: flex;
     flex-direction: column;
 
+    &.no-margin > * {
+        margin: 0 !important;
+    }
+
     &.row {
         flex-direction: row;
 
@@ -543,7 +560,7 @@ h2 {
             margin-bottom: 0;
         }
 
-        & > *:last-child {
+        & > *:last-child, & > .last {
             margin-right: 0;
         }
     }
@@ -556,7 +573,7 @@ h2 {
             margin-right: 0;
         }
 
-        & > *:last-child {
+        & > *:last-child, & > .last {
             margin-bottom: 0;
             margin-right: 0;
         }
@@ -583,7 +600,7 @@ h2 {
         margin-bottom: @BaseSpacing/2;
     }
 
-    & > *:last-child {
+    & > *:last-child, & > .last {
         margin-bottom: 0;
     }
 
@@ -652,6 +669,10 @@ h2 {
         &.button {
             text-align: center;
         }
+
+        &.pad {
+            padding: 1em;
+        }
     }
 
     &.all-borders .middle {
@@ -665,6 +686,10 @@ h2 {
 
         &.button {
             text-align: center;
+        }
+
+        &.pad {
+            padding: 1em;
         }
     }
 
@@ -826,7 +851,7 @@ h2 {
 }
 
 .content-panel {
-    .hidethumb[value='true'] + .thumb{
+    .hidethumb[value='true'] + .thumb {
         display: none;
     }
 
@@ -845,6 +870,7 @@ h2 {
 .author:not(:empty):before {
     content: 'by '
 }
+
 .time:not(:empty):before {
     content: '@ ';
 }
