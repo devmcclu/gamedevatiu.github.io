@@ -86,6 +86,10 @@
     text-align: left !important;
 }
 
+.hide {
+    display: none !important;
+}
+
 /* Base coloring */
 .outline, .outline .colored {
     border: @BorderWidth solid @Grey;
@@ -236,6 +240,10 @@
         ._color(@White, @Grey);
     }
 
+    &.purple:hover {
+        ._color(@White, @Purple);
+    }
+
     &.solid-red:hover {
         ._color(@Red, @White);
     }
@@ -258,6 +266,10 @@
 
     &.solid-dark-grey:hover {
         ._color(@Grey, @White)
+    }
+
+    &.solid-purple:hover {
+        ._color(@Purple, @White);
     }
 
     &.single {
@@ -867,8 +879,12 @@ h2 {
     }
 }
 
-.author:not(:empty):before {
-    content: 'by '
+.author {
+    white-space: nowrap;
+
+    &:not(:empty):before {
+        content: 'by '
+    }
 }
 
 .time:not(:empty):before {
