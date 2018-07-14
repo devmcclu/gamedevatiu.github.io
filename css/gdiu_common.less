@@ -1,0 +1,122 @@
+// GDIU Common Variables & Mixins
+@dir_resources: 'resources/';
+
+// Fonts @f_name
+@font-face {
+    font-family: 'GN Kill Gothic U';
+    src: url('@{dir_resources}/GN-KillGothic-U-KanaNB.ttf');
+}
+
+@f_title: 'GN Kill Gothic U';
+@h_heading: 'Nunito', 'Arial Rounded MT', sans-serif;
+@f_body: 'Nunito', Calibri, Arial, Helvetica, sans-serif;
+
+// Colors @base_modifier
+@red: #DD5445;
+@green: #60BB92;
+@blue: #5978BB;
+@yellow: #fbc054;
+@purple: #9973bb;
+
+@white: #EAEAEA;
+@grey_light: #c1bfc5;
+@grey_medium: #6E6D71;
+@black: #222D2F;
+
+// Timings @t_name
+@t_fast: 0.15s;
+@t_medium: 0.24s;
+@t_slow: 0.36s;
+
+// Curves @c_name
+@c_out: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+// Sizing @s_name
+@s_unit: 22px;
+@s_border: 3px;
+@s_round: @s_unit;
+@s_sharp: 3px;
+
+// Layout Mixins
+._clear() {
+    margin: 0;
+    padding: 0;
+}
+._flex(@direction: row, @wrap: nowrap, @align: center, @justify: flex-start) {
+    display: flex;
+    flex-direction: @direction;
+    flex-wrap: @wrap;
+    align-items: @align;
+    justify-content: @justify;
+}
+._listSpace(@direction, @amount) {
+    margin-@{direction}: @amount;
+    &:last-child {
+        margin-@{direction}: 0;
+    }
+}
+
+// Behavior Mixins
+._no-select(@cursor: unset) {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    -khtml-user-select: none;
+    /* Konqueror */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+		 not supported by any browser */
+    cursor: @cursor;
+}
+
+// Misc Mixins
+._smooth(@time: @t_medium, @curve: @c_out) {
+    transition: all @time @curve;
+}
+._enableBorder(@width: @s_border) {
+    border-width: @width;
+    border-style: solid;
+}
+._font(@family, @size: 1em, @color: inherit, @weight: 400, @style: normal) {
+    font-family: @family;
+    font-size: @size;
+    font-weight: @weight;
+    font-style: @style;
+    color: @color;
+}
+
+// Color Mixins
+._color(@fill, @outline, @text) {
+    color: @text;
+    border-color: @outline;
+    background-color: @fill;
+}
+
+._generateColorClasses(@color, @fgWhite: @white, @bgWhite: @white) {
+    .@{color}.outline,
+    .@{color} .outline,
+    .@{color}.button:hover,
+    .@{color} .button:hover {
+        ._color(@bgWhite, @@color, @@color);
+    }
+
+    .@{color}.solid,
+    .@{color} .solid,
+    .@{color}.button,
+    .@{color} .button {
+        ._color(@@color, @@color, @fgWhite);
+    }
+}
+
+._generateColorClasses(red);
+._generateColorClasses(green);
+._generateColorClasses(blue);
+._generateColorClasses(yellow);
+._generateColorClasses(purple);
+._generateColorClasses(grey_medium);
+._generateColorClasses(black);
