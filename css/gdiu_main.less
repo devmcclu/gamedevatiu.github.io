@@ -1,5 +1,4 @@
 @import (once) "gdiu_common.less";
-@import (once) "main_layout.less";
 
 // Document Setup
 html {
@@ -10,6 +9,15 @@ html {
 body {
     ._clear();
     ._font(@f_body, 1.5rem, @black, 400, normal);
+}
+
+#wrapper {
+    min-height: 100vh;
+    position: relative;
+}
+
+.no-select {
+    ._no-select();
 }
 
 // Basic HTML Elements
@@ -31,8 +39,18 @@ h1 {
     padding: 0.4em 0.3em 0.2em 0.3em;
 }
 
+h2 {
+    ._clear();
+    ._font(@f_heading, 1.65em, inherit, 700);
+    padding: @s_unit/2 0;
+}
+
 svg {
     fill: currentColor;
+}
+
+i.space {
+    margin-right: 0.6em;
 }
 
 // Shapes
@@ -63,8 +81,17 @@ svg {
         padding-bottom: 0.6em;
     }
 
+    &.nudge-down-more {
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+    }
+
     &.large {
         font-size: 1.5em;
+    }
+
+    &.larger {
+        font-size: 3em;
     }
 }
 
@@ -84,7 +111,7 @@ svg {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: -999;
+    z-index: -1;
     width: 100%;
 }
 
@@ -108,6 +135,10 @@ svg {
             }
         }
 
+        .items {
+            ._flex(row, nowrap, center, center);
+        }
+
         .button {
             margin-right: 0.3em;
             font-size: 7vw;
@@ -116,17 +147,48 @@ svg {
 }
 
 .block {
+    width: 100%;
     padding-bottom: @s_unit;
+
     & > * {
         margin: auto;
     }
+
+    &.flex {
+        ._flex(column);
+
+        & > * {
+            ._listSpace(bottom, @s_unit);
+        }
+
+        & > .order-last {
+            order: 999;
+            margin: 0;
+
+            & ~ * {
+                margin-bottom: @s_unit;
+            }
+        }
+    }
+}
+
+.size-2 {
+    flex-grow: 2;
+}
+
+.size-3 {
+    flex-grow: 3;
+}
+
+.size-4 {
+    flex-grow: 15;
 }
 
 // Basic Components
 .img {
     display: block;
-    height: 100%;
     width: 100%;
+    height: 40vh;
     background-size: cover;
     background-position: center;
 
@@ -141,18 +203,28 @@ svg {
     &.position-bottom {
         background-position: bottom;
     }
+
+    &.panel {
+        border-radius: @s_round;
+    }
 }
 
 .button {
     ._enableBorder();
+    ._no-select(pointer);
+    ._smooth(@t_fast);
+    display: block;
+    text-align: center;
 }
 
 .panel {
     @radius: @s_round;
-    @padding: 1em @s_unit/2;
+    @padding: 1em;
+    width: 100%;
     overflow: hidden;
 
     .top {
+        ._no-select();
         ._enableBorder();
         display: block;
         border-radius: @radius @radius 0 0;
@@ -173,7 +245,18 @@ svg {
         display: block;
         border-radius: 0 0 @radius @radius;
         padding: @padding;
+
+        &.button {
+            text-align: center;
+        }
+    }
+
+    &.center *, *.center {
         text-align: center;
+    }
+
+    .button {
+        margin: auto;
     }
 }
 
@@ -194,6 +277,11 @@ svg {
             flex-grow: 1;
             overflow: hidden;
 
+            .img {
+                height: 100%;
+                width: 100%;
+            }
+
             .info {
                 ._smooth(@t_slow);
                 position: absolute;
@@ -204,6 +292,7 @@ svg {
                 .button {
                     width: 60%;
                     margin: auto;
+                    white-space: nowrap;
                 }
             }
 
@@ -212,6 +301,86 @@ svg {
 
                 .info {
                     bottom: 1em;
+                }
+            }
+        }
+    }
+}
+
+.overlay {
+    ._smooth(@t_slow);
+    background: rgba(0,0,0,0);
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    z-index: 0;
+
+    .overlay-box {
+        ._smooth(@t_slow * 2, cubic-bezier(0.19, 1, 0.22, 1));
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 100vh;
+
+        .overlay-background-exit {
+            display: block;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .overlay-panel {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+            margin-top: 3vh;
+            z-index: 1001;
+
+            .controls.m {
+                ._flex(row, nowrap, center, center);
+
+                & > * {
+                    ._listSpace(right, @s_unit);
+                }
+            }
+
+            .controls.d {
+                ._smooth(@t_slow);
+                width: 3em;
+                position: absolute;
+                top: 3em;
+                right: -4em;
+            }
+        }
+    }
+}
+
+.overlay-toggle {
+    display: none;
+
+    &:checked + .overlay {
+        background: rgba(0,0,0,0.8);
+        z-index: 999;
+
+        .overlay-background-exit {
+            display: block;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .overlay-box {
+            top: 0vh;
+
+            .controls.d {
+                top: -0.1em;
+
+                & > * {
+                    margin-bottom: @s_unit/2;
                 }
             }
         }

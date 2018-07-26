@@ -8,7 +8,7 @@
 }
 
 @f_title: 'GN Kill Gothic U';
-@h_heading: 'Nunito', 'Arial Rounded MT', sans-serif;
+@f_heading: 'Nunito', 'Arial Rounded MT', sans-serif;
 @f_body: 'Nunito', Calibri, Arial, Helvetica, sans-serif;
 
 // Colors @base_modifier
@@ -36,6 +36,15 @@
 @s_border: 3px;
 @s_round: @s_unit;
 @s_sharp: 3px;
+
+// Media queries @m_name
+@m_smallerThanPortrait: ~"(max-width: 899px)";
+@m_smallerThanDesktop: ~"(max-width: 1218px)";
+@m_largerThanPhone: ~"(min-width: 600px)";
+@m_largerThanPortrait: ~"(min-width: 900px)";
+@m_largerThanLandscape: ~"(min-width: 1219px)";
+@m_largerThanDesktop: ~"(min-width: 1800px)"; 
+@m_retina: ~"(min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2)";
 
 // Layout Mixins
 ._clear() {
@@ -98,18 +107,24 @@
 }
 
 ._generateColorClasses(@color, @fgWhite: @white, @bgWhite: @white) {
-    .@{color}.outline,
     .@{color} .outline,
-    .@{color}.button:hover,
     .@{color} .button:hover {
         ._color(@bgWhite, @@color, @@color);
     }
 
-    .@{color}.solid,
+    .@{color}.outline,
+    .@{color}.button:hover {
+        ._color(@bgWhite, @@color, @@color) !important;
+    }
+
     .@{color} .solid,
-    .@{color}.button,
     .@{color} .button {
         ._color(@@color, @@color, @fgWhite);
+    }
+
+    .@{color}.solid,
+    .@{color}.button {
+        ._color(@@color, @@color, @fgWhite) !important;
     }
 }
 
@@ -119,4 +134,5 @@
 ._generateColorClasses(yellow);
 ._generateColorClasses(purple);
 ._generateColorClasses(grey_medium);
+._generateColorClasses(grey_light);
 ._generateColorClasses(black);

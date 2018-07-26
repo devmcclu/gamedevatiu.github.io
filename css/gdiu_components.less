@@ -1,0 +1,188 @@
+@import (once) "gdiu_common.less";
+@import (once) "gdiu_main.less";
+
+// Content Lists
+.list-item {
+    @spacing: @s_unit/2;
+    border-radius: @s_round;
+    overflow: hidden;
+    ._listSpace(bottom, @s_unit);
+
+    .thumb {
+        ._no-select(pointer);
+        display: block;
+        height: 30vh;
+        width: 100%;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .content {
+        padding: @spacing;
+
+        .title {
+            .pill;
+            ._font(@f_heading, 1em, @black, 700);
+            background-color: @white;
+        }
+
+        .info {
+            margin-top: @spacing;
+
+            .info-item {
+                .pill;
+                ._font(@f_body, 1em, @white, 400);
+                background-color: @grey_medium;
+                margin-top: @spacing;
+            }
+        }
+    }
+
+    .bottom-button {
+        padding: @s_unit/2 0;
+        border-radius: 0 0 @s_round @s_round;
+    }
+
+    @media @m_largerThanPortrait {
+        ._flex(row, nowrap, stretch);
+
+        .thumb {
+            height: auto;
+            width: 33%;
+            min-width: @s_unit * 6;
+            border-right: @s_border solid @white;
+        }
+
+        .content {
+            flex-grow: 1;
+
+            .title {
+                text-align: left;
+            }
+
+            .info {
+                ._flex(row);
+                margin-top: @spacing;
+                font-size: 0.8em;
+
+                & > * {
+                    ._listSpace(right, @spacing);
+                }
+
+                .info-item {
+                    text-align: left;
+                    margin-top: 0;
+                }
+            }
+        }
+    }
+}
+
+.grid {
+    ._flex(row, wrap, center, center) !important;
+    margin-bottom: -@s_unit;
+
+    .grid-item {
+        box-sizing: border-box;
+        box-sizing: padding-box;
+        width: 50%;
+        padding-right: @s_unit/2;
+        padding-left: $padding-right;
+        margin-bottom: @s_unit;
+
+        .thumb {
+            ._no-select(pointer);
+            ._smooth();
+            height: 0;
+            padding-top: 100%;
+            background-size: 110%;
+            background-position: center;
+        }
+
+        &:hover {
+            .thumb {
+                background-size: 120%;
+            }
+        }
+
+        @media @m_largerThanPortrait {
+            width: 20%;
+        }
+    }
+}
+
+.tag-list {
+    ._flex(row, wrap, center, center);
+    flex-grow: 0;
+    font-size: 0.8em;
+
+    @media @m_largerThanPortrait {
+        justify-content: center;
+    }
+
+    .tag {
+        .pill;
+        ._no-select();
+        margin-right: 0.5em;
+        ._color(@grey_medium, @grey_medium, @white);
+
+        &:before {
+            content: '\f02b';
+            font-family: "Font Awesome\ 5 Free";
+            font-variant: normal;
+            font-weight: 900;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &[tag='Design SIG'] {
+            ._color(@yellow, @yellow, @white);
+
+            &:before {
+                content: '\f542';
+            }
+        }
+
+        &[tag='Tech SIG'] {
+            ._color(@blue, @blue, @white);
+
+            &:before {
+                content: '\f121';
+            }
+        }
+
+        &[tag='Art SIG'] {
+            ._color(@red, @red, @white);
+
+            &:before {
+                content: '\f53f';
+            }
+        }
+
+        &[tag='Audio SIG'] {
+            ._color(@green, @green, @white);
+
+            &:before {
+                content: '\f001';
+            }
+        }
+
+        &[tag='General'] {
+            ._color(@grey_medium, @grey_medium, @white);
+
+            &:before {
+                content: '\f500';
+            }
+        }
+
+        &[tag='Lab'] {
+            ._color(@purple, @purple, @white);
+
+            &:before {
+                content: '\f0c3';
+            }
+        }
+    }
+}

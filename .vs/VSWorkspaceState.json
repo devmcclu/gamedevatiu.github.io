@@ -1,8 +1,11 @@
 {
   "ExpandedNodes": [
     "",
+    "\\css",
+    "\\img",
+    "\\img\\photos",
     "\\js"
   ],
-  "SelectedNode": "\\css",
+  "SelectedNode": "\\css\\gdiu_responsive.less",
   "PreviewInSolutionExplorer": false
 }
