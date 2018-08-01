@@ -37,6 +37,7 @@ var onCompleteAllInjects = function () { };
 
 function startInjectProcess() {
     injectsInProgress += 1;
+    console.log(injectsInProgress + "+");
 }
 function completeInject() {
     if (injectQueueLocked) {
@@ -44,6 +45,8 @@ function completeInject() {
     }
     else {
         injectsInProgress -= 1;
+        console.log(injectsInProgress + "-");
+
         if (injectsInProgress == 0) {
             console.log("Call onCompleteAllInjects (Complete)");
             onCompleteAllInjects();
@@ -229,7 +232,6 @@ function injectMultiple() {
     targets.forEach(function (target) {
         let folder = target.getAttribute(multiContentAttr);
         let listingPath = contentDirectory + folder + "/" + listingFileName;
-        startInjectProcess();
         getFileContents(listingPath,
             function (listing) {
                 let parent = target.parentNode;
@@ -259,6 +261,7 @@ function injectMultiple() {
                         let newTarget = target.cloneNode(true);
                         parent.appendChild(newTarget);
 
+                        startInjectProcess();
                         getFileContents(paths[i],
                             function (content) {
                                 var o = parse(content, links[index], paths[index]);
@@ -268,9 +271,11 @@ function injectMultiple() {
                                 if (index == paths.length - 1) {
                                     parent.removeChild(target);
                                 }
+                                completeInject();
                             },
                             function () {
                                 console.log("[Inject Multiple] Couldn't get content at path " + paths[i] + "!");
+                                completeInject();
                             }
                         );
                     }
@@ -317,11 +322,9 @@ function injectMultiple() {
                         }
                     }
                 }
-                completeInject();
             },
             function () {
                 console.log("[Inject Multiple] Couldn't get listing at path " + listingPath + "!");
-                completeInject();
             }
         );
     });
@@ -389,6 +392,7 @@ injectQuery();
 unlockInjectQueue();
 
 onCompleteAllInjects = function () {
+    console.log("Hello :)");
     doAutoExpand();
     makeInjectLinks();
 };
