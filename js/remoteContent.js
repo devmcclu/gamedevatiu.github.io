@@ -1,228 +1,394 @@
-/*
-  Remote content handling
- */
+/************************
+ REMOTE CONTENT HANDLING
+ ************************/
 
 const contentDirectory = "/wc/";
-const fileExtenstion = ".xml";
-const listingFileName = "listing" + fileExtenstion;
+const fileExtension = ".xml"
+const listingFileName = "listing" + fileExtension;
 
-const imageIdentifier = "$";
-const backgroundIdentifier = "&";
+const variablePrefix = "$";
+// This prefix prevents the page from trying to HTTP GET images, etc. where the src is a placeholder
+// It is simply removed at the end of the injection process
+const placeholderPrefix = "%%";
 
-const listIdentifier = '*';
-const listSeparator = ',';
-const listSuffix = "-list";
-const listItemFormat = "<div class='$key' tag='$value'></div>";
+const remoteContentAttr = "get";
+const getQueryAttr = "get-query";
+const listAttr = "list";
+const valueAttr = "value";
+const indexAttr = "index"
 
-const preprocessIdentifier = '@';
+const multiContentAttr = "get-multi";
+const multiMaxDisplayAttr = "max-items";
+const multiMaxRowAttr = "row-max";
 
-const valueIdentifier = '~';
+const injLinkAttr = "inj-link";
+const injSrcAttr = "inj-src";
 
-const querySeparator = '?';
-const subquerySeparator = '#';
-const defaultQuery = 'none';
+const preprocessTag = "!format";
 
-function alertNotFound() {
-    alert("404 File not found!");
+var getCache = {};
+var parseCache = {};
+var baseHTML = {};
+
+var injectsInProgress = 0;
+var injectsInReleaseQueue = 0;
+var injectQueueLocked = false;
+var onCompleteAllInjects = function () { };
+
+function startInjectProcess() {
+    injectsInProgress += 1;
+}
+function completeInject() {
+    if (injectQueueLocked) {
+        injectsInReleaseQueue += 1;
+    }
+    else {
+        injectsInProgress -= 1;
+        if (injectsInProgress == 0) {
+            console.log("Call onCompleteAllInjects (Complete)");
+            onCompleteAllInjects();
+        }
+    }
+}
+function lockInjectQueue() {
+    injectQueueLocked = true;
+}
+function unlockInjectQueue() {
+    injectQueueLocked = false;
+    if (injectsInReleaseQueue > 0) {
+        injectsInProgress -= injectsInReleaseQueue;
+        if (injectsInProgress == 0) {
+            console.log("Call onCompleteAllInjects (Queue)");
+            onCompleteAllInjects();
+        }
+    }
 }
 
 // Apply callback K(string) onto contents of specified file
 //  if file can't be found, call failK()
 function getFileContents(filePath, K, failK) {
-    var http = new XMLHttpRequest();
-    http.onreadystatechange = function () {
-        if (http.readyState == 4) {
-            if (http.status == 200) {
-                K(http.responseText);
-            }
-            else {
-                failK();
+    if (getCache[filePath] != null) {
+        console.log("[Get File Contents] returned cached value for " + filePath);
+        K(getCache[filePath]);
+    }
+    else {
+        var http = new XMLHttpRequest();
+        http.onreadystatechange = function () {
+            if (http.readyState == 4) {
+                if (http.status == 200) {
+                    if (getCache[filePath] != null) {
+                        console.log("[Get File Contents] returned cached value for " + filePath);
+                        K(getCache[filePath]);
+                    }
+                    else {
+                        console.log("[Get File Contents] No cached value for " + filePath);
+                        getCache[filePath] = http.responseText;
+                        K(http.responseText);
+                    }
+                }
+                else {
+                    failK();
+                }
             }
         }
+        http.open("GET", filePath, true);
+        http.send(null);
     }
-    http.open("GET", filePath, true);
-    http.send(null);
 }
 
-// Parse raw xml into an object
-//  cleans newline characters and removes tabs
-function parse(content, filePath) {
+// Parse XML into JS Object
+//  - Only supports top level items within root tag
+//  - Root tag is currently ignored
+function parse(content, getLink, filePath) {
+    if (parseCache[content] != null) {
+        // console.log("[Parse] returned cached value for " + content.substring(0, 12) + "...");
+        return parseCache[content];
+    }
+
     result = {};
-    var inline = content.replace(/>(?:\r\n|\r|\n)/g, '>').replace(/(?:\r\n|\r|\n)</g, '<').replace(/,(?:\r\n|\r|\n)/g, ',').replace(/\t/g, '');
-    re = /<(.+?)>([\s\S]+?)<\/.+?>/g;
+    result["getLink"] = getLink;
+    result["filePath"] = filePath;
+
+    var inline = (/<.+?>([\s\S]*)<\/.+?>/g).exec(content)[1];
+    // console.log(inline);
+    inline = inline.replace(/>(?:\r\n|\r|\n)/g, '>').replace(/(?:\r\n|\r|\n)</g, '<').replace(/,(?:\r\n|\r|\n)/g, ',').replace(/\t/g, '').replace(/    /g, "");
+    let re = /<(.+?)>\s*([\s\S]+?)\s*<\/.+?>/g;
 
     var m = re.exec(inline);
     while (m != null) {
         let k = m[1];
-        let v = m[2];
-        result[k] = v;
+        var v = m[2];
+
+        if (v.search(preprocessTag) >= 0) {
+            console.log(v);
+            v = v.replace(new RegExp(preprocessTag.concat("\\s*"), 'g'), "");
+            v = muProcess(v);
+            console.log(v);
+        }
+
+        if (result[k] == null) {
+            result[k] = v;
+        }
+        else {
+            if (Array.isArray(result[k])) {
+                result[k].push(v);
+            }
+            else {
+                result[k] = [result[k], v];
+            }
+        }
+
         m = re.exec(inline);
     }
-    result["filePath"] = filePath;
 
+    parseCache[content] = result;
     return result;
 }
 
-// Fill target DOM element children with object content
-//  for each object attribute, fills first child with attribute name as class
+// Inject JS Object into HTML
 function inject(o, target) {
+    var html = target.outerHTML;
     for (var k in o) {
-        let identifier = k.charAt(0);
-        if (identifier == imageIdentifier) {
-            let key = k.slice(1);
-            let insert = target.getElementsByClassName(key);
+        var v = o[k];
+        // console.log(k + ": " + v);
 
-            if (insert.length > 0) {
-                insert[0].src = o[k];
-            }
-        }
-        else if (identifier == backgroundIdentifier) {
-            let key = k.slice(1);
-            let insert = target.getElementsByClassName(key);
+        if (Array.isArray(v)) {
+            let protos = target.querySelectorAll("[" + listAttr + "=" + k + "]");
+            protos.forEach(function (proto) {
+                let varName = proto.getAttribute(valueAttr);
+                let indexName = proto.getAttribute(indexAttr);
 
-            if (insert.length > 0) {
-                insert[0].style.backgroundImage = "url('" + o[k] + "')";
-            }
-        }
-        else if (identifier == listIdentifier) {
-            let clean = o[k].replace(/,[\s+]/g, ",");
-            let values = clean.split(listSeparator);
-
-            let key = k.slice(1);
-            let listKey = key + listSuffix;
-            let insert = target.getElementsByClassName(listKey);
-
-            if (insert.length > 0) {
-                insert[0].innerHTML = "";
-                for (var i = 0; i < values.length; i++) {
-                    let newItem = listItemFormat.replace(/\$key/g, key).replace(/\$value/g, values[i]);
-                    insert[0].innerHTML += newItem;
+                if (varName == null) {
+                    console.log("[Inject] List target with no " + valueAttr + " attribute!")
+                    console.log(proto);
                 }
-            }
-        }
-        else if (identifier == preprocessIdentifier) {
-            let input = o[k];
+                else {
+                    let protoStartHTML = proto.outerHTML;
 
-            let key = k.slice(1);
-            let insert = target.getElementsByClassName(key);
+                    proto.removeAttribute(listAttr);
+                    proto.removeAttribute(valueAttr);
+                    proto.removeAttribute(indexAttr);
 
-            if (insert.length > 0) {
-                insert[0].innerHTML = muProcess(input);
-            }
-        }
-        else if (identifier == valueIdentifier) {
-            let v = o[k];
-            let key = k.slice(1);
-            let insert = target.getElementsByClassName(key);
+                    let protoHTML = proto.outerHTML;
+                    var listHTML = "";
 
-            if (insert.length > 0) {
-                insert[0].setAttribute("value", v);
-            }
+                    o[k].forEach(function (item, i) {
+                        item = item.replace(/\.\//g, contentDirectory);
+                        let varExp = new RegExp("\\" + variablePrefix + varName, 'g');
+                        var itemHTML = protoHTML.replace(varExp, item);
+                        if (indexName != null) {
+                            let idxExp = new RegExp("\\" + variablePrefix + indexName, 'g');
+                            itemHTML = itemHTML.replace(idxExp, i);
+                        }
+                        listHTML += itemHTML;
+                    });
+
+                    html = html.replace(protoStartHTML, listHTML);
+                    html = html.replace(new RegExp("\\" + variablePrefix + k, 'g'), "list");
+                }
+            });
         }
         else {
-            let insert = target.getElementsByClassName(k);
-            if (insert.length > 0) {
-                insert[0].innerHTML = o[k];
+            // Transform relative paths
+            v = v.replace(/\.\//g, contentDirectory);
+            html = html.replace(new RegExp("\\" + variablePrefix + k, 'g'), v);
+        }
+    }
+    target.outerHTML = html.replace(new RegExp(placeholderPrefix, 'g'), "");
+}
+
+function getAndInject(getLink, target, addInProgress = true, callback = function () { }) {
+    if (addInProgress) startInjectProcess();
+    let filePath = contentDirectory + getLink + fileExtension;
+    let itemTarget = target;
+    getFileContents(filePath,
+        function (content) {
+            // console.log("Starting inject for " + filePath);
+            inject(parse(content, getLink, filePath), itemTarget);
+            callback();
+            if (addInProgress) completeInject();
+        },
+        function () {
+            console.log("[Get & Inject] File not found! " + filePath);
+            callback();
+            if (addInProgress) completeInject();
+        }
+    );
+}
+
+function injectAll() {
+    let targets = document.querySelectorAll("[" + remoteContentAttr + "]");
+    targets.forEach(function (target) {
+        let getLink = target.getAttribute(remoteContentAttr);
+        getAndInject(getLink, target);
+    });
+}
+
+function injectMultiple() {
+    let targets = document.querySelectorAll("[" + multiContentAttr + "]");
+    targets.forEach(function (target) {
+        let folder = target.getAttribute(multiContentAttr);
+        let listingPath = contentDirectory + folder + "/" + listingFileName;
+        startInjectProcess();
+        getFileContents(listingPath,
+            function (listing) {
+                let parent = target.parentNode;
+                let totalItems = target.getAttribute(multiMaxDisplayAttr);
+                var rowTotal = target.getAttribute(multiMaxRowAttr);
+
+                target.removeAttribute(multiMaxDisplayAttr);
+                target.removeAttribute(multiMaxRowAttr);
+                target.removeAttribute(multiContentAttr);
+
+                // Split lines into file paths array
+                var paths = listing.split(/[\r\n]+/g);
+                // Convert to get links
+                for (var i = 0; i < paths.length; i++) {
+                    paths[i] = folder + "/" + paths[i];
+                }
+                var links = paths.slice();
+                // Convert to absolute paths
+                for (var i = 0; i < paths.length; i++) {
+                    paths[i] = contentDirectory + paths[i] + fileExtension;
+                }
+
+                // console.log(paths);
+                if (rowTotal == null) {
+                    for (var i in paths) {
+                        let index = i;
+                        let newTarget = target.cloneNode(true);
+                        parent.appendChild(newTarget);
+
+                        getFileContents(paths[i],
+                            function (content) {
+                                var o = parse(content, links[index], paths[index]);
+                                o["index"] = index;
+                                inject(o, newTarget);
+
+                                if (index == paths.length - 1) {
+                                    parent.removeChild(target);
+                                }
+                            },
+                            function () {
+                                console.log("[Inject Multiple] Couldn't get content at path " + paths[i] + "!");
+                            }
+                        );
+                    }
+                }
+                else {
+                    var itemsLeft = paths.length;
+                    var currentParent = parent;
+                    var currentTarget = target;
+                    var rowCount = (itemsLeft % rowTotal == 0) ? rowTotal : rowTotal - 1;
+
+                    // console.log(rowCount);
+                    // console.log(itemsLeft);
+
+                    for (var i in paths) {
+                        let itemTarget = currentTarget;
+                        let index = i;
+
+                        startInjectProcess();
+                        getFileContents(paths[i],
+                            function (content) {
+                                inject(parse(content, links[index], paths[index]), itemTarget);
+                                completeInject();
+                            },
+                            function () {
+                                console.log("[Inject Multiple] Couldn't get content at path " + paths[i] + "!");
+                                completeInject();
+                            }
+                        );
+
+                        rowCount -= 1;
+                        itemsLeft -= 1;
+
+                        // Clone target and/or parent
+                        if (i != paths.length - 1) {
+                            if (rowCount == 0) {
+                                rowCount = (itemsLeft % rowTotal == 0) ? rowTotal : rowTotal - 1;
+                                var newParent = currentParent.cloneNode(false);
+                                currentParent.parentNode.appendChild(newParent);
+                                currentParent = newParent;
+                            }
+                            let newTarget = target.cloneNode(true);
+                            currentParent.appendChild(newTarget);
+                            currentTarget = newTarget;
+                        }
+                    }
+                }
+                completeInject();
+            },
+            function () {
+                console.log("[Inject Multiple] Couldn't get listing at path " + listingPath + "!");
+                completeInject();
+            }
+        );
+    });
+}
+
+function injectQuery() {
+    let urlParts = window.location.href.split('?');
+    if (urlParts.length > 1) {
+        let q = urlParts[1];
+        let targets = document.querySelectorAll("[" + getQueryAttr + "]");
+        targets.forEach(function (target) {
+            getAndInject(q, target, true, doAutoExpand);
+        });
+    }
+}
+
+function doAutoExpand() {
+    document.querySelectorAll(".auto-expand").forEach(
+        function (e, i) {
+            // console.log(i);
+            e.outerHTML = e.innerHTML;
+        }
+    );
+}
+
+function makeInjectLinks() {
+    let links = document.querySelectorAll("[" + injLinkAttr + "]");
+    links.forEach(function (link, i, arr) {
+        console.log("link :" + link);
+
+        let get = link.getAttribute(injSrcAttr);
+        let targetID = link.getAttribute(injLinkAttr);
+
+        if (targetID == null) {
+            console.log("[Make Inject Links] Inject link has no target!");
+        }
+        else if (get == null) {
+            console.log("[Make Inject Links] Inject link has target but no " + injSrcAttr + " attribute!");
+        }
+        else {
+            let target = document.getElementById(targetID);
+            if (target == null) {
+                console.log("[Make Inject Links] Couldn't get inject target with ID " + targetID + "!");
+            }
+            else {
+                if (baseHTML[targetID] == null) {
+                    baseHTML[targetID] = target.outerHTML;
+                }
+                link.onclick = function () {
+                    let itemTarget = document.getElementById(targetID);
+                    itemTarget.outerHTML = baseHTML[targetID];
+                    console.log("[Inject Link] Open " + get + " in " + targetID);
+                    getAndInject(get, document.getElementById(targetID), false, doAutoExpand);
+                };
+                console.log(targetID + " <-> " + get);
             }
         }
-    }
-
-    let injLinks = target.querySelectorAll('[injtarget]');
-    for (var i = 0; i < injLinks.length; i++) {
-        let e = injLinks[i];
-        let path = o["filePath"];
-        e.onclick = function () {
-            getFileContents(path, function (x) {
-                let target = document.getElementById(e.getAttribute("injtarget"));
-                inject(parse(x, path), target);
-            }, alertNotFound);
-        }
-    }
-
-    let pageLinks = target.querySelectorAll('[pagelink]');
-    for (var i = 0; i < pageLinks.length; i++) {
-        let e = pageLinks[i];
-        let name = o["filePath"].replace(fileExtenstion, "").replace(contentDirectory, "").replace("/", "?");
-        e.href = "/" + e.getAttribute('pagelink') + "?" + name;
-    }
+    });
 }
 
-function injectMultipleFiles(filePaths, targets) {
-    if (filePaths.length != targets.length) {
-        console.log("Number of files doesn't match number of targets!");
-        return;
-    }
-    let n = filePaths.length;
-    for (var i = 0; i < n; i++) {
-        let target = targets[i];
-        let path = filePaths[i];
-        getFileContents(path, function (x) {
-            // console.log(parse(x));
-            // console.log(target);
-            inject(parse(x, path), target);
-        }, alertNotFound);
-    }
-}
+lockInjectQueue();
+injectMultiple();
+injectAll();
+injectQuery();
+unlockInjectQueue();
 
-function listRange(folder, start, end, target) {
-    getFileContents(contentDirectory + folder + "/" + listingFileName, function (x) {
-        var paths = x.replace("\r", "").split("\n");
-        for (var i = 0; i < paths.length; i++) {
-            paths[i] = contentDirectory + folder + "/" + paths[i] + fileExtenstion;
-        }
-        // console.log(paths);
-        var targets = [target];
-        let num = Math.min(paths.length, end) - start;
-        for (var i = 1; i < num; i++) {
-            let newTarget = target.cloneNode(true);
-            target.parentNode.appendChild(newTarget);
-            targets.push(newTarget);
-        }
-        injectMultipleFiles(paths.slice(start, end), targets);
-    }, alertNotFound);
-}
-
-function getQueryString() {
-    let fullURL = window.location.href.split(subquerySeparator)[0];
-    let tokens = fullURL.split(querySeparator);
-    if (tokens.length < 3) {
-        return [defaultQuery];
-    }
-    else return tokens.slice(1);
-}
-
-function injectFromQuery(target) {
-    let q = getQueryString();
-    var path;
-    if (q.length == 1) {
-        path = contentDirectory + q[0] + fileExtenstion;
-    }
-    else {
-        path = contentDirectory + q[0] + "/" + q[1] + fileExtenstion;
-    }
-    getFileContents(path, function (x) {
-        inject(parse(x, path), target);
-    }, alertNotFound);
-}
-
-const colors = {
-    "news": "blue",
-    "resources": "red",
-    "events": "green",
-    "featured": "yellow",
-    "lab": "purple"
-}
-function colorFromQueryString(target) {
-    let q = getQueryString()[0];
-    let color = colors[q];
-
-    // Remove existing color
-    target.classList.remove('red');
-    target.classList.remove('green');
-    target.classList.remove('blue');
-    target.classList.remove('yellow');
-    target.classList.remove('grey');
-    target.classList.remove('purple');
-
-    target.classList.add(color);
-}
+onCompleteAllInjects = function () {
+    doAutoExpand();
+    makeInjectLinks();
+};
