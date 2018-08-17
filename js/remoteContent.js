@@ -7,6 +7,9 @@ const fileExtension = ".xml"
 const listingFileName = "listing" + fileExtension;
 
 const variablePrefix = "$";
+function varPattern(varName) {
+    return new RegExp("\\" + variablePrefix + varName, 'g');
+}
 // This prefix prevents the page from trying to HTTP GET images, etc. where the src is a placeholder
 // It is simply removed at the end of the injection process
 const placeholderPrefix = "%%";
@@ -20,6 +23,7 @@ const indexAttr = "index"
 const multiContentAttr = "get-multi";
 const multiMaxDisplayAttr = "max-items";
 const multiMaxRowAttr = "row-max";
+const excludeByDateAttr = "exclude-by-date";
 
 const injLinkAttr = "inj-link";
 const injSrcAttr = "inj-src";
@@ -35,9 +39,22 @@ var injectsInReleaseQueue = 0;
 var injectQueueLocked = false;
 var onCompleteAllInjects = function () { };
 
+function dateCheck(inputDate) {
+    let tokens = inputDate.split('/');
+
+    let month = parseInt(tokens[0]) - 1;
+    let day = parseInt(tokens[1]);
+
+    let currentDate = new Date(Date.now());
+    let currentMonth = currentDate.getMonth();
+    let currentDay = currentDate.getDate();
+
+    return (currentMonth < month || (currentMonth == month && currentDay <= day));
+}
+
 function startInjectProcess() {
     injectsInProgress += 1;
-    console.log(injectsInProgress + "+");
+    // console.log(injectsInProgress + "+");
 }
 function completeInject() {
     if (injectQueueLocked) {
@@ -45,7 +62,7 @@ function completeInject() {
     }
     else {
         injectsInProgress -= 1;
-        console.log(injectsInProgress + "-");
+        // console.log(injectsInProgress + "-");
 
         if (injectsInProgress == 0) {
             console.log("Call onCompleteAllInjects (Complete)");
@@ -123,10 +140,10 @@ function parse(content, getLink, filePath) {
         var v = m[2];
 
         if (v.search(preprocessTag) >= 0) {
-            console.log(v);
+            // console.log(v);
             v = v.replace(new RegExp(preprocessTag.concat("\\s*"), 'g'), "");
             v = muProcess(v);
-            console.log(v);
+            // console.log(v);
         }
 
         if (result[k] == null) {
@@ -176,25 +193,26 @@ function inject(o, target) {
                     var listHTML = "";
 
                     o[k].forEach(function (item, i) {
+                        // Transform relative paths
                         item = item.replace(/\.\//g, contentDirectory);
-                        let varExp = new RegExp("\\" + variablePrefix + varName, 'g');
+                        let varExp = varPattern(varName);
                         var itemHTML = protoHTML.replace(varExp, item);
                         if (indexName != null) {
-                            let idxExp = new RegExp("\\" + variablePrefix + indexName, 'g');
+                            let idxExp = varPattern(indexName);
                             itemHTML = itemHTML.replace(idxExp, i);
                         }
                         listHTML += itemHTML;
                     });
 
                     html = html.replace(protoStartHTML, listHTML);
-                    html = html.replace(new RegExp("\\" + variablePrefix + k, 'g'), "list");
                 }
             });
+            html = html.replace(varPattern(k), o[k]);
         }
         else {
             // Transform relative paths
             v = v.replace(/\.\//g, contentDirectory);
-            html = html.replace(new RegExp("\\" + variablePrefix + k, 'g'), v);
+            html = html.replace(varPattern(k), v);
         }
     }
     target.outerHTML = html.replace(new RegExp(placeholderPrefix, 'g'), "");
@@ -227,20 +245,66 @@ function injectAll() {
     });
 }
 
+// Recursive-ish single step of injectMultiple
+//   note: recursive call happens after each item is loaded
+function injectMultipleStep(paths, links, index, target, excludeByDate, numLeft = -1) {
+    // End condition
+    if (index >= paths.length || numLeft == 0) {
+        target.parentNode.removeChild(target);
+        return;
+    }
+
+    startInjectProcess();
+    getFileContents(
+        paths[index],
+        function (content) {
+            // Parse content
+            var o = parse(content, links[index], paths[index]);
+            o["index"] = "" + index;
+
+            // Create target and inject if date check passes 
+            //   note: will pass by default if not set to exclude by date
+            let hasDate = "date" in o;
+            if (!excludeByDate || !hasDate || (hasDate && dateCheck(o["date"]))) {
+                let newTarget = target.cloneNode(true);
+                target.parentNode.appendChild(newTarget);
+                inject(o, newTarget);
+                injectMultipleStep(paths, links, index + 1, target, excludeByDate, numLeft - 1);
+            }
+            else {
+                injectMultipleStep(paths, links, index + 1, target, excludeByDate, numLeft);
+            }
+
+            completeInject();
+        },
+        function () {
+            console.log("[Inject Multiple] Couldn't get content at path " + paths[index] + "!");
+            injectMultipleStep(paths, links, index + 1, target, excludeByDate, numLeft);
+            completeInject();
+        }
+    );
+}
+
 function injectMultiple() {
     let targets = document.querySelectorAll("[" + multiContentAttr + "]");
     targets.forEach(function (target) {
+        //let tokens = target.getAttribute(multiContentAttr).split('/');
+        //let folder = tokens[0];
+        //let listingPath = contentDirectory + folder + "/" + (tokens.length > 1 ? tokens[1] + ".xml" : listingFileName);
         let folder = target.getAttribute(multiContentAttr);
         let listingPath = contentDirectory + folder + "/" + listingFileName;
+        let excludeByDate = target.getAttribute(excludeByDateAttr) == "true";
+
         getFileContents(listingPath,
             function (listing) {
                 let parent = target.parentNode;
                 let totalItems = target.getAttribute(multiMaxDisplayAttr);
                 var rowTotal = target.getAttribute(multiMaxRowAttr);
 
+                target.removeAttribute(multiContentAttr);
                 target.removeAttribute(multiMaxDisplayAttr);
                 target.removeAttribute(multiMaxRowAttr);
-                target.removeAttribute(multiContentAttr);
+                target.removeAttribute(excludeByDateAttr);
 
                 // Split lines into file paths array
                 var paths = listing.split(/[\r\n]+/g);
@@ -255,32 +319,10 @@ function injectMultiple() {
                 }
 
                 // console.log(paths);
-                if (rowTotal == null) {
-                    for (var i in paths) {
-                        let index = i;
-                        let newTarget = target.cloneNode(true);
-                        parent.appendChild(newTarget);
-
-                        startInjectProcess();
-                        getFileContents(paths[i],
-                            function (content) {
-                                var o = parse(content, links[index], paths[index]);
-                                o["index"] = index;
-                                inject(o, newTarget);
-
-                                if (index == paths.length - 1) {
-                                    parent.removeChild(target);
-                                }
-                                completeInject();
-                            },
-                            function () {
-                                console.log("[Inject Multiple] Couldn't get content at path " + paths[i] + "!");
-                                completeInject();
-                            }
-                        );
-                    }
+                if (rowTotal == null) { // Inject multiple without row specification
+                    injectMultipleStep(paths, links, 0, target, excludeByDate, totalItems);
                 }
-                else {
+                else { // Inject multiple with row specification
                     var itemsLeft = paths.length;
                     var currentParent = parent;
                     var currentTarget = target;
@@ -296,7 +338,19 @@ function injectMultiple() {
                         startInjectProcess();
                         getFileContents(paths[i],
                             function (content) {
-                                inject(parse(content, links[index], paths[index]), itemTarget);
+                                let o = parse(content, links[index], paths[index]);
+
+                                // Inject if date check passes
+                                //   note: will pass by default if not set to exclude by date
+                                let hasDate = "date" in o;
+                                if (!excludeByDate || !hasDate || (hasDate && dateCheck(o["date"]))) {
+                                    inject(o, itemTarget);
+                                }
+                                else {
+                                    // Remove target node if date check fails
+                                    itemTarget.parentNode.removeChild(itemTarget);
+                                }
+
                                 completeInject();
                             },
                             function () {
@@ -353,7 +407,7 @@ function doAutoExpand() {
 function makeInjectLinks() {
     let links = document.querySelectorAll("[" + injLinkAttr + "]");
     links.forEach(function (link, i, arr) {
-        console.log("link :" + link);
+        // console.log("link :" + link);
 
         let get = link.getAttribute(injSrcAttr);
         let targetID = link.getAttribute(injLinkAttr);
@@ -392,7 +446,6 @@ injectQuery();
 unlockInjectQueue();
 
 onCompleteAllInjects = function () {
-    console.log("Hello :)");
     doAutoExpand();
     makeInjectLinks();
 };

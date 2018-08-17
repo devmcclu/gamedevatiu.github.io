@@ -1,0 +1,321 @@
+﻿<!-- BEGIN SHARED TOP -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Gamedev@IU</title>
+    <link href="img/branding/GDIU_Icon_small.png" rel="icon">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet">
+
+    <link href="/css/gdiu_components.less" rel="stylesheet" type="text/less" />
+    <link href="/css/gdiu_responsive.less" rel="stylesheet" type="text/less" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/3.0.4/less.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+    <!-- BEGIN EVENT INFO OVERLAY -->
+    <input type="checkbox" id="event-overlay-toggle" class="overlay-toggle" />
+    <div id="event-overlay" class="overlay">
+        <label for="event-overlay-toggle" id="event-overlay-background-exit" class="overlay-background-exit"></label>
+        <div id="event-box" class="overlay-box">
+            <div id="event-panel" class="overlay-panel">
+                <div class="panel green">
+                    <div class="top solid">
+                        <h2>$title</h2>
+                        <div>
+                            <span class="pill outline no-select">
+                                <i class="fas fa-calendar space"></i>$date <span class="time">$time</span>
+                            </span>
+                            &nbsp;
+                            <span class="location no-wrap">$location</span>
+                        </div>
+                    </div>
+                    <div class="bottom outline">
+                        <div class="content">
+                            <div class="img panel thumb" %%style="background-image:url('$thumb');"></div>
+                            <span class="description">$description</span>
+                        </div>
+
+                        <div class="tag-list">
+                            <div class="tag" tag="$tag"><span class="w"> $tag</span></div>
+                            <div list="tag" value="item" class="tag" tag="$item"><span class="w"> $item</span></div>
+                        </div>
+
+                        <div class="controls m">
+                            <label for="event-overlay-toggle" class="button pill solid red size-2">
+                                <i class="fas fa-times-circle"></i> Close
+                            </label>
+                            <a href="a.html?$getLink" target="_blank" class="button circle solid blue"><i class="fas fa-link"></i></a>
+                        </div>
+                    </div>
+                    <div class="controls d">
+                        <label for="event-overlay-toggle" class="button circle solid red"><i class="fas fa-times"></i></label>
+                        <a href="a.html?$getLink" target="_blank" class="button circle solid blue"><i class="fas fa-link"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END EVENT INFO OVERLAY -->
+
+    <div id="wrapper">
+        <div id="top-bars">
+            <div class="bar solid yellow"></div>
+            <div class="bar solid blue"></div>
+            <div class="bar solid green"></div>
+            <div class="bar solid red"></div>
+        </div>
+        <div id="body">
+            <div id="top">
+                <div class="nav th">
+                    <a href="/" class="site-icon">
+                        <img src="img/branding/GDIU_Logo.svg" alt="GD@IU" />
+                    </a>
+                    <div class="items">
+                        <a href="/" class="button circle nudge-left solid red">
+                            <i class="fas fa-home"></i>
+                        </a>
+                        <a href="/about.html" class="button circle solid blue">
+                            <i class="fas fa-lightbulb"></i>
+                        </a>
+                        <a href="/events.html" class="button circle solid green">
+                            <i class="fas fa-calendar"></i>
+                        </a>
+                        <a href="/contact.html" class="button circle nudge-down solid purple">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="/resources.html" class="button circle solid red">
+                            <i class="fas fa-clipboard-list"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="nav w">
+                    <a href="/" class="site-icon">
+                        <img src="img/branding/GDIU_Logo.svg" alt="GD@IU" />
+                    </a>
+                    <div class="items">
+                        <a href="/" class="button pill solid red">
+                            <i class="fas fa-home"></i>
+                            Home
+                        </a>
+                        <a href="/about.html" class="button pill solid blue">
+                            <i class="fas fa-lightbulb"></i>
+                            About
+                        </a>
+                        <a href="/events.html" class="button pill solid green">
+                            <i class="fas fa-calendar"></i>
+                            Events
+                        </a>
+                        <a href="/contact.html" class="button pill solid purple">
+                            <i class="fas fa-envelope"></i>
+                            Contact
+                        </a>
+                        <a href="/resources.html" class="button pill solid red">
+                            <i class="fas fa-clipboard-list"></i>
+                            Resources
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- END SHARED TOP -->
+
+            <div class="block">
+                <div class="panel">
+                    <div class="top solid-red">
+                        <h1>Resources</h1>
+                    </div>
+                    <div class="bottom outline-red">
+
+                        <div class="section resources grey_medium">
+                            <h2 class="section-heading pill solid">General</h2>
+                            <input id="toggle-general" class="section-toggle" type="checkbox" checked />
+                            <label for="toggle-general" class="section-toggle-icon button circle solid"><i class="fas fa-angle-up"></i></label>
+
+                            <input id="toggle-general-management" class="toggle toggle-management" type="checkbox" checked />
+                            <input id="toggle-general-promotion" class="toggle toggle-promotion" type="checkbox" checked />
+                            <input id="toggle-general-misc" class="toggle toggle-misc" type="checkbox" checked />
+
+                            <div class="tag-toggles">
+                                <div class="wrapper">
+                                    <label for="toggle-general-management" class="button pill solid toggle-management-button"></label>
+                                    <label for="toggle-general-promotion" class="button pill solid toggle-promotion-button"></label>
+                                    <label for="toggle-general-misc" class="button pill solid toggle-misc-button"></label>
+                                </div>
+                            </div>
+
+                            <div class="grid toggle-area">
+                                <!-- BEGIN RESOURCE TEMPLATE -->
+                                <div class="resource-card outline grid-item" tag="$tag" get-multi="resources/general">
+                                    <a href="/a.html?$getLink" target="_blank" class="thumb" %%style="background-image: url('$thumb')"></a>
+                                    <a href="/a.html?$getLink" target="_blank" class="button solid">
+                                        $title
+                                    </a>
+                                </div>
+                                <!-- END RESOURCE TEMPLATE -->
+                            </div>
+                        </div>
+
+                        <div class="section resources yellow">
+                            <h2 class="section-heading pill solid">Design</h2>
+                            <input id="toggle-design" class="section-toggle" type="checkbox" />
+                            <label for="toggle-design" class="section-toggle-icon button circle solid"><i class="fas fa-angle-up"></i></label>
+
+                            <input id="toggle-design-fundamentals" class="toggle toggle-fundamentals" type="checkbox" checked />
+                            <input id="toggle-design-leveldesign" class="toggle toggle-leveldesign" type="checkbox" checked />
+                            <input id="toggle-design-narrative" class="toggle toggle-narrative" type="checkbox" checked />
+                            <input id="toggle-design-uiux" class="toggle toggle-uiux" type="checkbox" checked />
+
+                            <div class="tag-toggles">
+                                <div class="wrapper">
+                                    <label for="toggle-design-fundamentals" class="button pill solid toggle-fundamentals-button"></label>
+                                    <label for="toggle-design-leveldesign" class="button pill solid toggle-leveldesign-button"></label>
+                                    <label for="toggle-design-narrative" class="button pill solid toggle-narrative-button"></label>
+                                    <label for="toggle-design-uiux" class="button pill solid toggle-uiux-button"></label>
+                                </div>
+                            </div>
+
+                            <div class="grid toggle-area">
+                                <!-- BEGIN RESOURCE TEMPLATE -->
+                                <div class="resource-card outline grid-item" tag="$tag" get-multi="resources/design">
+                                    <a href="/a.html?$getLink" target="_blank" class="thumb" %%style="background-image: url('$thumb')"></a>
+                                    <a href="/a.html?$getLink" target="_blank" class="button solid">
+                                        $title
+                                    </a>
+                                </div>
+                                <!-- END RESOURCE TEMPLATE -->
+                            </div>
+                        </div>
+
+                        <div class="section resources blue">
+                            <h2 class="section-heading pill solid">Tech</h2>
+                            <input id="toggle-tech" class="section-toggle" type="checkbox" />
+                            <label for="toggle-tech" class="section-toggle-icon button circle solid"><i class="fas fa-angle-up"></i></label>
+
+                            <input id="toggle-tech-fundamentals" class="toggle toggle-fundamentals" type="checkbox" checked />
+                            <input id="toggle-tech-ai" class="toggle toggle-ai" type="checkbox" checked />
+                            <input id="toggle-tech-engines" class="toggle toggle-engines" type="checkbox" checked />
+                            <input id="toggle-tech-graphics" class="toggle toggle-graphics" type="checkbox" checked />
+
+                            <div class="tag-toggles">
+                                <div class="wrapper">
+                                    <label for="toggle-tech-fundamentals" class="button pill solid toggle-fundamentals-button"></label>
+                                    <label for="toggle-tech-ai" class="button pill solid toggle-ai-button"></label>
+                                    <label for="toggle-tech-engines" class="button pill solid toggle-engines-button"></label>
+                                    <label for="toggle-tech-graphics" class="button pill solid toggle-graphics-button"></label>
+                                </div>
+                            </div>
+
+                            <div class="grid toggle-area">
+                                <!-- BEGIN RESOURCE TEMPLATE -->
+                                <div class="resource-card outline grid-item" tag="$tag" get-multi="resources/tech">
+                                    <a href="/a.html?$getLink" target="_blank" class="thumb" %%style="background-image: url('$thumb')"></a>
+                                    <a href="/a.html?$getLink" target="_blank" class="button solid">
+                                        $title
+                                    </a>
+                                </div>
+                                <!-- END RESOURCE TEMPLATE -->
+                            </div>
+                        </div>
+
+                        <div class="section resources red">
+                            <h2 class="section-heading pill solid">Art</h2>
+                            <input id="toggle-art" class="section-toggle" type="checkbox" />
+                            <label for="toggle-art" class="section-toggle-icon button circle solid"><i class="fas fa-angle-up"></i></label>
+
+                            <input id="toggle-art-fundamentals" class="toggle toggle-fundamentals" type="checkbox" checked />
+                            <input id="toggle-art-2d" class="toggle toggle-2d" type="checkbox" checked />
+                            <input id="toggle-art-3d" class="toggle toggle-3d" type="checkbox" checked />
+                            <input id="toggle-art-animation" class="toggle toggle-animation" type="checkbox" checked />
+
+                            <div class="tag-toggles">
+                                <div class="wrapper">
+                                    <label for="toggle-art-fundamentals" class="button pill solid toggle-fundamentals-button"></label>
+                                    <label for="toggle-art-2d" class="button pill solid toggle-2d-button"></label>
+                                    <label for="toggle-art-3d" class="button pill solid toggle-3d-button"></label>
+                                    <label for="toggle-art-animation" class="button pill solid toggle-animation-button"></label>
+                                </div>
+                            </div>
+
+                            <div class="grid toggle-area">
+                                <!-- BEGIN RESOURCE TEMPLATE -->
+                                <div class="resource-card outline grid-item" tag="$tag" get-multi="resources/art">
+                                    <a href="/a.html?$getLink" target="_blank" class="thumb" %%style="background-image: url('$thumb')"></a>
+                                    <a href="/a.html?$getLink" target="_blank" class="button solid">
+                                        $title
+                                    </a>
+                                </div>
+                                <!-- END RESOURCE TEMPLATE -->
+                            </div>
+                        </div>
+
+                        <div class="section resources green">
+                            <h2 class="section-heading pill solid">Audio</h2>
+                            <input id="toggle-audio" class="section-toggle" type="checkbox" />
+                            <label for="toggle-audio" class="section-toggle-icon button circle solid"><i class="fas fa-angle-up"></i></label>
+
+                            <input id="toggle-audio-fundamentals" class="toggle toggle-fundamentals" type="checkbox" checked />
+                            <input id="toggle-audio-music" class="toggle toggle-music" type="checkbox" checked />
+                            <input id="toggle-audio-sounds" class="toggle toggle-sounds" type="checkbox" checked />
+
+                            <div class="tag-toggles">
+                                <div class="wrapper">
+                                    <label for="toggle-audio-fundamentals" class="button pill solid toggle-fundamentals-button"></label>
+                                    <label for="toggle-audio-music" class="button pill solid toggle-music-button"></label>
+                                    <label for="toggle-audio-sounds" class="button pill solid toggle-sounds-button"></label>
+                                </div>
+                            </div>
+
+                            <div class="grid toggle-area">
+                                <!-- BEGIN RESOURCE TEMPLATE -->
+                                <div class="resource-card outline grid-item" tag="$tag" get-multi="resources/audio">
+                                    <a href="/a.html?$getLink" target="_blank" class="thumb" %%style="background-image: url('$thumb')"></a>
+                                    <a href="/a.html?$getLink" target="_blank" class="button solid">
+                                        $title
+                                    </a>
+                                </div>
+                                <!-- END RESOURCE TEMPLATE -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BEGIN SHARED BOTTOM -->
+            <div class="block m">
+                <div class="bar"></div>
+                <a href="#" class="button circle large red">
+                    <i class="fas fa-angle-up"></i>
+                </a>
+            </div>
+            <div class="bar solid red m"></div>
+        </div>
+        <div class="d" id="footer-spacer"></div>
+        <div class="d" id="footer">
+            <div class="bar"></div>
+            <a href="#" id="rtt" class="button circle large red d">
+                <i class="fas fa-angle-up"></i>
+            </a>
+            <div class="bar"></div>
+            <div class="bar solid red"></div>
+        </div>
+    </div>
+
+    <script src="/js/muPreprocessor.js"></script>
+    <script src="/js/remoteContent.js"></script>
+</body>
+</html>

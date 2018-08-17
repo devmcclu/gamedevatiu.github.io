@@ -17,18 +17,18 @@ const defaultFormat = {
     },
     "heading": {
         pattern: /===(.+?)===/g,
-        format: "<h>$1</h>"
+        format: "<h1>$1</h1>"
     },
     "subheading": {
         pattern: /==(.+?)==/g,
-        format: "<subh>$1</subh>"
+        format: "<h2>$1</h2>"
     },
     "bold": {
-        pattern: /\*(.+?)\*/g,
+        pattern: /\*\*(.+?)\*\*/g,
         format: "<strong>$1</strong>"
     },
     "italic": {
-        pattern: /_(.+?)_/g,
+        pattern: /__(.+?)__/g,
         format: "<em>$1</em>"
     },
     "paragraph-spacer": {

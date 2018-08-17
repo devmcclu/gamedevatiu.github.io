@@ -21,14 +21,26 @@ body {
 }
 
 // Basic HTML Elements
+p {
+    ._clear();
+    ._listSpace(bottom, @s_unit);
+
+    a, .a {
+        background-color: lighten(@grey_light, 10%);
+        padding: 0 0.2em;
+        color: @blue;
+        border-bottom: 2px dotted @blue;
+
+        &:hover {
+            color: @red;
+            border-bottom-color: @red;
+        }
+    }
+}
+
 a, .a {
     ._smooth(@t_fast);
     text-decoration: none;
-    color: @black;
-
-    &:hover {
-        color: @red;
-    }
 }
 
 h1 {
@@ -103,6 +115,11 @@ i.space {
 
     span& {
         display: inline-block;
+    }
+
+    h2& {
+        display: inline-block;
+        margin-bottom: @s_unit;
     }
 }
 
@@ -223,13 +240,17 @@ i.space {
     width: 100%;
     overflow: hidden;
 
+    &:empty {
+        border-radius: @radius;
+    }
+
     .top {
         ._no-select();
         ._enableBorder();
         display: block;
         border-radius: @radius @radius 0 0;
         border-bottom-width: 0;
-        padding: @s_unit/2 0;
+        padding: @s_unit/2 @s_unit;
         text-align: center;
     }
 
@@ -237,7 +258,10 @@ i.space {
         ._enableBorder();
         display: block;
         padding: @padding;
-        border-bottom-width: 0;
+
+        &:not(.bottom-outline) {
+            border-bottom-width: 0;
+        }
     }
 
     .bottom {
@@ -255,7 +279,7 @@ i.space {
         text-align: center;
     }
 
-    .button {
+    & > .button, & .bottom > .button {
         margin: auto;
     }
 }
@@ -314,10 +338,11 @@ i.space {
     width: 100vw;
     height: 100vh;
     top: 0;
-    z-index: 0;
+    z-index: -2;
+    overflow-y: hidden;
 
     .overlay-box {
-        ._smooth(@t_slow * 2, cubic-bezier(0.19, 1, 0.22, 1));
+        ._smooth(@t_slow*2, cubic-bezier(0.19, 1, 0.22, 1));
         position: absolute;
         height: 100%;
         width: 100%;
@@ -326,6 +351,7 @@ i.space {
         .overlay-background-exit {
             display: block;
             position: absolute;
+            box-sizing: border-box;
             height: 100%;
             width: 100%;
             z-index: 1000;
@@ -333,13 +359,26 @@ i.space {
 
         .overlay-panel {
             position: relative;
-            width: 100%;
+            box-sizing: border-box;
+            width: 95%;
             max-width: 800px;
             margin: auto;
             margin-top: 3vh;
             z-index: 1001;
 
+            .content {
+                @p: @s_unit;
+                padding: 0 @p/2 @p @p/2;
+
+                .thumb {
+                    width: 100%;
+                    height: 50vw;
+                    margin-bottom: @s_unit/2;
+                }
+            }
+
             .controls.m {
+                margin-top: @s_unit;
                 ._flex(row, nowrap, center, center);
 
                 & > * {
@@ -356,6 +395,10 @@ i.space {
             }
         }
     }
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 .overlay-toggle {
@@ -364,6 +407,7 @@ i.space {
     &:checked + .overlay {
         background: rgba(0,0,0,0.8);
         z-index: 999;
+        overflow-y: scroll;
 
         .overlay-background-exit {
             display: block;
@@ -387,7 +431,75 @@ i.space {
     }
 }
 
+.ssection {
+    text-align: center;
+    min-height: 4em;
+    margin-bottom: @s_unit;
+    overflow: hidden;
+
+    .section-heading {
+        ._no-select();
+        display: inline-block;
+        position: relative;
+        vertical-align: middle;
+        margin-bottom: @s_unit;
+        margin-right: @s_unit/2;
+        min-width: 3.5em;
+        text-align: center;
+        z-index: 2;
+    }
+
+    .section-toggle {
+        display: none;
+        @t: @t_slow;
+
+        & ~ .section-toggle-icon {
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+            transform: rotate(45deg);
+            margin-bottom: @s_unit;
+            z-index: 2;
+        }
+
+        & ~ .toggle-area {
+            position: relative;
+            ._smooth(@t);
+            //max-height: 0;
+            //opacity: 0;
+            overflow: hidden;
+            //top: -5em;
+            & > * {
+                ._smooth();
+                height: 0;
+                margin-bottom: 0;
+                border-width: 0;
+            }
+        }
+
+        &:checked {
+            & ~ .section-toggle-icon {
+                transform: rotate(0deg);
+            }
+
+            & ~ .toggle-area {
+                // transition: opacity @t @c_out, margin-bottom @t @c_out;
+                //top: 0;
+                //max-height: 1000px;
+                //opacity: 1;
+                & > * {
+                    height: 12em;
+                }
+            }
+        }
+    }
+}
+
+input.toggle {
+    display: none;
+}
+
 label[for*="toggle"] {
     ._no-select(pointer);
-    .a !important;
+    ._smooth();
 }

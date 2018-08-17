@@ -29,55 +29,57 @@
 <body>
     <div id="wrapper">
         <div id="top-bars">
-            <div class="full-bar solid-yellow"></div>
-            <div class="full-bar solid-blue"></div>
-            <div class="full-bar solid-green"></div>
-            <div class="full-bar solid-red"></div>
+            <div class="bar solid yellow"></div>
+            <div class="bar solid blue"></div>
+            <div class="bar solid green"></div>
+            <div class="bar solid red"></div>
         </div>
         <div id="body">
             <div id="top">
                 <div class="nav th">
-                    <a href="/" id="site-icon">
-                        <img src="img/branding/GDIU_Logo.svg" alt="GD@IU" />
-                    </a>
-                    <a href="/" class="button circle nudge-left nudge-up solid-red">
-                        <i class="fas fa-home"></i>
-                    </a>
-                    <a href="/about.html" class="button circle nudge-up solid-blue">
-                        <i class="fas fa-lightbulb"></i>
-                    </a>
-                    <a href="/events.html" class="button circle nudge-up solid-green">
-                        <i class="fas fa-calendar"></i>
-                    </a>
-                    <a href="/contact.html" class="button circle nudge-up solid-yellow">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                    <a href="/resources.html" class="button circle nudge-up solid-red hide">
-                        <i class="fas fa-clipboard-list"></i>
-                    </a>
-                </div>
-                <div class="nav w">
-                    <a href="/" id="site-icon">
+                    <a href="/" class="site-icon">
                         <img src="img/branding/GDIU_Logo.svg" alt="GD@IU" />
                     </a>
                     <div class="items">
-                        <a href="/" class="button pill nudge-left nudge-up solid-red">
+                        <a href="/" class="button circle nudge-left solid red">
+                            <i class="fas fa-home"></i>
+                        </a>
+                        <a href="/about.html" class="button circle solid blue">
+                            <i class="fas fa-lightbulb"></i>
+                        </a>
+                        <a href="/events.html" class="button circle solid green">
+                            <i class="fas fa-calendar"></i>
+                        </a>
+                        <a href="/contact.html" class="button circle nudge-down solid purple">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="/resources.html" class="button circle solid red">
+                            <i class="fas fa-clipboard-list"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="nav w">
+                    <a href="/" class="site-icon">
+                        <img src="img/branding/GDIU_Logo.svg" alt="GD@IU" />
+                    </a>
+                    <div class="items">
+                        <a href="/" class="button pill solid red">
                             <i class="fas fa-home"></i>
                             Home
                         </a>
-                        <a href="/about.html" class="button pill nudge-up solid-blue">
+                        <a href="/about.html" class="button pill solid blue">
                             <i class="fas fa-lightbulb"></i>
                             About
                         </a>
-                        <a href="/events.html" class="button pill nudge-up solid-green">
+                        <a href="/events.html" class="button pill solid green">
                             <i class="fas fa-calendar"></i>
                             Events
                         </a>
-                        <a href="/contact.html" class="button pill nudge-up solid-yellow">
+                        <a href="/contact.html" class="button pill solid purple">
                             <i class="fas fa-envelope"></i>
                             Contact
                         </a>
-                        <a href="/resources.html" class="button pill nudge-up solid-red hide">
+                        <a href="/resources.html" class="button pill solid red">
                             <i class="fas fa-clipboard-list"></i>
                             Resources
                         </a>
@@ -87,40 +89,38 @@
 
             <!-- END SHARED TOP -->
 
-            <div class="block grey">
-                <div class="flex fixed-size center">
-                    <div class="circle large nudge-up inverted single">
-                        <i class="fas fa-wrench"></i>
+            <div class="block flex grey_medium">
+                <div class="circle larger solid" style="flex-grow:0"><i class="fas fa-wrench"></i></div>
+                <div class="panel" style="width: 80%">
+                    <div class="top solid">
+                        <h2>Oh no!</h2>
                     </div>
-                    
-                    <div class="panel size-1" style="max-width: 900px">
-                        <div class="top inverted outline">
-                            <h2>Oh no!</h2>
-                        </div>
-                        <div class="bottom colored outline pad">
-                            This page is still under construction! Gamedev@IU is still brand new and we're working on getting all out web content up and running. 
-                            <br /><br />
-                            Be sure to check back soon!
-                        </div>
+                    <div class="bottom outline">
+                        This page is currently under construction! Gamedev@IU is still brand new and we're working on getting all out web content up and running.
+                        <br /><br />
+                        Be sure to check back soon!
                     </div>
                 </div>
             </div>
 
             <!-- BEGIN SHARED BOTTOM -->
-
             <div class="block m">
-                <div class="full-bar"></div>
-                <a href="#" class="button single circle nudge-up center solid-red">
+                <div class="bar"></div>
+                <a href="#" class="button circle large red">
                     <i class="fas fa-angle-up"></i>
                 </a>
             </div>
-            <div class="full-bar"></div>
+            <div class="bar solid red m"></div>
         </div>
-        <a href="#" id="rtt" class="button single circle nudge-up center solid-red d">
-            <i class="fas fa-angle-up"></i>
-        </a>
-        <div id="footer" class="full-bar solid-red"></div>
-        <script src="/js/imgdiv.js"></script>
+        <div class="d" id="footer-spacer"></div>
+        <div class="d" id="footer">
+            <div class="bar"></div>
+            <a href="#" id="rtt" class="button circle large red d">
+                <i class="fas fa-angle-up"></i>
+            </a>
+            <div class="bar"></div>
+            <div class="bar solid red"></div>
+        </div>
     </div>
 </body>
 </html>
