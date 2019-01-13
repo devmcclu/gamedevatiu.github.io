@@ -56,7 +56,7 @@
 
         .thumb {
             height: auto;
-            width: 100%;
+            width: auto;
             min-width: @s_unit * 6;
             max-width: @s_unit * 9;
             border-right: @s_border solid @white;
@@ -206,6 +206,22 @@
 
             &:before {
                 content: '\f001';
+            }
+        }
+
+        &[tag='Narrative SIG'] {
+            ._color(@orange, @orange, @white);
+
+            &:before {
+                content: '\f27a';
+            }
+        }
+
+        &[tag='Industry SIG'] {
+            ._color(@steel, @steel, @white);
+
+            &:before {
+                content: '\f508';
             }
         }
 
