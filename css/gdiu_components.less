@@ -387,9 +387,11 @@
 
 ._makeResourceCardColor(red);
 ._makeResourceCardColor(blue);
+._makeResourceCardColor(purple);
 ._makeResourceCardColor(green);
 ._makeResourceCardColor(yellow, @yellow-back);
-._makeResourceCardColor(grey_medium);
+._makeResourceCardColor(orange);
+._makeResourceCardColor(steel);
 
 
 ._makeTagToggleColor(@tag, @color, @white: @white) {
@@ -406,9 +408,11 @@
 ._makeTagToggle(@tagClass, @tagName) {
     ._makeTagToggleColor(@tagClass, red);
     ._makeTagToggleColor(@tagClass, blue);
-    ._makeTagToggleColor(@tagClass, yellow, @yellow-back);
+    //._makeTagToggleColor(@tagClass, yellow, @yellow-back);
+    ._makeTagToggleColor(@tagClass, purple);
     ._makeTagToggleColor(@tagClass, green);
-    ._makeTagToggleColor(@tagClass, grey_medium);
+    ._makeTagToggleColor(@tagClass, orange);
+    ._makeTagToggleColor(@tagClass, steel);
 
     .toggle-@{tagClass}-button:before {
         content: @tagName;
@@ -425,21 +429,31 @@
 
 .resources {
     ._no-select();
+
     ._makeTagToggle(fundamentals, "Fundamentals");
     ._makeTagToggle(management, "Management");
     ._makeTagToggle(promotion, "Promotion");
+    ._makeTagToggle(careers, "Careers");
     ._makeTagToggle(misc, "Misc");
+    
     ._makeTagToggle(leveldesign, "Level Design");
-    ._makeTagToggle(narrative, "Narrative");
+    ._makeTagToggle(systems, "Systems");
     ._makeTagToggle(uiux, "UI/UX");
+    
     ._makeTagToggle(ai, "AI");
     ._makeTagToggle(graphics, "Graphics");
     ._makeTagToggle(engines, "Engines");
+    
     ._makeTagToggle(3d, "3D Art");
     ._makeTagToggle(2d, "2D Art");
     ._makeTagToggle(animation, "Animation");
+    
     ._makeTagToggle(music, "Music");
     ._makeTagToggle(sounds, "Sound Design");
+
+    ._makeTagToggle(writing, "Writing");
+    ._makeTagToggle(narrative, "Narrative Design");
+    
     text-align: center;
     margin-bottom: @s_unit;
 
@@ -454,7 +468,7 @@
         vertical-align: middle;
         margin-bottom: @s_unit;
         margin-right: @s_unit/2;
-        min-width: 3.5em;
+        min-width: 4.5em;
         text-align: center;
         z-index: 2;
     }

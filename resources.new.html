@@ -141,17 +141,19 @@
                     </div>
                     <div class="bottom outline-red">
 
-                        <div class="section resources grey_medium">
+                        <div class="section resources steel">
                             <h2 class="section-heading pill solid">General</h2>
-                            <input id="toggle-general" class="section-toggle" type="checkbox" checked />
+                            <input id="toggle-general" class="section-toggle" type="checkbox" unchecked />
                             <label for="toggle-general" class="section-toggle-icon button circle solid"><i class="fas fa-angle-up"></i></label>
 
-                            <input id="toggle-general-management" class="toggle toggle-management" type="checkbox" checked />
-                            <input id="toggle-general-promotion" class="toggle toggle-promotion" type="checkbox" checked />
-                            <input id="toggle-general-misc" class="toggle toggle-misc" type="checkbox" checked />
+                            <input id="toggle-general-careers" class="toggle toggle-careers" type="checkbox" unchecked />
+                            <input id="toggle-general-management" class="toggle toggle-management" type="checkbox" unchecked />
+                            <input id="toggle-general-promotion" class="toggle toggle-promotion" type="checkbox" unchecked />
+                            <input id="toggle-general-misc" class="toggle toggle-misc" type="checkbox" unchecked />
 
                             <div class="tag-toggles">
                                 <div class="wrapper">
+                                    <label for="toggle-general-careers" class="button pill solid toggle-careers-button"></label>
                                     <label for="toggle-general-management" class="button pill solid toggle-management-button"></label>
                                     <label for="toggle-general-promotion" class="button pill solid toggle-promotion-button"></label>
                                     <label for="toggle-general-misc" class="button pill solid toggle-misc-button"></label>
@@ -170,28 +172,26 @@
                             </div>
                         </div>
 
-                        <div class="section resources yellow">
-                            <h2 class="section-heading pill solid">Design</h2>
-                            <input id="toggle-design" class="section-toggle" type="checkbox" />
-                            <label for="toggle-design" class="section-toggle-icon button circle solid"><i class="fas fa-angle-up"></i></label>
+                        <div class="section resources green">
+                            <h2 class="section-heading pill solid">Audio</h2>
+                            <input id="toggle-audio" class="section-toggle" type="checkbox" />
+                            <label for="toggle-audio" class="section-toggle-icon button circle solid"><i class="fas fa-angle-up"></i></label>
 
-                            <input id="toggle-design-fundamentals" class="toggle toggle-fundamentals" type="checkbox" checked />
-                            <input id="toggle-design-leveldesign" class="toggle toggle-leveldesign" type="checkbox" checked />
-                            <input id="toggle-design-narrative" class="toggle toggle-narrative" type="checkbox" checked />
-                            <input id="toggle-design-uiux" class="toggle toggle-uiux" type="checkbox" checked />
+                            <input id="toggle-audio-fundamentals" class="toggle toggle-fundamentals" type="checkbox" unchecked />
+                            <input id="toggle-audio-music" class="toggle toggle-music" type="checkbox" unchecked />
+                            <input id="toggle-audio-sounds" class="toggle toggle-sounds" type="checkbox" unchecked />
 
                             <div class="tag-toggles">
                                 <div class="wrapper">
-                                    <label for="toggle-design-fundamentals" class="button pill solid toggle-fundamentals-button"></label>
-                                    <label for="toggle-design-leveldesign" class="button pill solid toggle-leveldesign-button"></label>
-                                    <label for="toggle-design-narrative" class="button pill solid toggle-narrative-button"></label>
-                                    <label for="toggle-design-uiux" class="button pill solid toggle-uiux-button"></label>
+                                    <label for="toggle-audio-fundamentals" class="button pill solid toggle-fundamentals-button"></label>
+                                    <label for="toggle-audio-music" class="button pill solid toggle-music-button"></label>
+                                    <label for="toggle-audio-sounds" class="button pill solid toggle-sounds-button"></label>
                                 </div>
                             </div>
 
                             <div class="grid toggle-area">
                                 <!-- BEGIN RESOURCE TEMPLATE -->
-                                <div class="resource-card outline grid-item" tag="$tag" get-multi="resources/design">
+                                <div class="resource-card outline grid-item" tag="$tag" get-multi="resources/audio">
                                     <a href="/a.html?$getLink" target="_blank" class="thumb" %%style="background-image: url('$thumb')"></a>
                                     <a href="/a.html?$getLink" target="_blank" class="button solid">
                                         $title
@@ -200,16 +200,15 @@
                                 <!-- END RESOURCE TEMPLATE -->
                             </div>
                         </div>
-
                         <div class="section resources blue">
                             <h2 class="section-heading pill solid">Tech</h2>
                             <input id="toggle-tech" class="section-toggle" type="checkbox" />
                             <label for="toggle-tech" class="section-toggle-icon button circle solid"><i class="fas fa-angle-up"></i></label>
 
-                            <input id="toggle-tech-fundamentals" class="toggle toggle-fundamentals" type="checkbox" checked />
-                            <input id="toggle-tech-ai" class="toggle toggle-ai" type="checkbox" checked />
-                            <input id="toggle-tech-engines" class="toggle toggle-engines" type="checkbox" checked />
-                            <input id="toggle-tech-graphics" class="toggle toggle-graphics" type="checkbox" checked />
+                            <input id="toggle-tech-fundamentals" class="toggle toggle-fundamentals" type="checkbox" unchecked />
+                            <input id="toggle-tech-ai" class="toggle toggle-ai" type="checkbox" unchecked />
+                            <input id="toggle-tech-engines" class="toggle toggle-engines" type="checkbox" unchecked />
+                            <input id="toggle-tech-graphics" class="toggle toggle-graphics" type="checkbox" unchecked />
 
                             <div class="tag-toggles">
                                 <div class="wrapper">
@@ -232,15 +231,46 @@
                             </div>
                         </div>
 
+                        <div class="section resources purple">
+                            <h2 class="section-heading pill solid">Design</h2>
+                            <input id="toggle-design" class="section-toggle" type="checkbox" />
+                            <label for="toggle-design" class="section-toggle-icon button circle solid"><i class="fas fa-angle-up"></i></label>
+
+                            <input id="toggle-design-fundamentals" class="toggle toggle-fundamentals" type="checkbox" unchecked />
+                            <input id="toggle-design-systems" class="toggle toggle-systems" type="checkbox" unchecked />
+                            <input id="toggle-design-leveldesign" class="toggle toggle-leveldesign" type="checkbox" unchecked />
+                            <input id="toggle-design-uiux" class="toggle toggle-uiux" type="checkbox" unchecked />
+
+                            <div class="tag-toggles">
+                                <div class="wrapper">
+                                    <label for="toggle-design-fundamentals" class="button pill solid toggle-fundamentals-button"></label>
+                                    <label for="toggle-design-leveldesign" class="button pill solid toggle-leveldesign-button"></label>
+                                    <label for="toggle-design-systems" class="button pill solid toggle-systems-button"></label>
+                                    <label for="toggle-design-uiux" class="button pill solid toggle-uiux-button"></label>
+                                </div>
+                            </div>
+
+                            <div class="grid toggle-area">
+                                <!-- BEGIN RESOURCE TEMPLATE -->
+                                <div class="resource-card outline grid-item" tag="$tag" get-multi="resources/design">
+                                    <a href="/a.html?$getLink" target="_blank" class="thumb" %%style="background-image: url('$thumb')"></a>
+                                    <a href="/a.html?$getLink" target="_blank" class="button solid">
+                                        $title
+                                    </a>
+                                </div>
+                                <!-- END RESOURCE TEMPLATE -->
+                            </div>
+                        </div>
+
                         <div class="section resources red">
                             <h2 class="section-heading pill solid">Art</h2>
                             <input id="toggle-art" class="section-toggle" type="checkbox" />
                             <label for="toggle-art" class="section-toggle-icon button circle solid"><i class="fas fa-angle-up"></i></label>
 
-                            <input id="toggle-art-fundamentals" class="toggle toggle-fundamentals" type="checkbox" checked />
-                            <input id="toggle-art-2d" class="toggle toggle-2d" type="checkbox" checked />
-                            <input id="toggle-art-3d" class="toggle toggle-3d" type="checkbox" checked />
-                            <input id="toggle-art-animation" class="toggle toggle-animation" type="checkbox" checked />
+                            <input id="toggle-art-fundamentals" class="toggle toggle-fundamentals" type="checkbox" unchecked />
+                            <input id="toggle-art-2d" class="toggle toggle-2d" type="checkbox" unchecked />
+                            <input id="toggle-art-3d" class="toggle toggle-3d" type="checkbox" unchecked />
+                            <input id="toggle-art-animation" class="toggle toggle-animation" type="checkbox" unchecked />
 
                             <div class="tag-toggles">
                                 <div class="wrapper">
@@ -263,26 +293,26 @@
                             </div>
                         </div>
 
-                        <div class="section resources green">
-                            <h2 class="section-heading pill solid">Audio</h2>
-                            <input id="toggle-audio" class="section-toggle" type="checkbox" />
-                            <label for="toggle-audio" class="section-toggle-icon button circle solid"><i class="fas fa-angle-up"></i></label>
+                        <div class="section resources orange">
+                            <h2 class="section-heading pill solid">Narrative</h2>
+                            <input id="toggle-narrative" class="section-toggle" type="checkbox" />
+                            <label for="toggle-narrative" class="section-toggle-icon button circle solid"><i class="fas fa-angle-up"></i></label>
 
-                            <input id="toggle-audio-fundamentals" class="toggle toggle-fundamentals" type="checkbox" checked />
-                            <input id="toggle-audio-music" class="toggle toggle-music" type="checkbox" checked />
-                            <input id="toggle-audio-sounds" class="toggle toggle-sounds" type="checkbox" checked />
+                            <input id="toggle-narrative-fundamentals" class="toggle toggle-fundamentals" type="checkbox" unchecked />
+                            <input id="toggle-narrative-writing" class="toggle toggle-writing" type="checkbox" unchecked />
+                            <input id="toggle-narrative-narrative" class="toggle toggle-narrative" type="checkbox" unchecked />
 
                             <div class="tag-toggles">
                                 <div class="wrapper">
-                                    <label for="toggle-audio-fundamentals" class="button pill solid toggle-fundamentals-button"></label>
-                                    <label for="toggle-audio-music" class="button pill solid toggle-music-button"></label>
-                                    <label for="toggle-audio-sounds" class="button pill solid toggle-sounds-button"></label>
+                                    <label for="toggle-narrative-fundamentals" class="button pill solid toggle-fundamentals-button"></label>
+                                    <label for="toggle-narrative-writing" class="button pill solid toggle-writing-button"></label>
+                                    <label for="toggle-narrative-narrative" class="button pill solid toggle-narrative-button"></label>
                                 </div>
                             </div>
 
                             <div class="grid toggle-area">
                                 <!-- BEGIN RESOURCE TEMPLATE -->
-                                <div class="resource-card outline grid-item" tag="$tag" get-multi="resources/audio">
+                                <div class="resource-card outline grid-item" tag="$tag" get-multi="resources/narrative">
                                     <a href="/a.html?$getLink" target="_blank" class="thumb" %%style="background-image: url('$thumb')"></a>
                                     <a href="/a.html?$getLink" target="_blank" class="button solid">
                                         $title
@@ -291,6 +321,7 @@
                                 <!-- END RESOURCE TEMPLATE -->
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
