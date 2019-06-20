@@ -2,4 +2,7 @@ _site/
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
+
 wc/
+node_modules/
+js/old/
