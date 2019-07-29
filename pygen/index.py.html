@@ -1,0 +1,144 @@
+<code py>page_title = "Gamedev@IU"</code>
+
+<head>
+    <include src=".include/document/head.py.html" />
+</head>
+
+<body>
+    <include src=".include/page/overlay_event.html" />
+
+    <include src=".include/page/start.html" />
+    <include src=".include/page/navbar.html" />
+
+    <!-- Begin Showcase Block -->
+    <code py>
+        showcase_items = [
+            { 
+                "title": "A New Organization", 
+                "link": "/a.html?news/gdiu1", 
+                "thumb": "/wc/img/gdiu/GDIU_LargeHeader.png" 
+            },
+            { 
+                "title": "One Run Dungeon",
+                "link": "/a.html?featured/onerun",
+                "thumb": "/wc/img/games/OneRun_Screen1.jpg"
+            },
+            { 
+                "title": "Slug Slasher", 
+                "link": "/a.html?featured/slugslasher", 
+                "thumb": "/wc/img/games/SlugSlasher_Steam.png" 
+            },
+        ]
+    </code>
+
+    <div class="block">
+        <div class="expandotron red">
+            <div class="top solid">
+                <h1>Showcase!</h1>
+            </div>
+            <div class="items solid">
+                <code py>
+                    for item in showcase_items:
+                        include_template(".include/home/showcase_item.html", item)
+                </code>
+            </div>
+        </div>
+    </div>
+    <!-- End Showcase Block -->
+
+    <!-- Begin Events+News Block -->
+    <div class="block flex">
+        <!-- Begin Events Block -->
+        <div class="height-fill">
+            <div class="panel green">
+                <div class="top solid">
+                    <h1>Events!</h1>
+                </div>
+
+                <!-- Filled by eventdb -->
+                <div class="middle outline content-list collapse-events" id="event-list" empty-text="looks like there's nothing coming up :)">
+                    <div class="placeholder">loading events...</div>
+                </div>
+
+                <a href="/events.html" class="button bottom">
+                    <i class="fas fa-calendar space"></i>All upcoming events
+                </a>
+            </div>
+            <div class="spacer"></div>
+            <div class="panel solid grey_light fill"></div>
+        </div>
+        <!-- End Events Block -->
+
+        <!-- Begin News Block -->
+        <code py>
+            featured_news = [
+                "test",
+                "test",
+                "test",
+            ]
+        </code>
+
+        <div class="height-fill">
+            <div class="panel blue">
+                <div class="top solid">
+                    <h1>News!</h1>
+                </div>
+                <div class="middle outline">
+                    <code py>
+                        for item in featured_news:
+                            vars = get_vars(f"news/{item}")
+                            include_template(".include/home/featured_news.html", vars)
+                    </code>
+                </div>
+                <a href="/news.html" class="bottom button">
+                    <i class="fas fa-comment-alt space"></i>All news &amp; blogs
+                </a>
+            </div>
+            <div class="spacer"></div>
+            <div class="panel solid grey_light fill"></div>
+        </div>
+        <!-- End News Block -->
+    </div>
+    <!-- End Events+News Block -->
+
+    <!-- Begin Resources Block -->
+    <code py>
+        featured_resources = [
+            "tech/gdquest",
+            "art/realistic-stylized",
+            "art/pixelart-miniboss",
+            "audio/8bit-theory",
+
+            "art/botd-photogammetry",
+            "audio/syntorial",
+            "tech/programming-patterns",
+            "tech/catlike-coding"
+        ]
+    </code>
+    
+    <div class="block">
+        <div class="panel red resource-panel">
+            <div class="top solid">
+                <h1>RESOURCES!</h1>
+            </div>
+            <div class="middle outline grid">
+                <code py>
+                    for item in featured_resources:
+                        vars = get_vars(f"resources/{item}")
+                        include_template(".include/home/featured_resource.html", vars)
+                </code>
+            </div>
+            <a href="/resources.html" class="bottom button">
+                <i class="fas fa-clipboard-list space"></i>All resources &amp; tutorials
+            </a>
+        </div>
+    </div>
+    <!-- End Resources Block -->
+
+    <include src=".include/page/end.html" />
+    
+    <code py>
+        event_list_template_path = ".include/home/event_item.html"
+    </code>
+    <include src=".include/eventdb.py.html" />
+</body>

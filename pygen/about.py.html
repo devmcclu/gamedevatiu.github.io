@@ -1,0 +1,84 @@
+<code py>page_title = "About Gamedev@IU"</code>
+
+<head>
+    <include src=".include/document/head.py.html" />
+
+    <code py>
+        def imgdiv(src):
+            return element('div', class_list=['panel img outline'], style=f"background-image:url({src})")
+    </code>
+</head>
+
+<body>
+    <include src=".include/page/start.html" />
+    <include src=".include/page/navbar.html" />
+
+    <div class="block flex red">
+        #`imgdiv("/img/photos/Standups-CFA.JPG")`
+        <div class="panel blue size-2">
+            <div class="top solid">
+                <h2>What is GD@IU?</h2>
+            </div>
+            <div class="bottom content outline">
+                Gamedev@IU is a student-run organization at Indiana University that promotes and facilitates individual
+                development of skills related to all aspects of game development.
+                <br /><br />
+                With a wide variety of activities, hosted by both the organization as a whole as well as member-led
+                Special Interest Groups, GD@IU aims to provide a platform for students
+                to learn about the medium of games, their creation, and the industry behind them.
+                <br /><br />
+                In addition to Special Interest Groups, the GD@IU Design/Prototype Lab offers opportunities for
+                experimentation and valuable hands-on experience through workshops and small projects.
+            </div>
+        </div>
+    </div>
+
+    <div class="block flex">
+        <div class="panel purple size-2 order-last">
+            <div class="top solid">
+                <h2>GD@IU SIGs</h2>
+            </div>
+            <div class="bottom content outline">
+                In addition to events and activities hosted by Gamedev@IU as a whole, members are able to join a number
+                of Special Interest Groups (SIGs) focused on particular areas within the field of game development.
+                These groups offer more focused opportunities to learn through workshops and guest discussions, as well
+                as practice skills through a wide variety of individual and collaborative projects.
+                <br /><br />
+                The current set of SIGs includes Game Design, Visual Arts, Music and Sound Design, Game Technologies,
+                Narrative Design, and the Games Industry.
+                Beyond this, any member is able to propose and lead new SIGs focused on the areas they’re most
+                passionate about.
+            </div>
+        </div>
+        #`imgdiv("/img/photos/GameJam-Officers.JPG")`
+    </div>
+
+    <div class="block flex">
+        <div class="panel green center size-2">
+            <div class="top solid">
+                <h2>Events</h2>
+            </div>
+            <div class="middle outline">
+                Gamedev@IU hosts a number of events every week, so be sure to check the event calendar to see what's coming up!
+            </div>
+            <a href="/events.html" target="_parent" class="bottom button">
+                <i class="fas fa-calendar"></i>
+                Check 'em out!
+            </a>
+        </div>
+        <div class="panel red center size-2">
+            <div class="top solid">
+                <h2>Resources</h2>
+            </div>
+            <div class="middle outline">
+                Want to learn more about game development in general? Take a look at our curated collection of resources &amp; tutorials!
+            </div>
+            <a href="/resources.html" target="_parent" class="bottom button">
+                <i class="fas fa-clipboard-list"></i>
+                Learn something new!
+            </a>
+        </div>
+    </div>
+
+    <include src=".include/page/end.html" />
+</body>

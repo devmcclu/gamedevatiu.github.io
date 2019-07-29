@@ -1,0 +1,130 @@
+<code py>
+    try:
+        event_list_template_path
+    except:
+        event_list_template_path = '.include/event_item.html'
+
+    event_infos = get_vars_listing("events")
+    
+    event_db_text = ""
+    for info in event_infos:
+        _title    = escape_string(info['title'])
+        _thumb    = escape_string(info['thumb'])
+        _date     = escape_string(info['date'])
+        _time     = escape_string(info['time'])
+        _location = escape_string(info['location'])
+        _body     = escape_string(info['body'])
+        _get_link = escape_string(info['get_link'].replace("events/", ""))
+
+        _tag = info['tag']
+        if isinstance(_tag, list):
+            tags = _tag
+            _tag = "["
+            for tag in tags:
+                _tag += f"'{escape_string(tag)}',"
+            _tag += "]"
+        else:
+            _tag = f"['{escape_string(_tag)}']"
+
+        event_db_text += f"'{_get_link}': {{ 'get_link': '{_get_link}', 'title':'{_title}', 'thumb':'{_thumb}', 'date':'{_date}', 'time':'{_time}', 'location':'{_location}', 'body':'{_body}', 'tag':{_tag} }},\n"
+    
+    event_list_template = escape_string(open(event_list_template_path, 'r').read())
+</code>
+
+<script>
+    let events = {
+        //#`event_db_text`
+        // ^ Generated ^
+    }
+
+    let event = {
+        listTemplate: "#`event_list_template`",
+        tagTemplate: "<div class='tag' tag='$tag'> <span class='w'>$tag</span> </div>",
+        varPrefix: "$",
+
+        getInfo: (name) => {
+            if (name in events) {
+                return events[name]
+            }
+            else {
+                return null
+            }
+        },
+
+        isInFuture: (info) => {
+            let now = Date.now()
+            let currentYear = new Date(now).getYear() + 1900
+            let date = Date.parse(`${info['date']}/${currentYear}`)
+
+            return now < date
+        }
+    }
+
+    let filterAll = (e) => { return true }
+
+    function inject(obj, text) {
+        // Replace $var with the appropriate value from the info object
+        for (var k in obj) {
+            if (k == "tag") {
+                let tags = obj[k]
+                var tagHTML = ""
+                for (i in tags) {
+                    tagHTML += event.tagTemplate.replace(new RegExp(`\\${event.varPrefix}tag`, 'g'), tags[i])
+                }
+                text = text.replace(new RegExp(`\\${event.varPrefix}${k}`, 'g'), tagHTML)
+            }
+            else {
+                text = text.replace(new RegExp(`\\${event.varPrefix}${k}`, 'g'), obj[k])
+            }
+        }
+        return text
+    }
+
+    function createEventList(parentId, filter) {
+        let parent = document.getElementById(parentId)
+        var html = ""
+
+        if (parent == null) {
+            console.log(`(createEventList) Event list parent '#${parentId}' doesn't exist`)
+            return
+        }
+
+        // Get the HTML for each list element
+        for (var key in events) {
+            let info = events[key]
+            if (!filter(info)) { continue }
+
+            eventHTML = inject(info, event.listTemplate)
+            html += eventHTML
+        }
+
+        parent.innerHTML = html
+    }
+
+    injectTargetBaseText = {}
+    function createInjectLinks() {
+        let injectTargets = document.querySelectorAll("[inject-target]")
+        for (target of injectTargets) {
+            console.log(`Target ${target.id}`)
+            injectTargetBaseText[target.id] = target.innerHTML;
+        }
+
+        let injectLinks = document.querySelectorAll("[inject-src]")
+        for (link of injectLinks) {
+            console.log(`Link ${link}`)
+            let targetId = link.getAttribute("inject-link")
+            let key = link.getAttribute("inject-src")
+            link.onclick = () => {
+                console.log(`Inject ${key} -> ${targetId}`)
+                let target = document.getElementById(targetId)
+                let content = events[key]
+
+                target.innerHTML = inject(content, injectTargetBaseText[targetId])
+            }
+        }
+    }
+
+    createEventList("event-list", event.isInFuture)
+    // createEventList("event-list", filterAll)
+    createInjectLinks();
+</script>

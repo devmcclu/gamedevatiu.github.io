@@ -1,0 +1,107 @@
+<code py>page_title = "Gamedev@IU Resources"</code>
+
+<head>
+    <include src=".include/document/head.py.html" />
+
+    <code py>
+        def subsection_toggle(section, tag):
+            _id = f"toggle-{section}-{tag}"
+            _class = f"toggle-{tag}"
+            return element('input', id=_id, class_list=['toggle', _class], type='checkbox', unchecked='true')
+    </code>
+</head>
+
+<body>
+    <include src=".include/page/start.html" />
+    <include src=".include/page/navbar.html" />
+
+    <div class="block">
+        <div class="panel">
+            <div class="top solid-red">
+                <h1>Resources</h1>
+            </div>
+            <div class="bottom outline-red">
+                <code py>
+                    # note: see 'gdiu_components.less' for supported tags
+                    #       at some point supported tag styling should be generated here
+
+                    sections = {
+                        # 'general': {
+                        #     'color': 'steel',
+                        #     'tags': ['careers', 'management', 'promotion', 'misc']
+                        # },
+                        'audio': {
+                            'color': 'green',
+                            'tags': ['fundamentals', 'music', 'sound design', 'tools']
+                        },
+                        'tech': {
+                            'color': 'blue',
+                            'tags': ['fundamentals', 'ai', 'engines', 'graphics']
+                        },
+                        # 'design': {
+                        #     'color': 'purple',
+                        #     'tags': ['fundamentals', 'level design', 'systems', 'uiux']
+                        # },
+                        'art': {
+                            'color': 'red',
+                            'tags': ['fundamentals', '2d', '3d', 'animation']
+                        },
+                        # 'narrative': {
+                        #     'color': 'orange',
+                        #     'tags': ['fundamentals', 'writing', 'narrative design']
+                        # }
+                    }
+
+                    def make_section(name, color, tags):
+                        id = name.replace(' ', '-')
+                        vars = {
+                            'name'         : id,
+                            'display_name' : name.capitalize(),
+                            'color'        : color,
+
+                            'section_toggles' : "",
+                            'section_labels'  : "",
+
+                            'cards' : ""
+                        }
+
+                        for tag in tags:
+                            tag = tag.replace(' ', '-')
+                            _id = f"toggle-{id}-{tag}"
+                            _class = f"toggle-{tag}"
+                            _label_class = f"toggle-{tag}-button"
+
+                            vars['section_toggles'] += element('input', class_list=['toggle', _class], id=_id, type='checkbox')
+                            vars['section_labels']  += element('label', class_list=['button', 'pill', 'solid', _label_class], _for=_id)
+
+                        _folder = f"resources/{name}"
+                        infos = get_vars_listing(_folder)
+
+                        for info in infos:
+                            vars['cards'] += template(".include/resources/card.html", info)
+
+                        include_template(".include/resources/section.html", vars)
+                </code>
+
+                <!-- Begin generated -->
+                <code py>
+                    for (name, info) in sections.items():
+                        make_section(name, info['color'], info['tags'])
+                </code>
+                <!-- End generated -->
+            </div>
+        </div>
+    </div>
+
+    <div class="block">
+        <div class="panel red">
+            <div class="top solid">
+            </div>
+            <div class="bottom outline">
+                <p>This page is currently under construction. If you'd like to contribute any links to resources you think would be helpful for game developers of any level, let us know at <a href="malto:info@gdiu.org">info@gdiu.org</a>!</p>
+            </div>
+        </div>
+    </div>
+
+    <include src=".include/page/end.html" />
+</body>

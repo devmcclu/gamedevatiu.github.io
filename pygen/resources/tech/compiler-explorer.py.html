@@ -1,0 +1,56 @@
+<code py>page_title = "Compiler Explorer | Gamedev@IU"</code>
+
+<head>
+    <include src="/.include/document/head.py.html" />
+</head>
+
+<body>
+    <include src="/.include/page/start.html" />
+    <include src="/.include/page/navbar.html" />
+
+    <div class="block flex">
+        <include src="/.include/page/content_sidebar.html" />
+        
+        <div id="content-target" class="panel red" get-query>
+            <div class="top solid">
+                <h2 class="title">Compiler Explorer</h2>
+                <div class="info">
+                    <a href="https://godbolt.org/#g:!((g:!((g:!((g:!((h:codeEditor,i:(j:1,lang:c%2B%2B,source:'int+one()%7B%0A++++switch(1)%7B%0A++++++++case+1:+return+1%3B%0A++++%7D%0A%7D%0A%0Aint+foo()%7B%0A++++return+one()%3B%0A%7D'),l:'5',n:'0',o:'C%2B%2B+source+%231',t:'0')),k:42.83071230342276,l:'4',m:69.32447397563676,n:'0',o:'',s:0,t:'0'),(g:!((h:output,i:(compiler:1,editor:1,wrap:'1'),l:'5',n:'0',o:'%231+with+x86-64+gcc+(trunk)',t:'0')),header:(),l:'4',m:30.67552602436323,n:'0',o:'',s:0,t:'0')),k:56.80718728403593,l:'3',n:'0',o:'',t:'0'),(g:!((h:compiler,i:(compiler:gsnapshot,filters:(b:'0',binary:'1',commentOnly:'0',demangle:'0',directives:'0',execute:'1',intel:'0',trim:'0'),lang:c%2B%2B,libs:!(),options:'-std%3Dc%2B%2B17+-O3',source:1),l:'5',n:'0',o:'x86-64+gcc+(trunk)+(Editor+%231,+Compiler+%231)+C%2B%2B',t:'0')),k:43.19281271596407,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4" target="_blank" class="pill outline no-select" value="https://godbolt.org/#g:!((g:!((g:!((g:!((h:codeEditor,i:(j:1,lang:c%2B%2B,source:'int+one()%7B%0A++++switch(1)%7B%0A++++++++case+1:+return+1%3B%0A++++%7D%0A%7D%0A%0Aint+foo()%7B%0A++++return+one()%3B%0A%7D'),l:'5',n:'0',o:'C%2B%2B+source+%231',t:'0')),k:42.83071230342276,l:'4',m:69.32447397563676,n:'0',o:'',s:0,t:'0'),(g:!((h:output,i:(compiler:1,editor:1,wrap:'1'),l:'5',n:'0',o:'%231+with+x86-64+gcc+(trunk)',t:'0')),header:(),l:'4',m:30.67552602436323,n:'0',o:'',s:0,t:'0')),k:56.80718728403593,l:'3',n:'0',o:'',t:'0'),(g:!((h:compiler,i:(compiler:gsnapshot,filters:(b:'0',binary:'1',commentOnly:'0',demangle:'0',directives:'0',execute:'1',intel:'0',trim:'0'),lang:c%2B%2B,libs:!(),options:'-std%3Dc%2B%2B17+-O3',source:1),l:'5',n:'0',o:'x86-64+gcc+(trunk)+(Editor+%231,+Compiler+%231)+C%2B%2B',t:'0')),k:43.19281271596407,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4">
+                        <i class="fas fa-angle-double-right space"></i>Check it out!
+                    </a>
+                    <span class="pill outline no-select" value="$date">
+                        <i class="fas fa-calendar space"></i><span class="date">$date</span> <span class="time" value="$time">$time</span>
+                    </span>
+                    <span class="author white" value="$author">$author</span> <span class="location white" value="$location">$location</span>
+                </div>
+            </div>
+            <div class="bottom colored outline">
+                <div class="content-area">
+                    <div class="img thumb" hide="$hide-thumb" style="background-image:url('/wc/img/resources/compiler-explorer.PNG');">
+                        <a href="https://godbolt.org/#g:!((g:!((g:!((g:!((h:codeEditor,i:(j:1,lang:c%2B%2B,source:'int+one()%7B%0A++++switch(1)%7B%0A++++++++case+1:+return+1%3B%0A++++%7D%0A%7D%0A%0Aint+foo()%7B%0A++++return+one()%3B%0A%7D'),l:'5',n:'0',o:'C%2B%2B+source+%231',t:'0')),k:42.83071230342276,l:'4',m:69.32447397563676,n:'0',o:'',s:0,t:'0'),(g:!((h:output,i:(compiler:1,editor:1,wrap:'1'),l:'5',n:'0',o:'%231+with+x86-64+gcc+(trunk)',t:'0')),header:(),l:'4',m:30.67552602436323,n:'0',o:'',s:0,t:'0')),k:56.80718728403593,l:'3',n:'0',o:'',t:'0'),(g:!((h:compiler,i:(compiler:gsnapshot,filters:(b:'0',binary:'1',commentOnly:'0',demangle:'0',directives:'0',execute:'1',intel:'0',trim:'0'),lang:c%2B%2B,libs:!(),options:'-std%3Dc%2B%2B17+-O3',source:1),l:'5',n:'0',o:'x86-64+gcc+(trunk)+(Editor+%231,+Compiler+%231)+C%2B%2B',t:'0')),k:43.19281271596407,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4" value="https://godbolt.org/#g:!((g:!((g:!((g:!((h:codeEditor,i:(j:1,lang:c%2B%2B,source:'int+one()%7B%0A++++switch(1)%7B%0A++++++++case+1:+return+1%3B%0A++++%7D%0A%7D%0A%0Aint+foo()%7B%0A++++return+one()%3B%0A%7D'),l:'5',n:'0',o:'C%2B%2B+source+%231',t:'0')),k:42.83071230342276,l:'4',m:69.32447397563676,n:'0',o:'',s:0,t:'0'),(g:!((h:output,i:(compiler:1,editor:1,wrap:'1'),l:'5',n:'0',o:'%231+with+x86-64+gcc+(trunk)',t:'0')),header:(),l:'4',m:30.67552602436323,n:'0',o:'',s:0,t:'0')),k:56.80718728403593,l:'3',n:'0',o:'',t:'0'),(g:!((h:compiler,i:(compiler:gsnapshot,filters:(b:'0',binary:'1',commentOnly:'0',demangle:'0',directives:'0',execute:'1',intel:'0',trim:'0'),lang:c%2B%2B,libs:!(),options:'-std%3Dc%2B%2B17+-O3',source:1),l:'5',n:'0',o:'x86-64+gcc+(trunk)+(Editor+%231,+Compiler+%231)+C%2B%2B',t:'0')),k:43.19281271596407,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4" class="thumb-link"></a>
+                    </div>
+                    <div class="body content grey">
+                        
+<p>Ever wonder what your computer sees when you compile your code? Well now you can see it as well! 
+Compiler Explorer allows you to enter code in C, C++, Rust, and more, select how the code should be compiled, and shows the resulting assembly code including any compile-time optimizations.</p>
+<p>In addition to being very useful as a learning tool to see how human and computer-read code differs, the ability to compare the actual instructions produced by different approaches to the same solution is incredibly valuable for optimization.</p>
+<p>Whether you're building a game engine or a complex AI system, it's sure to clear away much of the mystery surrounding code efficiency.</p>
+
+                    </div>
+                    <p value="https://godbolt.org/#g:!((g:!((g:!((g:!((h:codeEditor,i:(j:1,lang:c%2B%2B,source:'int+one()%7B%0A++++switch(1)%7B%0A++++++++case+1:+return+1%3B%0A++++%7D%0A%7D%0A%0Aint+foo()%7B%0A++++return+one()%3B%0A%7D'),l:'5',n:'0',o:'C%2B%2B+source+%231',t:'0')),k:42.83071230342276,l:'4',m:69.32447397563676,n:'0',o:'',s:0,t:'0'),(g:!((h:output,i:(compiler:1,editor:1,wrap:'1'),l:'5',n:'0',o:'%231+with+x86-64+gcc+(trunk)',t:'0')),header:(),l:'4',m:30.67552602436323,n:'0',o:'',s:0,t:'0')),k:56.80718728403593,l:'3',n:'0',o:'',t:'0'),(g:!((h:compiler,i:(compiler:gsnapshot,filters:(b:'0',binary:'1',commentOnly:'0',demangle:'0',directives:'0',execute:'1',intel:'0',trim:'0'),lang:c%2B%2B,libs:!(),options:'-std%3Dc%2B%2B17+-O3',source:1),l:'5',n:'0',o:'x86-64+gcc+(trunk)+(Editor+%231,+Compiler+%231)+C%2B%2B',t:'0')),k:43.19281271596407,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4">
+                        <br />
+                        <a href="https://godbolt.org/#g:!((g:!((g:!((g:!((h:codeEditor,i:(j:1,lang:c%2B%2B,source:'int+one()%7B%0A++++switch(1)%7B%0A++++++++case+1:+return+1%3B%0A++++%7D%0A%7D%0A%0Aint+foo()%7B%0A++++return+one()%3B%0A%7D'),l:'5',n:'0',o:'C%2B%2B+source+%231',t:'0')),k:42.83071230342276,l:'4',m:69.32447397563676,n:'0',o:'',s:0,t:'0'),(g:!((h:output,i:(compiler:1,editor:1,wrap:'1'),l:'5',n:'0',o:'%231+with+x86-64+gcc+(trunk)',t:'0')),header:(),l:'4',m:30.67552602436323,n:'0',o:'',s:0,t:'0')),k:56.80718728403593,l:'3',n:'0',o:'',t:'0'),(g:!((h:compiler,i:(compiler:gsnapshot,filters:(b:'0',binary:'1',commentOnly:'0',demangle:'0',directives:'0',execute:'1',intel:'0',trim:'0'),lang:c%2B%2B,libs:!(),options:'-std%3Dc%2B%2B17+-O3',source:1),l:'5',n:'0',o:'x86-64+gcc+(trunk)+(Editor+%231,+Compiler+%231)+C%2B%2B',t:'0')),k:43.19281271596407,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4" target="_blank" class="button pill">
+                            <i class="fas fa-angle-double-right space"></i>Learn more!
+                        </a>
+                    </p>
+                </div>
+                <br />
+                <div class="tag-list">
+                     <div class="tag" tag="Engines"><span class="w"> Engines</span></div>  <div class="tag" tag="Hardware"><span class="w"> Hardware</span></div> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <include src="/.include/page/end.html" />
+</body>

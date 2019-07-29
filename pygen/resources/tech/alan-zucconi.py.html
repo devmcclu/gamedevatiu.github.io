@@ -1,0 +1,56 @@
+<code py>page_title = "Tutorials by Alan Zucconi | Gamedev@IU"</code>
+
+<head>
+    <include src="/.include/document/head.py.html" />
+</head>
+
+<body>
+    <include src="/.include/page/start.html" />
+    <include src="/.include/page/navbar.html" />
+
+    <div class="block flex">
+        <include src="/.include/page/content_sidebar.html" />
+        
+        <div id="content-target" class="panel red" get-query>
+            <div class="top solid">
+                <h2 class="title">Tutorials by Alan Zucconi</h2>
+                <div class="info">
+                    <a href="https://www.alanzucconi.com/tutorials/" target="_blank" class="pill outline no-select" value="https://www.alanzucconi.com/tutorials/">
+                        <i class="fas fa-angle-double-right space"></i>Check it out!
+                    </a>
+                    <span class="pill outline no-select" value="$date">
+                        <i class="fas fa-calendar space"></i><span class="date">$date</span> <span class="time" value="$time">$time</span>
+                    </span>
+                    <span class="author white" value="$author">$author</span> <span class="location white" value="$location">$location</span>
+                </div>
+            </div>
+            <div class="bottom colored outline">
+                <div class="content-area">
+                    <div class="img thumb" hide="$hide-thumb" style="background-image:url('https://www.alanzucconi.com/wp-content/uploads/2018/01/learning_shaders.png');">
+                        <a href="https://www.alanzucconi.com/tutorials/" value="https://www.alanzucconi.com/tutorials/" class="thumb-link"></a>
+                    </div>
+                    <div class="body content grey">
+                        
+<p><a href="https://twitter.com/AlanZucconi" target="_blank">Alan Zucconi</a> is an independent developer, lecturer, author, and shader master.
+His blog contains dozens of in-depth tutorials focusing on topics from computer graphics to machine learning, with many examples based in Unity.</p>
+<p>Most posts and tutorials require a fairly solid foundation when it comes to programming, though many offer great introductions to more complex topics, <a href="http://www.alanzucconi.com/2015/06/10/a-gentle-introduction-to-shaders-in-unity3d/" target="_blank">such as writing shaders</a>.
+Early access to tutorials and additional resources can also be obtained by <a href="https://www.patreon.com/AlanZucconi" target="_blank">supporting Alan on Patreon</a>!</p>
+
+                    </div>
+                    <p value="https://www.alanzucconi.com/tutorials/">
+                        <br />
+                        <a href="https://www.alanzucconi.com/tutorials/" target="_blank" class="button pill">
+                            <i class="fas fa-angle-double-right space"></i>Learn more!
+                        </a>
+                    </p>
+                </div>
+                <br />
+                <div class="tag-list">
+                     <div class="tag" tag="Graphics"><span class="w"> Graphics</span></div>  <div class="tag" tag="AI"><span class="w"> AI</span></div>  <div class="tag" tag="Math"><span class="w"> Math</span></div> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <include src="/.include/page/end.html" />
+</body>

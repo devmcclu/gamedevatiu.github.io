@@ -9,6 +9,11 @@ html {
 body {
     ._clear();
     ._font(@f_body, 1.5rem, @black, 400, normal);
+    background-image: url('/img/GDIU_Triangles_BG_top.svg');
+    background-size: 150%;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-attachment: fixed;
 }
 
 #wrapper {
@@ -108,7 +113,7 @@ i.space {
 }
 
 .pill {
-    border-radius: 9999px;
+    border-radius: @s_max;
     display: block;
     padding: 0.5em 1em;
     text-align: center;
@@ -130,6 +135,10 @@ i.space {
     left: 0;
     z-index: -1;
     width: 100%;
+
+    .bar {
+        background: none !important;
+    }
 }
 
 #top {

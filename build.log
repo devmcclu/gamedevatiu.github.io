@@ -1,0 +1,47 @@
+
+C:\Users\Rajin\git\Web\GDIU\gamedevatiu.github.io>cd pygen 
+
+C:\Users\Rajin\git\Web\GDIU\gamedevatiu.github.io\pygen>py generate_events.py 
+Generate event events/test_event (out: events/test_event.py.html)
+Generate event events/art/test_art_event (out: events/art/test_art_event.py.html)
+
+C:\Users\Rajin\git\Web\GDIU\gamedevatiu.github.io\pygen>py generate_resources.py 
+Generate resource resources/audio/8bit-theory (out: resources/audio/8bit-theory.py.html)
+Generate resource resources/audio/syntorial (out: resources/audio/syntorial.py.html)
+Generate resource resources/tech/gdquest (out: resources/tech/gdquest.py.html)
+Generate resource resources/tech/unity-tips (out: resources/tech/unity-tips.py.html)
+Generate resource resources/tech/programming-patterns (out: resources/tech/programming-patterns.py.html)
+Generate resource resources/tech/catlike-coding (out: resources/tech/catlike-coding.py.html)
+Generate resource resources/tech/alan-zucconi (out: resources/tech/alan-zucconi.py.html)
+Generate resource resources/tech/compiler-explorer (out: resources/tech/compiler-explorer.py.html)
+Generate resource resources/art/botd-photogammetry (out: resources/art/botd-photogammetry.py.html)
+Generate resource resources/art/pixelart-miniboss (out: resources/art/pixelart-miniboss.py.html)
+Generate resource resources/art/pixelart-onimille (out: resources/art/pixelart-onimille.py.html)
+Generate resource resources/art/realistic-stylized (out: resources/art/realistic-stylized.py.html)
+
+C:\Users\Rajin\git\Web\GDIU\gamedevatiu.github.io\pygen>py generate.py 
+Using .doctemplate.html
+Processing about.py.html (out: ..\about.html)
+Processing contact.py.html (out: ..\contact.html)
+Processing test_art_event.py.html (out: ..\events\art\test_art_event.html)
+Processing test_event.py.html (out: ..\events\test_event.html)
+Processing events.py.html (out: ..\events.html)
+Processing index.py.html (out: ..\index.html)
+Processing botd-photogammetry.py.html (out: ..\resources\art\botd-photogammetry.html)
+Processing pixelart-miniboss.py.html (out: ..\resources\art\pixelart-miniboss.html)
+Processing pixelart-onimille.py.html (out: ..\resources\art\pixelart-onimille.html)
+Processing realistic-stylized.py.html (out: ..\resources\art\realistic-stylized.html)
+Processing test.py.html (out: ..\resources\art\test.html)
+Processing 8bit-theory.py.html (out: ..\resources\audio\8bit-theory.html)
+Processing syntorial.py.html (out: ..\resources\audio\syntorial.html)
+Processing alan-zucconi.py.html (out: ..\resources\tech\alan-zucconi.html)
+Processing catlike-coding.py.html (out: ..\resources\tech\catlike-coding.html)
+Processing compiler-explorer.py.html (out: ..\resources\tech\compiler-explorer.html)
+Processing gdquest.py.html (out: ..\resources\tech\gdquest.html)
+Processing programming-patterns.py.html (out: ..\resources\tech\programming-patterns.html)
+Processing unity-tips.py.html (out: ..\resources\tech\unity-tips.html)
+Processing resources.py.html (out: ..\resources.html)
+
+Finished generating html
+
+C:\Users\Rajin\git\Web\GDIU\gamedevatiu.github.io\pygen>cd .. 

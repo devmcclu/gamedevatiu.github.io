@@ -22,11 +22,13 @@
 @purple: darken(#9973bb,3%);
 @orange: #e4743f;
 @steel: #80919c;
+@pink: #e74980;
 
 @white: #EAEAEA;
 @grey_light: #c1bfc5;
 @grey_medium: #6E6D71;
 @black: #222D2F;
+
 
 // Timings @t_name
 @t_fast: 0.15s;
@@ -39,7 +41,8 @@
 // Sizing @s_name
 @s_unit: 22px;
 @s_border: 3px;
-@s_round: @s_unit;
+@s_round: 12px;
+@s_max: 9999px;
 @s_sharp: 3px;
 
 // Media queries @m_name
@@ -145,6 +148,7 @@
 ._generateColorClasses(grey_light);
 ._generateColorClasses(black);
 ._generateColorClasses(orange);
+._generateColorClasses(pink);
 ._generateColorClasses(steel);
 
 .yellow {

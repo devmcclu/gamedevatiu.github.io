@@ -1,0 +1,57 @@
+<code py>page_title = "Catlike Coding | Gamedev@IU"</code>
+
+<head>
+    <include src="/.include/document/head.py.html" />
+</head>
+
+<body>
+    <include src="/.include/page/start.html" />
+    <include src="/.include/page/navbar.html" />
+
+    <div class="block flex">
+        <include src="/.include/page/content_sidebar.html" />
+        
+        <div id="content-target" class="panel red" get-query>
+            <div class="top solid">
+                <h2 class="title">Catlike Coding</h2>
+                <div class="info">
+                    <a href="https://catlikecoding.com/unity/tutorials/" target="_blank" class="pill outline no-select" value="https://catlikecoding.com/unity/tutorials/">
+                        <i class="fas fa-angle-double-right space"></i>Check it out!
+                    </a>
+                    <span class="pill outline no-select" value="$date">
+                        <i class="fas fa-calendar space"></i><span class="date">$date</span> <span class="time" value="$time">$time</span>
+                    </span>
+                    <span class="author white" value="$author">$author</span> <span class="location white" value="$location">$location</span>
+                </div>
+            </div>
+            <div class="bottom colored outline">
+                <div class="content-area">
+                    <div class="img thumb" hide="$hide-thumb" style="background-image:url('https://catlikecoding.com/unity/tutorials/hex-map/part-26/tutorial-image.jpg');">
+                        <a href="https://catlikecoding.com/unity/tutorials/" value="https://catlikecoding.com/unity/tutorials/" class="thumb-link"></a>
+                    </div>
+                    <div class="body content grey">
+                        
+<p>Catlike Coding offers a large number of tutorials by <a href="https://twitter.com/catlikecoding" target="_blank">Jasper Flick</a> focusing on various technical aspects of game development.
+With topics covering everything from basic programming concepts to complex rendering techniques, this is absolutely a collection to keep bookmarked and come back to every now and again to learn something new.</p>
+<p>Tutorials are based in Unity, and <a href="https://catlikecoding.com/unity/tutorials/basics/" target="_blank">the basics</a> offer a great introduction to the engine.
+More complex topics offer a deeper understanding of what Unity can do and how it does it, and many focus on topics useful to any engine or programming language.</p>
+<p>If you want to see continued creation of new tutorials, consider supporting <a href="https://www.patreon.com/catlikecoding" target="_blank">Catlike Coding on Patreon</a>!</p>
+
+                    </div>
+                    <p value="https://catlikecoding.com/unity/tutorials/">
+                        <br />
+                        <a href="https://catlikecoding.com/unity/tutorials/" target="_blank" class="button pill">
+                            <i class="fas fa-angle-double-right space"></i>Learn more!
+                        </a>
+                    </p>
+                </div>
+                <br />
+                <div class="tag-list">
+                     <div class="tag" tag="Fundamentals"><span class="w"> Fundamentals</span></div>  <div class="tag" tag="Graphics"><span class="w"> Graphics</span></div> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <include src="/.include/page/end.html" />
+</body>

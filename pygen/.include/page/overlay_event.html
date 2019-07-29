@@ -1,0 +1,43 @@
+<!-- BEGIN EVENT INFO OVERLAY -->
+<input type="checkbox" id="event-overlay-toggle" class="overlay-toggle" />
+<div id="event-overlay" class="overlay" inject-target>
+    <label for="event-overlay-toggle" id="event-overlay-background-exit" class="overlay-background-exit"></label>
+    <div id="event-box" class="overlay-box">
+        <div id="event-panel" class="overlay-panel">
+            <div class="panel green">
+                <div class="top solid">
+                    <h2>$title</h2>
+                    <div>
+                        <span class="pill outline no-select">
+                            <i class="fas fa-calendar space"></i>$date <span class="time">$time</span>
+                        </span>
+                        &nbsp;
+                        <span class="location no-wrap">$location</span>
+                    </div>
+                </div>
+                <div class="bottom outline">
+                    <div class="content">
+                        <div class="img panel thumb" style="background-image:url('$thumb');"></div>
+                        <span class="description">$body</span>
+                    </div>
+
+                    <div class="tag-list">
+                        $tag
+                    </div>
+
+                    <div class="controls m">
+                        <label for="event-overlay-toggle" class="button pill solid red size-2">
+                            <i class="fas fa-times-circle"></i> Close
+                        </label>
+                        <a href="events/$get_link.html" target="_blank" class="button circle solid blue"><i class="fas fa-link"></i></a>
+                    </div>
+                </div>
+                <div class="controls d">
+                    <label for="event-overlay-toggle" class="button circle solid red"><i class="fas fa-times"></i></label>
+                    <a href="events/$get_link.html" target="_blank" class="button circle solid blue"><i class="fas fa-link"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END EVENT INFO OVERLAY -->

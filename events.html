@@ -1,201 +1,284 @@
-﻿<!-- BEGIN SHARED TOP -->
-
+<!-- Generated with pygen (c) Rajin Shankar / GD@IU 2019 -->
 <!DOCTYPE html>
 <html lang="en">
+
+
+
 <head>
+    <!-- begin doc_head.py.html -->
+
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gamedev@IU</title>
-    <link href="img/branding/GDIU_Icon_small.png" rel="icon">
+    <title>Gamedev@IU Events</title>
+    <link href="/img/branding/GDIU_Icon_small.png" rel="icon">
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+        integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet">
 
+    <!-- <link href="/css/gdiu.css" rel="stylesheet" type="text/css" />
+    <link href="/css/gdiu_responsive.css" rel="stylesheet" type="text/css" /> -->
+    
     <link href="/css/gdiu.less" rel="stylesheet" type="text/less" />
     <link href="/css/gdiu_responsive.less" rel="stylesheet" type="text/less" />
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/3.0.4/less.min.js"></script>
+
+    <script src="/js/public/gdiu.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+            <![endif]-->
 
+<!-- end doc_head.py.html -->
 </head>
+
 <body>
     <!-- BEGIN EVENT INFO OVERLAY -->
-    <input type="checkbox" id="event-overlay-toggle" class="overlay-toggle" />
-    <div id="event-overlay" class="overlay">
-        <label for="event-overlay-toggle" id="event-overlay-background-exit" class="overlay-background-exit"></label>
-        <div id="event-box" class="overlay-box">
-            <div id="event-panel" class="overlay-panel">
-                <div class="panel green">
-                    <div class="top solid">
-                        <h2>$title</h2>
-                        <div>
-                            <span class="pill outline no-select">
-                                <i class="fas fa-calendar space"></i>$date <span class="time">$time</span>
-                            </span>
-                            &nbsp;
-                            <span class="location no-wrap">$location</span>
-                        </div>
+<input type="checkbox" id="event-overlay-toggle" class="overlay-toggle" />
+<div id="event-overlay" class="overlay" inject-target>
+    <label for="event-overlay-toggle" id="event-overlay-background-exit" class="overlay-background-exit"></label>
+    <div id="event-box" class="overlay-box">
+        <div id="event-panel" class="overlay-panel">
+            <div class="panel green">
+                <div class="top solid">
+                    <h2>$title</h2>
+                    <div>
+                        <span class="pill outline no-select">
+                            <i class="fas fa-calendar space"></i>$date <span class="time">$time</span>
+                        </span>
+                        &nbsp;
+                        <span class="location no-wrap">$location</span>
                     </div>
-                    <div class="bottom outline">
-                        <div class="content">
-                            <div class="img panel thumb" %%style="background-image:url('$thumb');"></div>
-                            <span class="description">$body</span>
-                        </div>
+                </div>
+                <div class="bottom outline">
+                    <div class="content">
+                        <div class="img panel thumb" style="background-image:url('$thumb');"></div>
+                        <span class="description">$body</span>
+                    </div>
 
-                        <div class="tag-list">
-                            <div class="tag" tag="$tag"><span class="w"> $tag</span></div>
-                            <div list="tag" value="item" class="tag" tag="$item"><span class="w"> $item</span></div>
-                        </div>
+                    <div class="tag-list">
+                        $tag
+                    </div>
 
-                        <div class="controls m">
-                            <label for="event-overlay-toggle" class="button pill solid red size-2">
-                                <i class="fas fa-times-circle"></i> Close
-                            </label>
-                            <a href="a.html?$getLink" target="_blank" class="button circle solid blue"><i class="fas fa-link"></i></a>
-                        </div>
+                    <div class="controls m">
+                        <label for="event-overlay-toggle" class="button pill solid red size-2">
+                            <i class="fas fa-times-circle"></i> Close
+                        </label>
+                        <a href="events/$get_link.html" target="_blank" class="button circle solid blue"><i class="fas fa-link"></i></a>
                     </div>
-                    <div class="controls d">
-                        <label for="event-overlay-toggle" class="button circle solid red"><i class="fas fa-times"></i></label>
-                        <a href="a.html?$getLink" target="_blank" class="button circle solid blue"><i class="fas fa-link"></i></a>
-                    </div>
+                </div>
+                <div class="controls d">
+                    <label for="event-overlay-toggle" class="button circle solid red"><i class="fas fa-times"></i></label>
+                    <a href="events/$get_link.html" target="_blank" class="button circle solid blue"><i class="fas fa-link"></i></a>
                 </div>
             </div>
         </div>
     </div>
-    <!-- END EVENT INFO OVERLAY -->
+</div>
+<!-- END EVENT INFO OVERLAY -->
 
     <div id="wrapper">
-        <div id="top-bars">
-            <div class="bar solid yellow"></div>
-            <div class="bar solid blue"></div>
-            <div class="bar solid green"></div>
-            <div class="bar solid red"></div>
-        </div>
-        <div id="body">
-            <div id="top">
-                <div class="nav th">
-                    <a href="/" class="site-icon">
-                        <img src="img/branding/GDIU_Logo.svg" alt="GD@IU" />
-                    </a>
-                    <div class="items">
-                        <a href="/" class="button circle nudge-left solid red">
-                            <i class="fas fa-home"></i>
-                        </a>
-                        <a href="/about.html" class="button circle solid blue">
-                            <i class="fas fa-lightbulb"></i>
-                        </a>
-                        <a href="/events.html" class="button circle solid green">
-                            <i class="fas fa-calendar"></i>
-                        </a>
-                        <a href="/contact.html" class="button circle nudge-down solid purple">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                        <a href="/resources.html" class="button circle solid red">
-                            <i class="fas fa-clipboard-list"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="nav w">
-                    <a href="/" class="site-icon">
-                        <img src="img/branding/GDIU_Logo.svg" alt="GD@IU" />
-                    </a>
-                    <div class="items">
-                        <a href="/" class="button pill solid red">
-                            <i class="fas fa-home"></i>
-                            Home
-                        </a>
-                        <a href="/about.html" class="button pill solid blue">
-                            <i class="fas fa-lightbulb"></i>
-                            About
-                        </a>
-                        <a href="/events.html" class="button pill solid green">
-                            <i class="fas fa-calendar"></i>
-                            Events
-                        </a>
-                        <a href="/contact.html" class="button pill solid purple">
-                            <i class="fas fa-envelope"></i>
-                            Contact
-                        </a>
-                        <a href="/resources.html" class="button pill solid red">
-                            <i class="fas fa-clipboard-list"></i>
-                            Resources
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- END SHARED TOP -->
-
-            <div class="block">
-                <div class="panel green">
-                    <div class="top solid">
-                        <h1>All Events</h1>
-                    </div>
-                    <div class="bottom outline">
-                        <!-- EVENT TEMPLATE -->
-                        <div class="list-item grey_light" get-multi="events" exclude-by-date="true" max-items="30">
-                            <label for="event-overlay-toggle" class="thumb" %%style="background-image: url('$thumb')" inj-link="event-overlay" inj-src="$getLink"></label>
-
-                            <div class="content solid">
-                                <div class="title-row">
-                                    <label for="event-overlay-toggle" class="title" inj-link="event-overlay" inj-src="$getLink">
-                                        $title
-                                    </label>
-                                    <label for="event-overlay-toggle" class="button pill green d" inj-link="event-overlay" inj-src="$getLink">
-                                        <i class="fas fa-plus-circle space"></i>More&nbsp;Info
-                                    </label>
-                                </div>
-                                <div class="info">
-                                    <div class="info-item">
-                                        <i class="fas fa-calendar space"></i>$date <span class="time">$time</span>
-                                    </div>
-                                    <div class="tag-list">
-                                        <div class="tag" tag="$tag"><span class="w"> $tag</span></div>
-                                        <div list="tag" value="item" class="tag" tag="$item"><span class="w"> $item</span></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <label for="event-overlay-toggle" class="button bottom-button green m" inj-link="event-overlay" inj-src="$getLink">
-                                <i class="fas fa-plus-circle"></i> More&nbsp;Info
-                            </label>
-                        </div>
-                        <!-- END EVENT TEMPLATE -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- BEGIN SHARED BOTTOM -->
-            <div class="block m">
-                <div class="bar"></div>
-                <a href="#" class="button circle large red">
-                    <i class="fas fa-angle-up"></i>
-                </a>
-            </div>
-            <div class="bar solid red m"></div>
-        </div>
-        <div class="d" id="footer-spacer"></div>
-        <div class="d" id="footer">
-            <div class="bar"></div>
-            <a href="#" id="rtt" class="button circle large red d">
-                <i class="fas fa-angle-up"></i>
+    <div id="top-bars">
+        <div class="bar solid yellow"></div>
+        <div class="bar solid blue"></div>
+        <div class="bar solid green"></div>
+        <div class="bar solid red"></div>
+    </div>
+    <div id="body">
+    <div id="top">
+    <div class="nav th">
+        <a href="/" class="site-icon">
+            <img src="/img/branding/GDIU_LogoWhiteOutlines.svg" alt="GD@IU" />
+        </a>
+        <div class="items">
+            <a href="/" class="button circle nudge-left solid red">
+                <i class="fas fa-home"></i>
             </a>
-            <div class="bar"></div>
-            <div class="bar solid red"></div>
+            <a href="/about.html" class="button circle solid blue">
+                <i class="fas fa-lightbulb"></i>
+            </a>
+            <a href="/events.html" class="button circle solid green">
+                <i class="fas fa-calendar"></i>
+            </a>
+            <a href="/contact.html" class="button circle nudge-down solid purple">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="/resources.html" class="button circle solid red">
+                <i class="fas fa-clipboard-list"></i>
+            </a>
+        </div>
+    </div>
+    <div class="nav w">
+        <a href="/" class="site-icon">
+            <img src="/img/branding/GDIU_LogoWhiteOutlines.svg" alt="GD@IU" />
+        </a>
+        <div class="items">
+            <a href="/" class="button pill solid red">
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+            <a href="/about.html" class="button pill solid blue">
+                <i class="fas fa-lightbulb"></i>
+                About
+            </a>
+            <a href="/events.html" class="button pill solid green">
+                <i class="fas fa-calendar"></i>
+                Events
+            </a>
+            <a href="/contact.html" class="button pill solid purple">
+                <i class="fas fa-envelope"></i>
+                Contact
+            </a>
+            <a href="/resources.html" class="button pill solid red">
+                <i class="fas fa-clipboard-list"></i>
+                Resources
+            </a>
+        </div>
+    </div>
+</div>
+
+    <div class="block">
+        <div class="panel green">
+            <div class="top solid">
+                <h1>All Events</h1>
+            </div>
+            <div class="bottom outline content-list" id="event-list" empty-text="looks like there's nothing coming up :)">
+                <div class="placeholder">loading events...</div>
+            </div>
         </div>
     </div>
     
-    <script src="/js/muPreprocessor.js"></script>
-    <script src="/js/remoteContent.js"></script>
-</body>
-</html>
+        </div>
+    <div class="d" id="footer-spacer"></div>
+    <div class="d" id="footer">
+        <div class="bar"></div>
+        <a href="#" id="rtt" class="button circle large red d">
+            <i class="fas fa-angle-up"></i>
+        </a>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <!-- <div class="bar solid red"></div> -->
+    </div>
+</div>
 
-<!-- END SHARED BOTTOM -->
+<script>
+    let body = document.getElementsByTagName('body')[0]
+    let scroll_offset = 190
+    let scroll_factor = 3
+    body.style.backgroundPositionY = `-${scroll_offset}px`;
+
+    window.onscroll = () => {
+        let offset = window.scrollY
+        body.style.backgroundPositionY = `-${scroll_offset + offset / scroll_factor}px`;
+    }
+</script>
+    
+
+<script>
+    let events = {
+        'test_event': { 'get_link': 'test_event', 'title':'Test Event', 'thumb':'https://leantesting-wp.s3.amazonaws.com/resources/wp-content/uploads/2015/05/iterative-3.png', 'date':'3/27', 'time':'6:00PM', 'location':'FF052', 'body':'We\'ll review everything that has been covered throughout the semester ranging from Sound Effects, Music, Middleware implementation, and take in any requests for topics that might need to be covered in more detail.', 'tag':['Audio'] },
+'art/test_art_event': { 'get_link': 'art/test_art_event', 'title':'Test Art Event', 'thumb':'https://leantesting-wp.s3.amazonaws.com/resources/wp-content/uploads/2015/05/iterative-3.png', 'date':'3/27', 'time':'6:00PM', 'location':'FF052', 'body':'\n<p><strong>We\'ll</strong> <em>review</em> everything <strong>that has been</strong> <em><strong>covered</strong></em> throughout the semester ranging from Sound Effects, Music, Middleware implementation, and take in any requests for topics that might need to be covered in more detail.</p>\n', 'tag':['Audio','Art',] },
+
+        // ^ Generated ^
+    }
+
+    let event = {
+        listTemplate: "<div class=\"list-item grey_light\">\n    <label for=\"event-overlay-toggle\" class=\"thumb\" style=\"background-image: url(\'$thumb\')\" inject-link=\"event-overlay\"\n        inject-src=\"$get_link\"></label>\n\n    <div class=\"content solid\">\n        <div class=\"title-row\">\n            <label for=\"event-overlay-toggle\" class=\"title\" inject-link=\"event-overlay\" inject-src=\"$get_link\">\n                $title\n            </label>\n            <label for=\"event-overlay-toggle\" class=\"button pill green d\" inject-link=\"event-overlay\" inject-src=\"$get_link\">\n                <i class=\"fas fa-plus-circle space\"></i>More&nbsp;Info\n            </label>\n        </div>\n        <div class=\"info\">\n            <div class=\"info-item\">\n                <i class=\"fas fa-calendar space\"></i>$date <span class=\"time\">$time</span>\n            </div>\n            <div class=\"tag-list\">\n                $tag\n            </div>\n        </div>\n    </div>\n\n    <label for=\"event-overlay-toggle\" class=\"button bottom-button green m\" inject-link=\"event-overlay\" inject-src=\"$get_link\">\n        <i class=\"fas fa-plus-circle\"></i> More&nbsp;Info\n    </label>\n</div>",
+        tagTemplate: "<div class='tag' tag='$tag'> <span class='w'>$tag</span> </div>",
+        varPrefix: "$",
+
+        getInfo: (name) => {
+            if (name in events) {
+                return events[name]
+            }
+            else {
+                return null
+            }
+        },
+
+        isInFuture: (info) => {
+            let now = Date.now()
+            let currentYear = new Date(now).getYear() + 1900
+            let date = Date.parse(`${info['date']}/${currentYear}`)
+
+            return now < date
+        }
+    }
+
+    let filterAll = (e) => { return true }
+
+    function inject(obj, text) {
+        // Replace $var with the appropriate value from the info object
+        for (var k in obj) {
+            if (k == "tag") {
+                let tags = obj[k]
+                var tagHTML = ""
+                for (i in tags) {
+                    tagHTML += event.tagTemplate.replace(new RegExp(`\\${event.varPrefix}tag`, 'g'), tags[i])
+                }
+                text = text.replace(new RegExp(`\\${event.varPrefix}${k}`, 'g'), tagHTML)
+            }
+            else {
+                text = text.replace(new RegExp(`\\${event.varPrefix}${k}`, 'g'), obj[k])
+            }
+        }
+        return text
+    }
+
+    function createEventList(parentId, filter) {
+        let parent = document.getElementById(parentId)
+        var html = ""
+
+        if (parent == null) {
+            console.log(`(createEventList) Event list parent '#${parentId}' doesn't exist`)
+            return
+        }
+
+        // Get the HTML for each list element
+        for (var key in events) {
+            let info = events[key]
+            if (!filter(info)) { continue }
+
+            eventHTML = inject(info, event.listTemplate)
+            html += eventHTML
+        }
+
+        parent.innerHTML = html
+    }
+
+    injectTargetBaseText = {}
+    function createInjectLinks() {
+        let injectTargets = document.querySelectorAll("[inject-target]")
+        for (target of injectTargets) {
+            console.log(`Target ${target.id}`)
+            injectTargetBaseText[target.id] = target.innerHTML;
+        }
+
+        let injectLinks = document.querySelectorAll("[inject-src]")
+        for (link of injectLinks) {
+            console.log(`Link ${link}`)
+            let targetId = link.getAttribute("inject-link")
+            let key = link.getAttribute("inject-src")
+            link.onclick = () => {
+                console.log(`Inject ${key} -> ${targetId}`)
+                let target = document.getElementById(targetId)
+                let content = events[key]
+
+                target.innerHTML = inject(content, injectTargetBaseText[targetId])
+            }
+        }
+    }
+
+    createEventList("event-list", event.isInFuture)
+    // createEventList("event-list", filterAll)
+    createInjectLinks();
+</script>
+</body>
+
+</html>

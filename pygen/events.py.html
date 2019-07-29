@@ -1,0 +1,26 @@
+<code py>page_title = "Gamedev@IU Events"</code>
+
+<head>
+    <include src=".include/document/head.py.html" />
+</head>
+
+<body>
+    <include src=".include/page/overlay_event.html" />
+
+    <include src=".include/page/start.html" />
+    <include src=".include/page/navbar.html" />
+
+    <div class="block">
+        <div class="panel green">
+            <div class="top solid">
+                <h1>All Events</h1>
+            </div>
+            <div class="bottom outline content-list" id="event-list" empty-text="looks like there's nothing coming up :)">
+                <div class="placeholder">loading events...</div>
+            </div>
+        </div>
+    </div>
+    
+    <include src=".include/page/end.html" />
+    <include src=".include/eventdb.py.html" />
+</body>

@@ -1,0 +1,24 @@
+    </div>
+    <div class="d" id="footer-spacer"></div>
+    <div class="d" id="footer">
+        <div class="bar"></div>
+        <a href="#" id="rtt" class="button circle large red d">
+            <i class="fas fa-angle-up"></i>
+        </a>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <!-- <div class="bar solid red"></div> -->
+    </div>
+</div>
+
+<script>
+    let body = document.getElementsByTagName('body')[0]
+    let scroll_offset = 190
+    let scroll_factor = 3
+    body.style.backgroundPositionY = `-${scroll_offset}px`;
+
+    window.onscroll = () => {
+        let offset = window.scrollY
+        body.style.backgroundPositionY = `-${scroll_offset + offset / scroll_factor}px`;
+    }
+</script>

@@ -1,0 +1,27 @@
+<div class="list-item grey_light">
+    <label for="event-overlay-toggle" class="thumb" style="background-image: url('$thumb')" inject-link="event-overlay"
+        inject-src="$get_link"></label>
+
+    <div class="content solid">
+        <div class="title-row">
+            <label for="event-overlay-toggle" class="title" inject-link="event-overlay" inject-src="$get_link">
+                $title
+            </label>
+            <label for="event-overlay-toggle" class="button pill green d" inject-link="event-overlay" inject-src="$get_link">
+                <i class="fas fa-plus-circle space"></i>More&nbsp;Info
+            </label>
+        </div>
+        <div class="info">
+            <div class="info-item">
+                <i class="fas fa-calendar space"></i>$date <span class="time">$time</span>
+            </div>
+            <div class="tag-list">
+                $tag
+            </div>
+        </div>
+    </div>
+
+    <label for="event-overlay-toggle" class="button bottom-button green m" inject-link="event-overlay" inject-src="$get_link">
+        <i class="fas fa-plus-circle"></i> More&nbsp;Info
+    </label>
+</div>

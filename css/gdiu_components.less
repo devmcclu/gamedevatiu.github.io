@@ -2,6 +2,19 @@
 @import (once) "gdiu_main.less";
 
 // Content Lists
+.content-list {
+    &:empty:after {
+        content: attr(empty-text);
+        color: @grey_light;
+        text-align: center;
+        display: block;
+    }
+
+    .placeholder {
+        color: @grey_light;
+        text-align: center;
+    }
+}
 .list-item {
     @spacing: @s_unit/2;
     border-radius: @s_round;
@@ -176,7 +189,7 @@
             display: none;
         }
 
-        &[tag='Design SIG'] {
+        &[tag='Design'] {
             // ._color(@yellow, @yellow, @white);
             .solid-yellow;
 
@@ -185,7 +198,7 @@
             }
         }
 
-        &[tag='Tech SIG'] {
+        &[tag='Tech'] {
             ._color(@blue, @blue, @white);
 
             &:before {
@@ -193,7 +206,7 @@
             }
         }
 
-        &[tag='Art SIG'] {
+        &[tag='Art'] {
             ._color(@red, @red, @white);
 
             &:before {
@@ -201,7 +214,7 @@
             }
         }
 
-        &[tag='Audio SIG'] {
+        &[tag='Audio'] {
             ._color(@green, @green, @white);
 
             &:before {
@@ -209,7 +222,7 @@
             }
         }
 
-        &[tag='Narrative SIG'] {
+        &[tag='Narrative'] {
             ._color(@orange, @orange, @white);
 
             &:before {
@@ -217,7 +230,7 @@
             }
         }
 
-        &[tag='Industry SIG'] {
+        &[tag='Industry'] {
             ._color(@steel, @steel, @white);
 
             &:before {
@@ -395,7 +408,9 @@
 
 
 ._makeTagToggleColor(@tag, @color, @white: @white) {
-    @color: font-size:2em;
+    // color: @color;
+    // font-size:2em;
+
     &.@{color} .toggle-@{tag} ~ .tag-toggles .toggle-@{tag}-button {
         ._color(@white, @@color, @@color);
     }
@@ -418,11 +433,11 @@
         content: @tagName;
     }
 
-    .toggle-@{tagClass} ~ .toggle-area > *[tag*=@{tagName}] {
+    .toggle-@{tagClass}:checked ~ .toggle-area > * {
         opacity: 0.25;
     }
-
-    .toggle-@{tagClass}:checked ~ .toggle-area > *[tag*=@{tagName}] {
+    
+    .toggle-@{tagClass}:checked ~ .toggle-area > *[tag*='@{tagName}'] {
         opacity: 1;
     }
 }
@@ -436,7 +451,7 @@
     ._makeTagToggle(careers, "Careers");
     ._makeTagToggle(misc, "Misc");
     
-    ._makeTagToggle(leveldesign, "Level Design");
+    ._makeTagToggle(level-design, "Level Design");
     ._makeTagToggle(systems, "Systems");
     ._makeTagToggle(uiux, "UI/UX");
     
@@ -449,10 +464,11 @@
     ._makeTagToggle(animation, "Animation");
     
     ._makeTagToggle(music, "Music");
-    ._makeTagToggle(sounds, "Sound Design");
+    ._makeTagToggle(sound-design, "Sound Design");
+    ._makeTagToggle(tools, "Tools");
 
     ._makeTagToggle(writing, "Writing");
-    ._makeTagToggle(narrative, "Narrative Design");
+    ._makeTagToggle(narrative-design, "Narrative Design");
     
     text-align: center;
     margin-bottom: @s_unit;
@@ -471,6 +487,8 @@
         min-width: 4.5em;
         text-align: center;
         z-index: 2;
+        font-size: 1.5em;
+        font-weight: bold;
     }
 
     .section-toggle {

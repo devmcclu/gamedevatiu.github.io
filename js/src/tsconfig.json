@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "removeComments": true,
+        "outFile": "../public/gdiu.js"
+    },
+
+    "files": [
+        "remoteContent.ts"
+    ]
+}

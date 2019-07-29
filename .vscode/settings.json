@@ -1,0 +1,26 @@
+{
+    "emeraldwalk.runonsave": {
+        "commands": [
+            {
+                "match": "\\.py\\.html$",
+                "isAsync": true,
+                "cmd": "build_html"
+            }
+        ]
+    },
+    "spellright.language": [
+        "en"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext",
+        "hlsl",
+        "html"
+    ],
+    "spellright.parserByClass": {
+        "hlsl": {
+            "parser": "code"
+        }
+    }
+}

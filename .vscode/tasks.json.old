@@ -1,0 +1,35 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build ts",
+            "type": "typescript",
+            "tsconfig": "js/src/tsconfig.json",
+            "problemMatcher": [
+                "$tsc"
+            ]
+        },
+        {
+            "label": "Minify",
+            "command": "uglifyjs",
+            "type": "shell",
+            "args": [
+                "--compress",
+                "--mangle",
+                "--output",
+                "js/public/gdiu.min.js",
+                "--",
+                "js/public/gdiu.js"
+            ],
+            "dependsOn": [
+                "Build ts"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+    ]
+}
