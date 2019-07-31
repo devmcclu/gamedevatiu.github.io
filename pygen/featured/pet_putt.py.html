@@ -1,0 +1,51 @@
+<code py>page_title = "Pet Putt | Gamedev@IU"</code>
+
+<head>
+    <include src="/.include/document/head.py.html" />
+</head>
+
+<body>
+    <include src="/.include/page/start.html" />
+    <include src="/.include/page/navbar.html" />
+
+    <div class="block flex">
+        <include src="/.include/page/content_sidebar.html" />
+        
+        <div id="content-target" class="panel pink" get-query>
+            <div class="top solid">
+                <h2 class="title">Pet Putt</h2>
+                <div class="info">
+                    <span class="pill outline no-select" value="$date">
+                        <i class="fas fa-calendar space"></i><span class="date">$date</span> <span class="time" value="$time">$time</span>
+                    </span>
+                    <span class="author white" value="Rajin Shankar">Rajin Shankar</span> <span class="location white" value="$location">$location</span>
+                </div>
+            </div>
+            <div class="bottom colored outline">
+                <div class="content-area">
+                    <div class="img thumb" hide="$hide-thumb" style="background-image:url('/wc/img/games/PetPutt_Screen1.png');">
+                        <a href="http://petputt.com" value="http://petputt.com" class="thumb-link"></a>
+                    </div>
+                    <div class="body content grey">
+                        <p><strong>Pet Putt</strong> is an adorable mini-golf game by GD@IU member <a href="https://twitter.com/rajinshankar" target="_blank">Rajin Shankar</a> featuring a wide cast of animal friends and hybrid puzzle-golf gameplay on spherical levels.</p>
+<p>After just 3 months of development, <strong>Pet Putt</strong> has already seen positive reactions after a successful showcase at <a href="https://popcon.us/indy/" target="_blank">Indy PopCon</a> 2019 where it was given the <em>Best Aesthetic</em> award by a panel of industry judges.</p>
+<p>The game is currently in development (using the open-source <a href="http://godotengine.org" target="_blank">Godot</a> game engine), with a planned release during the first half of 2020. You can follow the game's development on <a href="https://twitter.com/rajinshankar" target="_blank">Rajin's Twitter,</a> and support it on <a href="https://patreon.com/rajin" target="_blank">Patreon!</a> Patrons at all tiers also have access to all past, present, and future demo versions of the game.</p>
+
+                    </div>
+                    <p value="http://petputt.com">
+                        <br />
+                        <a href="http://petputt.com" target="_blank" class="button pill">
+                            <i class="fas fa-angle-double-right space"></i>Learn more!
+                        </a>
+                    </p>
+                </div>
+                <br />
+                <div class="tag-list">
+                     <div class="tag" tag="Student Project"><span class="w"> Student Project</span></div>  <div class="tag" tag="Featured"><span class="w"> Featured</span></div> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <include src="/.include/page/end.html" />
+</body>

@@ -10,9 +10,11 @@ img = "img"
 a = "a"
 
 # Construct a basic HTML element
+
+
 def element(tag, content=None, class_list=[], **kwargs):
     result = f"<{tag}"
-    
+
     if len(class_list) > 0:
         result += " class='"
         for c in class_list:
@@ -25,7 +27,7 @@ def element(tag, content=None, class_list=[], **kwargs):
             if k[0] == '_':
                 k = k[1:]
             result += f"{k}=\"{v}\" "
-    
+
     if content == None and tag in no_content_tags:
         result += "/>"
         return result
@@ -37,9 +39,11 @@ def element(tag, content=None, class_list=[], **kwargs):
 
     result += f"</{tag}>"
     return result
-    
+
+
 def print_element(tag, content=None, class_list=[], **kwargs):
     print(element(tag, content, class_list, **kwargs), end='\n')
+
 
 def inject(vars, text):
     for k, v in vars.items():
@@ -52,37 +56,47 @@ def inject(vars, text):
                     result += list_template.replace(f"${k}", str(e))
                 text = text.replace(original, result)
             else:
-                text = text.replace(original, list_template.replace(f"${k}", str(v)))
+                text = text.replace(
+                    original, list_template.replace(f"${k}", str(v)))
 
         text = text.replace(f"${k}", str(v))
     return text
 
 # Import text from a file, replacing $key with the appropriate value from given vars dictionary
+
+
 def template(source_path, vars):
     file_text = open(source_path).read()
     file_text = inject(vars, file_text)
     return file_text
 
+
 def include_template(source_path, vars):
     print(template(source_path, vars))
 
 # Like include_template, but writes the output to a new file
+
+
 def generate_file_from_template(source_path, output_path, vars):
     file_text = open(source_path).read()
     file_text = inject(vars, file_text)
-    
+
     output_file = open(output_path, 'w')
     output_file.write(file_text)
 
+
 # Relevant data for info files
 info_extension = ".info"
-info_pattern = re.compile("(\\S+)\\s*:\\s*(?:{([\\s\\S]*?)}|(.*))") # Regex for a single line (key: value) or (key: {value})
+# Regex for a single line (key: value) or (key: {value})
+info_pattern = re.compile("(\\S+)\\s*:\\s*(?:{([\\s\\S]*?)}|(.*))")
 info_folder = "../wc/"
 
 # Get a dictionary by reading key: value entries in a file
 # note: automatically handles file extension and root folder
 format_prefix = "!format"
-def get_vars(path, base_folder = info_folder):
+
+
+def get_vars(path, base_folder=info_folder):
     result = {
         "get_link": path
     }
@@ -97,7 +111,7 @@ def get_vars(path, base_folder = info_folder):
             v = dedent(long_value).strip()
         elif len(value) > 0:
             v = value.strip()
-        
+
         # Do formatting with mdformat if the format prefix is found
         if v.startswith(format_prefix):
             v = mdformat(v.replace(format_prefix, ""))
@@ -110,14 +124,17 @@ def get_vars(path, base_folder = info_folder):
                 result[k] = [result[k], v]
         else:
             result[k] = v
-        
+
     return result
+
 
 listing_file_name = "list"
 
 # Get a list of dictionaries from a listing file, calls get_vars for each line of the listing
 # note: automatically handles file extension and root folder
-def get_vars_listing(path, base_folder = info_folder):
+
+
+def get_vars_listing(path, base_folder=info_folder):
     listing_path = f"{base_folder}{path}/{listing_file_name}{info_extension}"
 
     result = []
@@ -130,41 +147,46 @@ def get_vars_listing(path, base_folder = info_folder):
     return result
 
 # Escape double and single quotes so a value can be used inside a string
+
+
 def escape_string(s):
     return s.replace("'", "\\'").replace('"', '\\"').replace("\n", "\\n")
+
 
 # Markdown-like formatting rules as pairs (name: [ pattern, replacement ])
 # where pattern and replacement are simplified regular expressions (literal regex if the string starts with 'regex')
 # note: see _rule_to_regex for conversion
 mdformat_rules = {
-    'subheading' : [ '##  ?', '<h2>$1</h2>' ],
-    'heading'    : [ '#  ?', '<h1>$1</h1>' ],
+    'paragraph': ['regex (?:\n\s*|^\s*)([^!#\s][\s\S]*?)(?=\n\n|\n*$)', '<p>$1</p>\n'],
 
-    'italic' : [ '__ ? __', '<em>$1</em>' ],
-    'bold'   : [ '** ? **', '<strong>$1</strong>' ],
+    'subheading': ['## ? ##', '<h2>$1</h2>'],
+    'heading': ['# ? #', '<h1>$1</h1>'],
 
-    'image-classed' : [ '![ ? ] ( ? ) < ? >', '<div class="img $3" alt="$1" style="background-image: url(\'$2\');">$1</div>' ],
-    'image'         : [ '![ ? ] ( ? )', '<div class="img" alt="$1" style="background-image: url(\'$2\');">$1</div>' ],
+    'italic': ['__ ? __', '<em>$1</em>'],
+    'bold': ['** ? **', '<strong>$1</strong>'],
 
-    'link-same-tab' : [ '[ ? ] =( ? )', '<a href="$2">$1</a>' ],
-    'link'          : [ '[ ? ] ( ? )', '<a href="$2" target="_blank">$1</a>' ],
+    'image-classed': ['![ ? ] ( ? ) < ? >', '<div class="img $3" alt="$1" style="background-image: url(\'$2\');"></div>'],
+    'image': ['![ ? ] ( ? )', '<div class="img" alt="$1" style="background-image: url(\'$2\');"></div>'],
 
-    'paragraph' : [ 'regex ([^\n][\s\S]*?)(?:\n\n|$)', '<p>$1</p>\n' ],
-    'linebreak' : [ '\\\\', '<br/>' ],
-    'nbsp'      : [ '<>', '&nbsp;' ],
-    
+    'link-same-tab': ['[ ? ] =( ? )', '<a href="$2">$1</a>'],
+    'link': ['[ ? ] ( ? )', '<a href="$2" target="_blank">$1</a>'],
+
+    # this is \\ ... need to double escape both of them
+    'linebreak': ['\\\\\\\\', '<br/>'],
+    'nbsp': ['<>', '&nbsp;'],
+
     # re.compile(r"\*\*(.+?)\*\*"): r"<strong>\1</strong>",
     # re.compile(r"__(.+?)__"): r"<em>\1</em>",
 }
 _rule_to_regex = {
-    '[' : '\\[', # Use literals
-    ']' : '\\]',
-    '(' : '\\(',
-    ')' : '\\)',
-    '*' : '\\*',
-    '  ': '\\s+', # Double space -> one or more spaces
-    ' ' : '\\s*', # One space    -> zero or more spaces
-    '?' : '(.*?)' # ?            -> capturing group
+    '[': '\\[',  # Use literals
+    ']': '\\]',
+    '(': '\\(',
+    ')': '\\)',
+    '*': '\\*',
+    '  ': '\\s+',  # Double space -> one or more spaces
+    ' ': '\\s*',  # One space    -> zero or more spaces
+    '?': '(.*?)'  # ?            -> capturing group
 }
 
 # Generate regex patterns from simplified strings above
@@ -178,7 +200,7 @@ for (name, patterns) in mdformat_rules.items():
     else:
         for (k, v) in _rule_to_regex.items():
             regex_string = regex_string.replace(k, v)
-    
+
     # print(regex_string)
     # print(replacement_string)
     # print()
@@ -186,6 +208,8 @@ for (name, patterns) in mdformat_rules.items():
     _mdformat_regex[regex] = replacement_string
 
 # Format some text
+
+
 def mdformat(text):
     for (pattern, replacement) in _mdformat_regex.items():
         # print(text)

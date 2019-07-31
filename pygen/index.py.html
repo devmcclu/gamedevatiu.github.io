@@ -12,7 +12,8 @@
 
     <!-- Begin Showcase Block -->
     <code py>
-        showcase_items = [
+        showcase_items = get_vars_listing("featured")
+        foo = [
             { 
                 "title": "A New Organization", 
                 "link": "/a.html?news/gdiu1", 
@@ -32,7 +33,7 @@
     </code>
 
     <div class="block">
-        <div class="expandotron red">
+        <div class="expandotron pink">
             <div class="top solid">
                 <h1>Showcase!</h1>
             </div>
@@ -71,11 +72,7 @@
 
         <!-- Begin News Block -->
         <code py>
-            featured_news = [
-                "test",
-                "test",
-                "test",
-            ]
+            featured_news = get_vars_listing("news")
         </code>
 
         <div class="height-fill">
@@ -86,8 +83,7 @@
                 <div class="middle outline">
                     <code py>
                         for item in featured_news:
-                            vars = get_vars(f"news/{item}")
-                            include_template(".include/home/featured_news.html", vars)
+                            include_template(".include/home/featured_news.html", item)
                     </code>
                 </div>
                 <a href="/news.html" class="bottom button">

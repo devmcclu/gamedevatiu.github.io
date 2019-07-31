@@ -1,0 +1,48 @@
+<code py>page_title = "$title | Gamedev@IU"</code>
+
+<head>
+    <include src="/.include/document/head.py.html" />
+</head>
+
+<body>
+    <include src="/.include/page/start.html" />
+    <include src="/.include/page/navbar.html" />
+
+    <div class="block flex">
+        <include src="/.include/page/content_sidebar.html" />
+        
+        <div id="content-target" class="panel pink" get-query>
+            <div class="top solid">
+                <h2 class="title">$title</h2>
+                <div class="info">
+                    <span class="pill outline no-select" value="$date">
+                        <i class="fas fa-calendar space"></i><span class="date">$date</span> <span class="time" value="$time">$time</span>
+                    </span>
+                    <span class="author white" value="$author">$author</span> <span class="location white" value="$location">$location</span>
+                </div>
+            </div>
+            <div class="bottom colored outline">
+                <div class="content-area">
+                    <div class="img thumb" hide="$hide-thumb" style="background-image:url('$thumb');">
+                        <a href="$link" value="$link" class="thumb-link"></a>
+                    </div>
+                    <div class="body content grey">
+                        $body
+                    </div>
+                    <p value="$link">
+                        <br />
+                        <a href="$link" target="_blank" class="button pill">
+                            <i class="fas fa-angle-double-right space"></i>Learn more!
+                        </a>
+                    </p>
+                </div>
+                <br />
+                <div class="tag-list">
+                    $$tag <div class="tag" tag="$tag"><span class="w"> $tag</span></div> $$
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <include src="/.include/page/end.html" />
+</body>
