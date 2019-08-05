@@ -115,12 +115,15 @@ def generate(folder):
     for path in listdir(folder):
         full_path = join(folder, path)
 
+        # Skip folders/files that start with . (.import, etc.)
         if path.startswith("."):
             continue
 
+        # Recurse into subdirectories
         if isdir(full_path):
             generate(full_path)
         else:
+            # Handle generating files
             if full_path.endswith(gen_ext):
                 try:
                     output_path = full_path.replace(gen_dir, out_dir, 1).replace(gen_ext, out_ext)
@@ -148,7 +151,6 @@ def generate(folder):
                     continue
 
 # Start generation in the current directory
-
 generate(".")
 print("")
 print("Finished generating html")
