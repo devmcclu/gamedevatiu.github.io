@@ -6,3 +6,5 @@ _site/
 wc/
 node_modules/
 js/old/
+
+**/__pycache__
