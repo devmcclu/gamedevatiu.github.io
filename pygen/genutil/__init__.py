@@ -2,16 +2,14 @@ import re
 from textwrap import dedent
 
 # HTML generation utilities
+# Usable from python scripts (import ... from genutil)
+# note: always available in .py.html (imported by default)
 
+# Tags that should format as <tag /> when given no content
 no_content_tags = ["img", "link", "br"]
 
-div = "div"
-img = "img"
-a = "a"
-
-# Construct a basic HTML element
-
-
+# Construct a basic HTML element, returning a string
+# <tag ...>content</tag> with kwargs used as element attributes
 def element(tag, content=None, class_list=[], **kwargs):
     result = f"<{tag}"
 
@@ -40,11 +38,14 @@ def element(tag, content=None, class_list=[], **kwargs):
     result += f"</{tag}>"
     return result
 
-
+# Construct a basic HTML element and print it immediately
 def print_element(tag, content=None, class_list=[], **kwargs):
     print(element(tag, content, class_list, **kwargs), end='\n')
 
-
+# Replace key-value pairs from var in text
+# Searches for $key and replaces it with the appropriate value (regardless of whitespace, so $key and $keyfoo will both replace $key)
+# Also supports text duplication for list elements with $$key template...$$ format, template will be repeated for each value in the list, replacing $key with that element
+# note: Single items (non-lists) are treated as single-element lists for template duplication
 def inject(vars, text):
     for k, v in vars.items():
         list_pattern = re.compile(f"(\\$\\${k}([\s\S]*?)\\$\\$)")
@@ -62,21 +63,17 @@ def inject(vars, text):
         text = text.replace(f"${k}", str(v))
     return text
 
-# Import text from a file, replacing $key with the appropriate value from given vars dictionary
-
-
+# Import text from a file, inject vars, and return the result
 def template(source_path, vars):
     file_text = open(source_path).read()
     file_text = inject(vars, file_text)
     return file_text
 
-
+# Import text from a file, inject vars, and print the result
 def include_template(source_path, vars):
     print(template(source_path, vars))
 
 # Like include_template, but writes the output to a new file
-
-
 def generate_file_from_template(source_path, output_path, vars):
     file_text = open(source_path).read()
     file_text = inject(vars, file_text)
@@ -89,14 +86,17 @@ def generate_file_from_template(source_path, output_path, vars):
 info_extension = ".info"
 # Regex for a single line (key: value) or (key: {value})
 info_pattern = re.compile("(\\S+)\\s*:\\s*(?:{([\\s\\S]*?)}|(.*))")
+
+# Where to search for info files
 info_folder = "../wc/"
 
-# Get a dictionary by reading key: value entries in a file
-# note: automatically handles file extension and root folder
+# Prefix for values that should have mdformat called on them
 format_prefix = "!format"
 
-
+# Get a dictionary by reading key: value entries in a file
+# note: automatically handles file extension
 def get_vars(path, base_folder=info_folder):
+    # get_link is the path from the root info folder, without the .info extension
     result = {
         "get_link": path
     }
@@ -131,9 +131,7 @@ def get_vars(path, base_folder=info_folder):
 listing_file_name = "list"
 
 # Get a list of dictionaries from a listing file, calls get_vars for each line of the listing
-# note: automatically handles file extension and root folder
-
-
+# note: automatically handles file extension
 def get_vars_listing(path, base_folder=info_folder):
     listing_path = f"{base_folder}{path}/{listing_file_name}{info_extension}"
 
@@ -147,15 +145,13 @@ def get_vars_listing(path, base_folder=info_folder):
     return result
 
 # Escape double and single quotes so a value can be used inside a string
-
-
 def escape_string(s):
     return s.replace("'", "\\'").replace('"', '\\"').replace("\n", "\\n")
 
 
 # Markdown-like formatting rules as pairs (name: [ pattern, replacement ])
 # where pattern and replacement are simplified regular expressions (literal regex if the string starts with 'regex')
-# note: see _rule_to_regex for conversion
+# note: see _rule_to_regex for conversion from simple expressions to actual regex
 mdformat_rules = {
     'paragraph': ['regex (?:\n\s*|^\s*)([^!#\s][\s\S]*?)(?=\n\n|\n*$)', '<p>$1</p>\n'],
 
@@ -174,9 +170,6 @@ mdformat_rules = {
     # this is \\ ... need to double escape both of them
     'linebreak': ['\\\\\\\\', '<br/>'],
     'nbsp': ['<>', '&nbsp;'],
-
-    # re.compile(r"\*\*(.+?)\*\*"): r"<strong>\1</strong>",
-    # re.compile(r"__(.+?)__"): r"<em>\1</em>",
 }
 _rule_to_regex = {
     '[': '\\[',  # Use literals
@@ -185,8 +178,8 @@ _rule_to_regex = {
     ')': '\\)',
     '*': '\\*',
     '  ': '\\s+',  # Double space -> one or more spaces
-    ' ': '\\s*',  # One space    -> zero or more spaces
-    '?': '(.*?)'  # ?            -> capturing group
+    ' ': '\\s*',   # One space    -> zero or more spaces
+    '?': '(.*?)'   # ?            -> capturing group
 }
 
 # Generate regex patterns from simplified strings above
@@ -207,14 +200,8 @@ for (name, patterns) in mdformat_rules.items():
     regex = re.compile(regex_string)
     _mdformat_regex[regex] = replacement_string
 
-# Format some text
-
-
+# Format some text according to generated rule regexes
 def mdformat(text):
     for (pattern, replacement) in _mdformat_regex.items():
-        # print(text)
         text = re.sub(pattern, replacement, text)
-        # print(text)
-        # print(pattern)
-        # print()
     return text
