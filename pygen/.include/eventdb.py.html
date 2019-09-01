@@ -4,6 +4,11 @@
     except:
         event_list_template_path = '.include/event_item.html'
 
+    try:
+        max_event_count
+    except:
+        max_event_count = 999
+
     event_infos = get_vars_listing("events")
     
     event_db_text = ""
@@ -41,6 +46,8 @@
         listTemplate: "#`event_list_template`",
         tagTemplate: "<div class='tag' tag='$tag'> <span class='w'>$tag</span> </div>",
         varPrefix: "$",
+        maxCount: 0//#`max_event_count`
+        ,
 
         getInfo: (name) => {
             if (name in events) {
@@ -90,12 +97,19 @@
         }
 
         // Get the HTML for each list element
+        var i = 0
         for (var key in events) {
             let info = events[key]
             if (!filter(info)) { continue }
 
             eventHTML = inject(info, event.listTemplate)
             html += eventHTML
+
+            i++
+            if (i >= event.maxCount)
+            {
+                break;
+            }
         }
 
         parent.innerHTML = html

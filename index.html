@@ -22,6 +22,8 @@
         listTemplate: "<div class=\"list-item grey_light\">\n    <label for=\"event-overlay-toggle\" class=\"thumb\" style=\"background-image: url(\'$thumb\')\" inject-link=\"event-overlay\"\n        inject-src=\"$get_link\"></label>\n\n    <div class=\"content solid\">\n        <label for=\"event-overlay-toggle\" class=\"title\" inject-link=\"event-overlay\" inject-src=\"$get_link\">\n            $title\n        </label>\n        \n        <div class=\"info short\">\n            \n            <div class=\"info-item\">\n                <i class=\"fas fa-calendar space\"></i>$date\n            </div>\n\n            <label for=\"event-overlay-toggle\" class=\"button pill green w d\" inject-link=\"event-overlay\"\n                inject-src=\"$get_link\">\n                <i class=\"fas fa-plus-circle space\"></i>More&nbsp;Info\n            </label>\n\n            <label for=\"event-overlay-toggle\" class=\"button circle green th d\" inject-link=\"event-overlay\"\n                inject-src=\"$get_link\">\n                <i class=\"fas fa-plus-circle\"></i>\n            </label>\n\n        </div>\n    </div>\n\n    <label for=\"event-overlay-toggle\" class=\"button bottom-button green m\" inject-link=\"event-overlay\" inject-src=\"$get_link\">\n        <i class=\"fas fa-plus-circle\"></i> More&nbsp;Info\n    </label>\n</div>",
         tagTemplate: "<div class='tag' tag='$tag'> <span class='w'>$tag</span> </div>",
         varPrefix: "$",
+        maxCount: 04
+        ,
 
         getInfo: (name) => {
             if (name in events) {
@@ -71,12 +73,19 @@
         }
 
         // Get the HTML for each list element
+        var i = 0
         for (var key in events) {
             let info = events[key]
             if (!filter(info)) { continue }
 
             eventHTML = inject(info, event.listTemplate)
             html += eventHTML
+
+            i++
+            if (i >= event.maxCount)
+            {
+                break;
+            }
         }
 
         parent.innerHTML = html
