@@ -140,7 +140,10 @@ def get_vars_listing(path, base_folder=info_folder):
     for item in items:
         item = item.strip()
         item_path = f"{path}/{item}"
-        result.append(get_vars(item_path, base_folder))
+        try:
+            result.append(get_vars(item_path, base_folder))
+        except:
+            pass
 
     return result
 
